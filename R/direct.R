@@ -30,9 +30,9 @@ direct <- function(x,y,w=NULL) {
   a <- numeric(6)
   a[1:3] <- gevec[,cond > 0]
   a[4:6] <- Tmatrix %*% a[1:3]
-  
+  print(a)
   theta <- atan2(a[2],a[1]-a[3])/2
-  while(theta<0){theta<<-pi/2+theta} 
+  while(theta<0){theta<-pi/2+theta} 
   
   cx <- -(2*a[3]*a[4]-a[2]*a[5])/(4*a[1]*a[3]-a[2]*a[2])
   cy <- -(2*a[1]*a[5]-a[2]*a[4])/(4*a[1]*a[3]-a[2]*a[2])
@@ -41,16 +41,17 @@ direct <- function(x,y,w=NULL) {
   minor <- 1/sqrt((a[1]*sin(theta)*sin(theta) - a[2]*cos(theta)*sin(theta) + a[3]*cos(theta)*cos(theta)) / (a[1]*cx*cx + a[2]*cx*cy + a[3]*cy*cy - a[6]))
   
   
-  semi.major<- abs(major) 
-  semi.minor<-abs(minor)
+  semi.major <- abs(major) 
+  semi.minor <- abs(minor)
+  
   if (semi.minor > semi.major){
-    semi.minor <- semi.major; semi.major <<- abs(minor);theta <<- theta +pi/2;
+    semi.minor <- semi.major; semi.major <<- abs(minor); theta <<- theta +pi/2;
   }
   rotated.angle <- theta*180/pi
   res <- cbind(D1,D2)%*%a
   sigma2 <- sum(res^2)/(n-5)
   sigmaa <- sigma2*ginv(crossprod(cbind(D1,D2)))
     names(a) <- c("x2","xy","y2","x","y","int")
-  return(list("residuals"=res,"fit"=list("a"=a,"eigen"=gev,"sigma2"=sigma2,"vcov"=sigmaa),vals=c("cx"=cx,
-                "cy"=cy,"theta"=theta,"semi.major"=semi.major,"semi.minor"=semi.minor,"rotated.angle"=rotated.angle)))
+  list("residuals"=res,"fit"=list("a"=a,"eigen"=gev,"sigma2"=sigma2,"vcov"=sigmaa),vals=c("cx"=cx,
+                "cy"=cy,"theta"=theta,"semi.major"=semi.major,"semi.minor"=semi.minor,"rotated.angle"=rotated.angle))
 }

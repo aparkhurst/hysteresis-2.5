@@ -25,6 +25,6 @@ function(j=NULL,wr1,wr2,x.pred,y.pred,n,cbb,joint){
     y.boot<-ry +  y.pred
   }
           results <- direct(x.boot,y.boot)   
-          z <- c("cx"=results$vals["cx"],"cy"=results$vals["cy"],"theta"=results$vals["theta"],"semi.major"=results$vals["semi.major"],"semi.minor"=results$vals["semi.minor"],"rote.deg"=results$vals["rotated.angle"])
+          z <- c("cx"=as.vector(results$vals["cx"]),"cy"=as.vector(results$vals["cy"]),"theta"=as.vector(results$vals["theta"]),"semi.major"=as.vector(results$vals["semi.major"]),"semi.minor"=as.vector(results$vals["semi.minor"]),"rote.deg"=as.vector(results$vals["rotated.angle"]))
           z
       }

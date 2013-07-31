@@ -109,7 +109,7 @@ plot(booted.Sellipse,main="Simulated Bootstrap Ellipse Loop",xlab="X Input",ylab
 
 ### Calibration Problem: Example when no times are not used
 data(IQsig,package="nlrwr") 
-Kaf=fel(IQsig$I,IQsig$Q, method="nls" )
+Kaf=fel(IQsig$I,IQsig$Q, method="direct")
 Kaf
 plot(Kaf,xlab="I",ylab="Q",main="Calibration",data=IQsig, value="ellipse.all",show=c("semi.major","semi.minor","rote.deg"))
 }

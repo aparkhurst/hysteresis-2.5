@@ -2,7 +2,7 @@ fel.direct <-
 function(x,y,ti,period,pred.method){
 n <- length(x)
 results <- direct(x,y)   
-cx=results$vals["cx"]; cy=results$vals["cy"]; theta=results$vals["theta"]; semi.major=results$vals["semi.major"]; semi.minor=results$vals["semi.minor"]; rote.deg=results$vals["rotated.angle"];
+cx=as.vector(results$vals["cx"]); cy=as.vector(results$vals["cy"]); theta=as.vector(results$vals["theta"]); semi.major=as.vector(results$vals["semi.major"]); semi.minor=as.vector(results$vals["semi.minor"]); rote.deg=as.vector(results$vals["rotated.angle"]);
 inti <- internal.1(semi.major,semi.minor,theta)
 der <- derived.1(semi.major,semi.minor,theta,inti[1],inti[2],inti[3],period)
 amps <- derived.amps(inti[1],inti[2],inti[3]) 
