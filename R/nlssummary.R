@@ -1,3 +1,5 @@
+if(getRversion() >= "2.15.1")  utils::globalVariables(c("warningcountHysteresis"))
+
 nlssummary <-
 function (g,N,studentize,center,cbb,joint) {
     wr1<- g$x-g$pred.x
@@ -19,8 +21,8 @@ function (g,N,studentize,center,cbb,joint) {
       wr1 <- r.Ta-mean(r.Ta)
       wr2 <- r.Tb-mean(r.Tb) 
     }
-    hystenv <- new.env()
-hystenv$warningcountHysteresis <- 0
+
+warningcountHysteresis <<- 0
 
     bootdat <- mapply(nlsbootwrapper, j=1:N, MoreArgs=list(wr1=wr1,wr2=wr2,x.pred=g$pred.x,y.pred=g$pred.y,n=n,cbb=cbb,joint=joint))
     bootint2 <- matrix(internal.1(bootdat[4,],bootdat[5,],bootdat[3,]),nrow=N,ncol=3)
@@ -33,7 +35,7 @@ hystenv$warningcountHysteresis <- 0
     if (diff(range(bootdat[,"rote.deg"])) > 170)
       warning("Bootstrapped rote.deg values on both sides of 0, 180 degrees.")    
 
-    if (hystenv$warningcountHysteresis > 0) warning("The function nls failed to converge ",hystenv$warningcountHysteresis," times.")
+    if (warningcountHysteresis > 0) warning("The function nls failed to converge ",warningcountHysteresis," times.")
 error<-apply(bootdat,2,sd,na.rm=T)
 themean<-apply(bootdat,2,mean,na.rm=T)
 ranges<-apply(bootdat,2,quantile,probs=c(0.025,0.25,0.5,0.75,0.975),na.rm=T)
