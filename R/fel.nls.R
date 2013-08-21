@@ -2,7 +2,7 @@ fel.nls <-
 function (x,y,ti,control,period,pred.method) {
 n <- length(x)
 results <- direct(x,y)   
-##direct performs the inner computations and defines cx,cy,semi.major,semi.minor, and theta globally.
+cx <- as.vector(results$vals["cx"]); cy <- as.vector(results$vals["cy"]); theta <- as.vector(results$vals["theta"]); semi.major <- as.vector(results$vals["semi.major"]); semi.minor <- as.vector(results$vals["semi.minor"]); rote.deg <- as.vector(results$vals["rotated.angle"]);
 z <- rep(1,n)   
 nls.polar.fit<-nls(z~
      ( cos(theta)*(x-cx)+sin(theta)*(y-cy))^2/(((ampx)^2+(ampy)^2+((ampx)^2-(ampy)^2)/((cos(theta))^2-(sin(theta))^2))/2)      + (-sin(theta)*(x-cx)+cos(theta)*(y-cy))^2/((ampx^2+ampy^2-(ampx^2-ampy^2)/((cos(theta))^2-(sin(theta))^2))/2),

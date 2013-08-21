@@ -9,7 +9,7 @@ int <- rep(1,n)
 model <- lm(terms(x2~0+xy+y2+x+y+int,keep.order=TRUE))
 a <- as.vector(c(1,coef(model)))
 
-theta = atan2(a[2],a[1]-a[3])/2
+theta <- atan2(a[2],a[1]-a[3])/2
 while(theta<0){theta<-pi/2+theta}
 
 
