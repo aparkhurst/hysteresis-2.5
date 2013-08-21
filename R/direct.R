@@ -30,7 +30,6 @@ direct <- function(x,y,w=NULL) {
   a <- numeric(6)
   a[1:3] <- gevec[,cond > 0]
   a[4:6] <- Tmatrix %*% a[1:3]
-  print(a)
   theta <- atan2(a[2],a[1]-a[3])/2
   while(theta<0){theta<-pi/2+theta} 
   
