@@ -8,7 +8,9 @@ Fit a Hysteresis Loop
 Fits a hysteresis loop given values of m and n chosen by the user.
 }
 \usage{
-floop(x, y=NULL, n = 1, m = 1,times="equal", period = NULL, subjects=NULL, subset=NULL,na.action= getOption("na.action"),extended.classical=FALSE,boot=FALSE,...) 
+floop(x, y=NULL, n = 1, m = 1,times="equal", period = NULL, 
+subjects=NULL, subset=NULL,na.action= getOption("na.action"),
+extended.classical=FALSE,boot=FALSE,...) 
 }
 
 \arguments{

@@ -9,7 +9,8 @@ Methods for easily fitting multiple loops from repeated measures designs.
 Fit a sinusoidal hysteretic process between an input and an output variable across multiple loops separated by subjects and repeated.
 }
 \usage{
-floop.repeated(x,y=NULL,m=1,n=1,subjects=NULL,repeated=NULL,subjects.in="all",repeated.in="all",...)
+floop.repeated(x,y=NULL,m=1,n=1,subjects=NULL,repeated=NULL,
+subjects.in="all",repeated.in="all",...)
 \method{summary}{fittedlooplist}(g,N=1000,boot=TRUE,seed=NULL,...)
 }
 \arguments{
@@ -91,7 +92,9 @@ par(mfrow=c(1,1))
 loopmodels.rep$models["A",1]       #Select one subject, one replication
 
 ### Bootstrap estimates and standard errors (Seed is necessary if want to reproduce results)
-boot.rep.loop=floop.repeated(HysteresisData$X, HysteresisData$Y, n=5,m=3, subjects = HysteresisData$subjects,subjects.in=c("A","C"),repeated=HysteresisData$repeated,boot=TRUE,seed=123)
+boot.rep.loop=floop.repeated(HysteresisData$X, HysteresisData$Y,
+n=5,m=3, subjects = HysteresisData$subjects,subjects.in=c("A","C"),
+repeated=HysteresisData$repeated,boot=TRUE,seed=123)
 boot.rep.loop                 #Gives boot estimates, boot bias, boot SE and boot quartiles
 boot.rep.loop$Boot.Estimates  #Lists boot estimates
 boot.rep.loop$Boot.Std.Errors #Gives boot standard errors 

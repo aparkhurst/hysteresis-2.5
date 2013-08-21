@@ -98,6 +98,7 @@ plot(loopmodel,main="Hysteresis Loop n=2 m=3",values="hysteresis")
 ellipse.eig <- mel(semi.major=7,semi.minor=4,rote.deg=30)
 ellip.eigen.fit <- fel(ellipse.eig$x,ellipse.eig$y)
 ellip.eigen.fit$Estimates
-plot(ellip.eigen.fit,main="Ellipse from Eigenvalue Parameters",show=c("semi.major","semi.minor","rote.deg"),values="ellipse")
+plot(ellip.eigen.fit,main="Ellipse from Eigenvalue Parameters",
+show=c("semi.major","semi.minor","rote.deg"),values="ellipse")
 }
 \keyword{ models }

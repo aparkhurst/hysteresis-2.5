@@ -93,7 +93,8 @@ ellipse1 <- mel(sd.x=0.2,sd.y=0.04)
 ellipse1.fit <- fel(ellipse1$x,ellipse1$y)
 boot.ellipse1.fit <- summary(ellipse1.fit)
 boot.ellipse1.fit
-plot(boot.ellipse1.fit,xlab="Input",ylab="Output",main="Bootstrapped Ellipse",putNumber=TRUE)
+plot(boot.ellipse1.fit,xlab="Input",ylab="Output",
+main="Bootstrapped Ellipse",putNumber=TRUE)
 }
 \keyword{ models }
 

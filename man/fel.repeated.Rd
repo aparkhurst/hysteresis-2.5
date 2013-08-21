@@ -76,7 +76,9 @@ Spencer Maynes, Fan Yang, and Anne Parkhurst.
 \examples{
 ## Select 2 subjects with 2 replications and fit 4 ellipses
 data(EllipseData) 
-emodels.rep <- fel.repeated(EllipseData$X, EllipseData$Y, method = "harmonic2", subjects = EllipseData$subjects,subjects.in=c("A","C"),repeated=EllipseData$repeated)
+emodels.rep <- fel.repeated(EllipseData$X, EllipseData$Y, method = "harmonic2", 
+subjects = EllipseData$subjects,subjects.in=c("A","C"),
+repeated=EllipseData$repeated)
 emodels.rep                #Gives estimates and delta standard errors 
 emodels.rep$Estimates      #List estimates only
 emodels.rep$Std.Errors     #List delta standard errors 
@@ -85,7 +87,9 @@ plot(emodels.rep, main="Repeated Ellipses",xlab="X")
 par(mfrow=c(1,1))
 
 ### Bootstrap estimates and standard errors (Seed is necessary if want to reproduce results)
-boot.rep.ellipse=fel.repeated(EllipseData$X, EllipseData$Y,method = "harmonic2", subjects = EllipseData$subjects,subjects.in=c("A","C"),repeated=EllipseData$repeated,boot=TRUE,seed=123)
+boot.rep.ellipse<-fel.repeated(EllipseData$X,EllipseData$Y,method = "harmonic2",
+subjects = EllipseData$subjects,subjects.in=c("A","C"),
+repeated=EllipseData$repeated,boot=TRUE,seed=123)
 boot.rep.ellipse  #Gives boot estimates, boot bias, boot SE and boot quartiles
 par(mfrow=c(2,2))
 plot(boot.rep.ellipse, main="Repeated Ellipses",xlab="X",values="ellipse")

@@ -35,7 +35,8 @@ subjects <- c(rep("A", length(loop1$x)), rep("B", length(loop2$x)), rep("C",leng
     
 ##Use data to fit 6 Hysteresis Loops  
 data(HysteresisData)
-six.loops <- floop.repeated(HysteresisData$X, HysteresisData$Y, n=5,m=3,subjects = HysteresisData$subjects,repeated=HysteresisData$repeated)
+six.loops <- floop.repeated(HysteresisData$X, HysteresisData$Y, n=5,m=3,
+subjects = HysteresisData$subjects,repeated=HysteresisData$repeated)
 six.loops
 
 #Model fit for B-1

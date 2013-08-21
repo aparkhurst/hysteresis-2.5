@@ -1,5 +1,9 @@
 \name{mel}
 \alias{mel}
+\alias{mel1}
+\alias{mel2}
+\alias{mel3}
+\alias{mel4}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Simulate (Make) an Ellipse
@@ -8,19 +12,23 @@ Simulate (Make) an Ellipse
 Produces an ellipse based on 1 of 4 possible formulations: 1-Eigenvalues, 2-Hysteresis Coefs, 3-Amplitudes and 4-Algebraic Coefs.
 }
 \usage{
-mel(cx=32,cy=39,rote.deg=2,semi.major=7,semi.minor=0.23,n.points=24,period=24,sd.x=0,sd.y=0)
-mel(method=2,cx=32,cy=39,b.x=6.99,b.y=0.244,retention=0.23,phase.angle=1.57,n.points=24,period=24,sd.x=0,sd.y=0)
-mel(method=3,cx=32,cy=39,ampx=6.99,ampy=0.335,lag=2.888,n.points=24,period=24,sd.x=0,sd.y=0)
-mel(method=4,x2=0.002293,xy=-.06960,y2=0.9976,x=2.567,y=-75.58,int=1432.7,
-                 phase.angle=0,n.points=24,period=24,sd.x=0,sd.y=0)
+mel(method=1,...)
+mel1(cx=32,cy=39,rote.deg=2,semi.major=7,semi.minor=0.23,
+n.points=24,period=24,sd.x=0,sd.y=0)
+mel2(cx=32,cy=39,b.x=6.99,b.y=0.244,retention=0.23,
+phase.angle=1.57,n.points=24,period=24,sd.x=0,sd.y=0)
+mel3(cx=32,cy=39,ampx=6.99,ampy=0.335,lag=2.888,n.points=24,
+period=24,sd.x=0,sd.y=0)
+mel4(x2=0.002293,xy=-.06960,y2=0.9976,x=2.567,y=-75.58,int=1432.7,
+phase.angle=0,n.points=24,period=24,sd.x=0,sd.y=0)
 }
 
 \arguments{
   \item{method}{
-One of 1,2,3 or 4. If \code{method=1}; \code{semi.major}, \code{semi.minor} and \code{rote.deg} are the elliptical parameters used. If \code{method=2}; \code{b.x}, \code{b.y} and \code{retention} are used instead.
- The third option \code{method=3} uses the easiest to understand parameters \code{ampx}, \code{ampy}, and \code{lag}. If \code{method=4}, coefficients to the variables
- : x^2, xy, y^2, \code{x}, \code{y} and a vector of 1's for \code{int} are used. 
- Default is \code{method=1}.
+selects which of the functions \code{mel1}, \code{mel2}, \code{mel3}, \code{mel4} to use to describe the ellipse.
+}
+  \item{...}{
+arguments to the functions \code{mel1}, \code{mel2}, \code{mel3}, \code{mel4} described below.
 }
   \item{cx}{
 Center of input x.
@@ -115,14 +123,17 @@ Spencer Maynes, Fan Yang, and Anne Parkhurst.
 \examples{
 ellipseA <- mel(method=3,cx=35, cy=39, ampx=7, ampy=2, lag=3, sd.x=0.2,sd.y=0.04)
  ellipseA.fit <- fel(ellipseA$x,ellipseA$y)
-  plot(ellipseA.fit,xlab="Input",ylab="Output",main="Simulated Ellipse", putNumber=TRUE)
+  plot(ellipseA.fit,xlab="Input",ylab="Output",main="Simulated Ellipse",
+  putNumber=TRUE)
  boot.ellipseA.fit <- fel(ellipseA$x,ellipseA$y, boot=TRUE, seed=231)
-  plot(boot.ellipseA.fit,xlab="Input",ylab="Output",main="Bootstrapped Ellipse",values="ellipse.all")
+  plot(boot.ellipseA.fit,xlab="Input",ylab="Output",
+  main="Bootstrapped Ellipse",values="ellipse.all")
 
 ellipse.eig <- mel(semi.major=7,semi.minor=4,rote.deg=30)
 ellip.eigen.fit <- fel(ellipse.eig$x,ellipse.eig$y)
 ellip.eigen.fit$Estimates
-plot(ellip.eigen.fit,main="Ellipse from Eigenvalue Parameters",show=c("semi.major","semi.minor","rote.deg"),values="ellipse")
+plot(ellip.eigen.fit,main="Ellipse from Eigenvalue Parameters",
+show=c("semi.major","semi.minor","rote.deg"),values="ellipse")
 }
 \keyword{ models }
 

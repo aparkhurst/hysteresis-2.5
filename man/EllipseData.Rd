@@ -36,7 +36,8 @@ subjects <- c(rep("A", length(ellip1$x)), rep("B", length(ellip2$x)), rep("C",
     
 ##Use data file to fit 6 ellipses.
 data(EllipseData) 
-six.models <- fel.repeated(EllipseData$X, EllipseData$Y, method = "harmonic2", subjects = EllipseData$subjects,repeated=EllipseData$repeated)
+six.models <- fel.repeated(EllipseData$X, EllipseData$Y, method = "harmonic2",
+subjects = EllipseData$subjects,repeated=EllipseData$repeated)
 six.models
  
 #Model fit for B-1

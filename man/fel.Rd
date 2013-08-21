@@ -9,7 +9,8 @@ Fit a sinusoidal hysteretic (elliptical) process between an input and an output.
 }
 \usage{
 fel(x, y=NULL, method = "harmonic2", period = NULL, subjects = NULL,
-  times="unknown",subset = NULL,na.action= getOption("na.action"), control=nls.control(), boot=FALSE,...)
+  times="unknown",subset = NULL,na.action= getOption("na.action"),
+  control=nls.control(), boot=FALSE,...)
 }
 \arguments{
   \item{x}{
@@ -105,13 +106,16 @@ Sellipse.fit$Estimates  #Gives estimates, delta standard errors and 95%CI
 ### Bootstrap estimates and standard errors (Seed is necessary if want to reproduce results)
 booted.Sellipse <- fel(Sellipse$x,Sellipse$y,boot=TRUE, seed=123)
 booted.Sellipse   #Gives boot estimates, boot bias, boot SE and boot quartiles
-plot(booted.Sellipse,main="Simulated Bootstrap Ellipse Loop",xlab="X Input",ylab="Y Output",show=c("rote.deg","semi.major","semi.minor"),values="ellipse.all")
+plot(booted.Sellipse,main="Simulated Bootstrap Ellipse Loop",xlab="X Input",
+ylab="Y Output",show=c("rote.deg","semi.major","semi.minor"),
+values="ellipse.all")
 
 ### Calibration Problem: Example when no times are not used
 data(IQsig,package="nlrwr") 
 Kaf=fel(IQsig$I,IQsig$Q, method="direct")
 Kaf
-plot(Kaf,xlab="I",ylab="Q",main="Calibration",data=IQsig, value="ellipse.all",show=c("semi.major","semi.minor","rote.deg"))
+plot(Kaf,xlab="I",ylab="Q",main="Calibration",data=IQsig, 
+value="ellipse.all",show=c("semi.major","semi.minor","rote.deg"))
 }
 \keyword{ models }
 

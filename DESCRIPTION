@@ -6,11 +6,11 @@ Author: Spencer Maynes, Fan Yang, and Anne Parkhurst
 Maintainer: Spencer Maynes <smaynes89@gmail.com>
 Depends:
     car,
-    msm
+    msm, nlrwr
 Imports:
     knitr
 VignetteBuilder: knitr
 Description: Fit, summarize and plot sinusoidal hysteretic processes using:
     two-step simple harmonic least squares, ellipse-specific non-linear least
     squares, or linear least squares.
-License: gpl (>= 2)
+License: GPL (>= 2)

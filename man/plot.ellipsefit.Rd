@@ -14,14 +14,18 @@ Plot a fitted ellipse or hysteresis loop.
 A scatterplot of x and y fitted with an ellipse or hysteresis loop. Uses objects created by \code{\link{fel}}, \code{\link{summary.ellipsefit}} and \code{\link{floop}}. Can also plot an \code{ellipsefitlist} or \code{ellipsesummarylist} object that contains multiple ellipses.
 }
 \usage{
-\method{plot}{ellipsefit}(a,putNumber=FALSE,values=NULL,xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,show=NULL,...)
-\method{plot}{ellipsesummary}(a,putNumber=FALSE,values=NULL,xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,show=NULL,...)
+\method{plot}{ellipsefit}(a,putNumber=FALSE,values=NULL,
+xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,show=NULL,...)
+\method{plot}{ellipsesummary}(a,putNumber=FALSE,values=NULL,
+xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,show=NULL,...)
 
 \method{plot}{ellipsefitlist}(a,main=NULL, values=NULL, ...) 
 \method{plot}{ellipsesummarylist}(a,main=NULL, values=NULL, ...) 
 
-\method{plot}{fittedloop}(a,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,show=NULL,...)
-\method{plot}{loopsummary}(a,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,show=NULL,...)
+\method{plot}{fittedloop}(a,split.line=TRUE,xlim=NULL,
+ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,show=NULL,...)
+\method{plot}{loopsummary}(a,split.line=TRUE,xlim=NULL,
+ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,show=NULL,...)
 
 \method{plot}{fittedlooplist}(a,main=NULL,values=NULL,...)
 \method{plot}{loopsummarylist}(a,main=NULL,values=NULL,...)
@@ -73,17 +77,22 @@ Spencer Maynes, Fan Yang, and Anne Parkhurst.
 ##Fit and plot an ellipse
   ellipse1 <- mel(sd.x=0.2,sd.y=0.04)
   ellipse1.fit <- fel(ellipse1$x,ellipse1$y)
-plot(ellipse1.fit,main="Simulated Ellipse",xlab="X Input",ylab="Y Output",show=c("semi.major", "semi.minor"),values="ellipse.all")
+plot(ellipse1.fit,main="Simulated Ellipse",xlab="X Input",
+ylab="Y Output",show=c("semi.major", "semi.minor"),values="ellipse.all")
 ### Bootstrapping
   booted.ellipse <- fel(ellipse1$x,ellipse1$y,boot=TRUE, seed=123)
-plot(booted.ellipse,xlab="X Input",ylab="Y Output",main="Simulated Bootstrap Ellipse",values="ellipse")
+plot(booted.ellipse,xlab="X Input",ylab="Y Output",
+main="Simulated Bootstrap Ellipse",values="ellipse")
 
 ##Fit and plot a hysteresis loop
   loop1 <- mloop(sd.x=0.05,sd.y=0.05,n=5,m=3)
   loopmodel <- floop(loop1$x,loop1$y,n=5,m=3)
-plot(loopmodel,main="Simulated Hysteresis Loop n=5 m=3",xlab="Input",ylab="Output", values="hysteresis.all")
+plot(loopmodel,main="Simulated Hysteresis Loop n=5 m=3",
+xlab="Input",ylab="Output", values="hysteresis.all")
   booted.loop <- floop(loop1$x,loop1$y,,n=5,m=3,boot=TRUE, seed=1523)
-plot(booted.loop,xlab="Input",ylab="Output",main="Simulated Bootstrapped Loop n=5, m=3",putNumber=TRUE)
-plot(booted.loop,main="Simulated Bootstrapped Loop n=5, m=3",xlab="Input",ylab="Output",values="hysteresis.all")
+plot(booted.loop,xlab="Input",ylab="Output",
+main="Simulated Bootstrapped Loop n=5, m=3",putNumber=TRUE)
+plot(booted.loop,main="Simulated Bootstrapped Loop n=5, m=3",
+xlab="Input",ylab="Output",values="hysteresis.all")
 }
 \keyword{ hplot }
