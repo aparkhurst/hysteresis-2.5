@@ -14,7 +14,7 @@ $$y_{t}=b_{y}*cos(2t\pi/T+\phi)^{n}+R*sin(2t\pi/T+\phi)^{m}+c_{y}+e_{y,t}$$
 where e is a random error term. These generalized transcendental equations (Lapshin) form a hysteresis loop for a given frequency or period and set of time points t=1,2...n.
 
 The plot below uses the function **mloop** which simulates hysteresis loops to show the effects of choosing various odd values for n and m.
-```{r mandn,warning=FALSE,message=FALSE,fig.width=15}
+```{r mandn,warning=FALSE,message=FALSE,fig.width=15,results='hide'}
 library(knitr)
 library(hysteresis)
 par(mfrow=c(3,3),mai=c(0,0.2,0.2,0),ann=FALSE,xaxt="n",yaxt="n",oma=c(0,0,3,0))
@@ -90,8 +90,8 @@ for (i in c(1,2,4)){
 Finally the phase.angle, $\phi$, changes the location of points along the loop, but does not change the form of the loop itself. When phase.angle is zero, the loop starting point is also the saturation point.
 ```{r}
 obj<-mloop(retention=0.5,n.points=100,period=99)
-for (i in c(0,90,180,260)){
   plot(obj$x,obj$y,type="l",xlab="x",ylab="y",main="Starting Points for Different Values of phase.angle",xlim=c(-0.6,0.8))
+for (i in c(0,90,180,260)){
   obj2<-mloop(phase.angle=i,retention=0.5,n.points=1,period=99)
   points(obj2$x,obj2$y,pch=19,col="gold",cex=2)
   points(obj2$x,obj2$y,col="gold",cex=4)
