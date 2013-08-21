@@ -10,8 +10,10 @@ summary methods for classes \code{ellipsefit} and \code{fittedloop} created by t
 }
 \usage{
 ## S3 method for class 'ellipsefit'
-\method{summary}{ellipsefit}(object,boot=TRUE, N = 1000, studentize=TRUE, center=FALSE, cbb=NULL, joint=FALSE,seed=NULL,...)
-\method{summary}{fittedloop}(object,boot=TRUE,N=1000,cbb=NULL,joint=FALSE,seed=NULL,...)
+\method{summary}{ellipsefit}(object,boot=TRUE, N = 1000, 
+studentize=TRUE, center=FALSE, cbb=NULL, joint=FALSE,seed=NULL,...)
+\method{summary}{fittedloop}(object,boot=TRUE,N=1000,
+cbb=NULL,joint=FALSE,seed=NULL,...)
 }
 \arguments{
   \item{object}{

@@ -80,7 +80,9 @@ Spencer Maynes, Fan Yang, and Anne Parkhurst.
 }
 \examples{
 data(HysteresisData)
-loopmodels.rep <- floop.repeated(HysteresisData$X, HysteresisData$Y, n=5,m=3, subjects = HysteresisData$subjects,subjects.in=c("A","C"),repeated=HysteresisData$repeated)
+loopmodels.rep <- floop.repeated(HysteresisData$X, HysteresisData$Y,
+n=5,m=3, subjects = HysteresisData$subjects,subjects.in=c("A","C"),
+repeated=HysteresisData$repeated)
 loopmodels.rep                #Gives estimates and delta standard errors
 loopmodels.rep$Estimates      #List estimates only
 loopmodels.rep$Std.Errors     #List delta standard errors

@@ -7,7 +7,7 @@ Maintainer: Spencer Maynes <smaynes89@gmail.com>
 Depends:
     car,
     msm, nlrwr
-Imports:
+Suggests:
     knitr
 VignetteBuilder: knitr
 Description: Fit, summarize and plot sinusoidal hysteretic processes using:
