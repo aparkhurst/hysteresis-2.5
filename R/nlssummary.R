@@ -1,4 +1,3 @@
-if(getRversion() >= "2.15.1")  utils::globalVariables(c("hystenv$warningcountHysteresis"))
 
 nlssummary <-
 function (g,N,studentize,center,cbb,joint) {
@@ -21,7 +20,7 @@ function (g,N,studentize,center,cbb,joint) {
       wr1 <- r.Ta-mean(r.Ta)
       wr2 <- r.Tb-mean(r.Tb) 
     }
-hystenv$warningcountHysteresis <<- 0
+hystenv$warningcountHysteresis <- 0
 
     bootdat <- mapply(nlsbootwrapper, j=1:N, MoreArgs=list(wr1=wr1,wr2=wr2,x.pred=g$pred.x,y.pred=g$pred.y,n=n,cbb=cbb,joint=joint))
     bootint2 <- matrix(internal.1(bootdat[4,],bootdat[5,],bootdat[3,]),nrow=N,ncol=3)
