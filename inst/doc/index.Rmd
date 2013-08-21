@@ -88,11 +88,9 @@ for (i in c(1,2,4)){
 }
 ```
 Finally the phase.angle, $\phi$, changes the location of points along the loop, but does not change the form of the loop itself. When phase.angle is zero, the loop starting point is also the saturation point.
-```{r final,fig.show="animate"}
-opts_chunk$set(out.extra='style="display:block; margin: auto"', fig.align="center")
-opts_knit$set(animation.fun = hook_r2swf)
+```{r}
 obj<-mloop(retention=0.5,n.points=100,period=99)
-for (i in c(0,90,180,240)){
+for (i in c(0,90,180,260)){
   plot(obj$x,obj$y,type="l",xlab="x",ylab="y",main="Starting Points for Different Values of phase.angle",xlim=c(-0.6,0.8))
   obj2<-mloop(phase.angle=i,retention=0.5,n.points=1,period=99)
   points(obj2$x,obj2$y,pch=19,col="gold",cex=2)

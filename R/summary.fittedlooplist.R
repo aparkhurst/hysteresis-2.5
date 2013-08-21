@@ -1,4 +1,5 @@
-summary.fittedlooplist <- function(g,N=1000,boot=TRUE,seed=NULL,...) {
+summary.fittedlooplist <- function(object,N=1000,boot=TRUE,seed=NULL,...) {
+ g <- object
   summarycall <- match.call()
   if (!is.null(seed)) set.seed(seed)
   if (boot==TRUE) {

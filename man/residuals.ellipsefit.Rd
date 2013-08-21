@@ -25,19 +25,28 @@
 \alias{fitted.loopsummarylist}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Extract input, output, geometric and algebraic residuals and fitted values from fitted loops or ellipses. 
+Residuals, studentized residuals and fitted values for the hysteresis package. 
+}
+\description{
+Extract input, output, geometric and algebraic residuals, studentized residuals and fitted values from fitted loops or ellipses.
 }
 \usage{
 ##S3 methods for classes 'ellipsefit', 'ellipsesummary', 'fittedloop',
 ##'loopsummary','ellipsefitlist', 'ellipsesummarylist', 'fittedlooplist' and
 ##'loopsummarylist'.
-\method{residuals}{ellipsefit}(g)
-\method{rstudent}{ellipsefit}(g)
-\method{fitted}{ellipsefit}(g)
+\method{residuals}{ellipsefit}(object,...)
+\method{rstudent}{ellipsefit}(model,...)
+\method{fitted}{ellipsefit}(object,...)
 }
 \arguments{
-  \item{g}{
+  \item{object}{
 an object created by \code{\link{fel}} or \code{\link{floop}}.
+}
+  \item{model}{
+an object created by \code{\link{fel}} or \code{\link{floop}}.
+}
+  \item{...}{
+other arguments.
 }
 }
 \details{

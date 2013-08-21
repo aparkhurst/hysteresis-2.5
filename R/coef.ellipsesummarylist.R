@@ -1,1 +1,1 @@
-coef.ellipsesummarylist <- function (g) g$Boot.Estimates
+coef.ellipsesummarylist <- function (object,...) object$Boot.Estimates

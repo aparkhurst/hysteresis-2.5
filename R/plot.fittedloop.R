@@ -1,4 +1,5 @@
-plot.fittedloop <- function (a,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,show=NULL,...) {
+plot.fittedloop <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,show=NULL,...) {
+  a <- x
   ti <- (1:101)*pi/50
   Input <- a$values["b.x"]*cos(ti)+a$values["cx"]
   if (a$extended.classical==FALSE) Output <- a$values["b.y"]*cos(ti)^a$values["n"]+a$values["retention"]*sin(ti)^a$values["m"]+a$values["cy"]

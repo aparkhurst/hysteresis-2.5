@@ -21,6 +21,7 @@ function (g,N,studentize,center,cbb=cbb,joint=joint) {
     }
 
     bootdat <- mapply(directboot, j=1:N, MoreArgs=list(wr1=wr1,wr2=wr2,x.pred=g$pred.x,y.pred=g$pred.y,n=n,cbb=cbb,joint=joint))
+
     bootint2 <- matrix(internal.1(bootdat[4,],bootdat[5,],bootdat[3,]),nrow=N,ncol=3)
     bootderived <- matrix(derived.1(bootdat[4,],bootdat[5,],bootdat[3,],bootint2[,1],bootint2[,2],bootint2[,3],rep(g$fit.statistics["period"],N)),nrow=N,ncol=3)
     bootamps <- matrix(derived.amps(bootint2[,1],bootint2[,2],bootint2[,3]),nrow=N,ncol=5) 
@@ -33,6 +34,7 @@ function (g,N,studentize,center,cbb=cbb,joint=joint) {
     
 error<-apply(bootdat,2,sd,na.rm=T)
 themean<-apply(bootdat,2,mean,na.rm=T)
+
 ranges<-apply(bootdat,2,quantile,probs=c(0.025,0.25,0.5,0.75,0.975),na.rm=T)
 full <- data.frame(g$values,t(ranges),error,themean)
 colnames(full) <- c("Orig.Estimate","B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975","Std.Error","Boot.Mean")

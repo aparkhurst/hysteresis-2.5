@@ -1,1 +1,1 @@
-coef.ellipsefitlist <- function (g) g$Estimates
+coef.ellipsefitlist <- function (object,...) object$Estimates

@@ -1,9 +1,9 @@
-print.fittedlooplist <- function(g,...) {
+print.fittedlooplist <- function(x,...) {
   cat("Call:\n")
-  print(attr(g,"call"))
+  print(attr(x,"call"))
   cat("\nParameter Estimates:\n")
-print(g$Estimates,digits=4)
+print(x$Estimates,dixits=4)
   
 cat("\nDelta Method Standard Errors:\n")
-print(g$Std.Errors,digits=4)
-invisible(g)}
+print(x$Std.Errors,dixits=4)
+invisible(x)}

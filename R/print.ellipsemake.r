@@ -1,4 +1,4 @@
 print.ellipsemake <-
-function(g,...) {
-print(g$values[c("area","lag","retention","coercion")])
-invisible(g)}
+function(x,...) {
+print(x$values[c("area","lax","retention","coercion")])
+invisible(x)}

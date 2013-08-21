@@ -11,7 +11,7 @@ Fit a sinusoidal hysteretic process between an input and an output variable acro
 }
 \usage{
 fel.repeated(x,y=NULL,subjects=NULL,repeated=NULL,subjects.in="all",repeated.in="all",...)
-\method{summary}{ellipsefitlist}(g,N=1000,boot=TRUE,seed=NULL,...)
+\method{summary}{ellipsefitlist}(object,N=1000,boot=TRUE,seed=NULL,...)
 
 
 }
@@ -34,7 +34,7 @@ a vector of characters, the levels of \code{subjects} to be included. Default is
    \item{repeated.in}{
 a vector of characters, the levels of \code{repeated} to be included. Default is "all".
 }
-   \item{g}{
+   \item{object}{
 an \code{ellipsefitlist} object.
 }
    \item{N}{

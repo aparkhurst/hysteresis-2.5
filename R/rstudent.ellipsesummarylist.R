@@ -1,4 +1,5 @@
-rstudent.ellipsesummarylist <- function(g){
+rstudent.ellipsesummarylist <- function(model,...){
+  g <- model
   thenames <- g$Boot.Estimates[,1:(which(colnames(g$Boot.Estimates)=="b.x")-1)]
   thelengths <- lapply(g$models, function(x) length(x$pred.x))
   rowvec <- mapply(function(x,y) rep(x,each=y),1:length(thelengths),y=thelengths)

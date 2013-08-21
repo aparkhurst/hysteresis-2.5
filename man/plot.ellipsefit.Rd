@@ -14,25 +14,25 @@ Plot a fitted ellipse or hysteresis loop.
 A scatterplot of x and y fitted with an ellipse or hysteresis loop. Uses objects created by \code{\link{fel}}, \code{\link{summary.ellipsefit}} and \code{\link{floop}}. Can also plot an \code{ellipsefitlist} or \code{ellipsesummarylist} object that contains multiple ellipses.
 }
 \usage{
-\method{plot}{ellipsefit}(a,putNumber=FALSE,values=NULL,
+\method{plot}{ellipsefit}(x,putNumber=FALSE,values=NULL,
 xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,show=NULL,...)
-\method{plot}{ellipsesummary}(a,putNumber=FALSE,values=NULL,
+\method{plot}{ellipsesummary}(x,putNumber=FALSE,values=NULL,
 xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,show=NULL,...)
 
-\method{plot}{ellipsefitlist}(a,main=NULL, values=NULL, ...) 
-\method{plot}{ellipsesummarylist}(a,main=NULL, values=NULL, ...) 
+\method{plot}{ellipsefitlist}(x,main=NULL, values=NULL, ...) 
+\method{plot}{ellipsesummarylist}(x,main=NULL, values=NULL, ...) 
 
-\method{plot}{fittedloop}(a,split.line=TRUE,xlim=NULL,
+\method{plot}{fittedloop}(x,split.line=TRUE,xlim=NULL,
 ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,show=NULL,...)
-\method{plot}{loopsummary}(a,split.line=TRUE,xlim=NULL,
+\method{plot}{loopsummary}(x,split.line=TRUE,xlim=NULL,
 ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,show=NULL,...)
 
-\method{plot}{fittedlooplist}(a,main=NULL,values=NULL,...)
-\method{plot}{loopsummarylist}(a,main=NULL,values=NULL,...)
+\method{plot}{fittedlooplist}(x,main=NULL,values=NULL,...)
+\method{plot}{loopsummarylist}(x,main=NULL,values=NULL,...)
 
 }
 \arguments{
-  \item{a}{
+  \item{x}{
 a fitted ellipse or hysteresis loop created by either \code{\link{fel}}, \code{\link{summary.ellipsefit}} or \code{\link{floop}}.
 }
   \item{putNumber}{

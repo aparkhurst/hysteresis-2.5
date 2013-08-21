@@ -1,4 +1,5 @@
-rstudent.ellipsefit <- function(g) {
+rstudent.ellipsefit <- function(model,...) {
+  g <- model
   n <- g$fit.statistics["n"]
   wr1<- g$x-g$pred.x
   wr2<- g$y-g$pred.y

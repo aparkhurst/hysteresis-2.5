@@ -1,4 +1,5 @@
-plot.loopsummarylist <- function(a,main=NULL,values=NULL,...){
+plot.loopsummarylist <- function(x,main=NULL,values=NULL,...){
+  a <- x
   if (length(dim(a$models))<=1) mapply(plot.loopsummary,a$models,main=names(a$models),MoreArgs=list(values=values,...))
   else {
     length.values <- length(a$models[[1]]$values[,1])

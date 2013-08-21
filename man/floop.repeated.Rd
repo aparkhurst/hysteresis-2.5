@@ -11,7 +11,7 @@ Fit a sinusoidal hysteretic process between an input and an output variable acro
 \usage{
 floop.repeated(x,y=NULL,m=1,n=1,subjects=NULL,repeated=NULL,
 subjects.in="all",repeated.in="all",...)
-\method{summary}{fittedlooplist}(g,N=1000,boot=TRUE,seed=NULL,...)
+\method{summary}{fittedlooplist}(object,N=1000,boot=TRUE,seed=NULL,...)
 }
 \arguments{
   \item{x}{
@@ -38,7 +38,7 @@ a vector of characters, the levels of \code{subjects} to be included. Default is
    \item{repeated.in}{
 a vector of characters, the levels of \code{repeated} to be included. Default is "all".
 }
-   \item{g}{
+   \item{object}{
 an \code{fittedlooplist} object.
 }
    \item{N}{

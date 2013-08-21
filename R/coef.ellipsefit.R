@@ -1,1 +1,1 @@
-coef.ellipsefit <- function (g) g$values
+coef.ellipsefit <- function (object,...) object$values

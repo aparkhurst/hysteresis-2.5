@@ -5,6 +5,7 @@ function(x,y=NULL,method="harmonic2",period=NULL,subjects=NULL,times="unknown",s
   if (ncol(matrix(x)) > 2)
     times <- x[,3]
   dat <- xy.coords(x,y)
+  #g
   if (!is.null(subset)) {
     dat$x<-dat$x[subset]; dat$y<-dat$y[subset];
     if (!is.null(subjects)) {

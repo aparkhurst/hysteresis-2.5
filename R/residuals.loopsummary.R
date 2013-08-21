@@ -1,4 +1,5 @@
-residuals.loopsummary <- function(g){
+residuals.loopsummary <- function(object,...){
+  g <- object
   resid.x <-g$pred.x-g$x
   resid.y <-g$pred.y-g$y
   resid.geometric <- sqrt(resid.x^2+resid.y^2)

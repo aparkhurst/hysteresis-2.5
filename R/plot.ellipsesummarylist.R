@@ -1,4 +1,5 @@
-plot.ellipsesummarylist <- function(a,main=NULL,values=NULL,...){
+plot.ellipsesummarylist <- function(x,main=NULL,values=NULL,...){
+  a <- x
   if (length(dim(a$models))<=1) mapply(plot.ellipsesummary,a$models,main=names(a$models),MoreArgs=list(values=values,...))
   else {
     length.values <- length(a$models[[1]]$values[,1])

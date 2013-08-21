@@ -1,1 +1,1 @@
-coef.fittedlooplist <- function (g) g$Estimates
+coef.fittedlooplist <- function (object,...) object$Estimates

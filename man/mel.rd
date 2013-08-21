@@ -14,11 +14,11 @@ Produces an ellipse based on 1 of 4 possible formulations: 1-Eigenvalues, 2-Hyst
 \usage{
 mel(method=1,...)
 mel1(cx=32,cy=39,rote.deg=2,semi.major=7,semi.minor=0.23,
-n.points=24,period=24,sd.x=0,sd.y=0)
+phase.angle=0,n.points=24,period=24,sd.x=0,sd.y=0)
 mel2(cx=32,cy=39,b.x=6.99,b.y=0.244,retention=0.23,
-phase.angle=1.57,n.points=24,period=24,sd.x=0,sd.y=0)
-mel3(cx=32,cy=39,ampx=6.99,ampy=0.335,lag=2.888,n.points=24,
-period=24,sd.x=0,sd.y=0)
+phase.angle=0,n.points=24,period=24,sd.x=0,sd.y=0)
+mel3(cx=32,cy=39,ampx=6.99,ampy=0.335,lag=2.888,phase.angle=0,
+n.points=24,period=24,sd.x=0,sd.y=0)
 mel4(x2=0.002293,xy=-.06960,y2=0.9976,x=2.567,y=-75.58,int=1432.7,
 phase.angle=0,n.points=24,period=24,sd.x=0,sd.y=0)
 }

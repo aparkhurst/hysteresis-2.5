@@ -1,5 +1,5 @@
-plot.ellipsesummary<-function(a,putNumber=FALSE,values=NULL,xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,show=NULL,...){
-
+plot.ellipsesummary<-function(x,putNumber=FALSE,values=NULL,xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,show=NULL,...){
+a <- x
   if (newPred==TRUE)
   {
 ti <- (1:101)*pi/50

@@ -1,4 +1,5 @@
-rstudent.loopsummary <- function(g) {
+rstudent.loopsummary <- function(model,...) {
+  g <- model
   n <- length(g$x)
   wr1<- g$x-g$pred.x
   wr2<- g$y-g$pred.y

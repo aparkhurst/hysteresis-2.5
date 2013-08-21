@@ -45,7 +45,7 @@ direct <- function(x,y,w=NULL) {
   semi.minor <- abs(minor)
   
   if (semi.minor > semi.major){
-    semi.minor <- semi.major; semi.major <<- abs(minor); theta <<- theta +pi/2;
+    semi.minor <- semi.major; semi.major <- abs(minor); theta <- theta +pi/2;
   }
   rotated.angle <- theta*180/pi
   res <- cbind(D1,D2)%*%a

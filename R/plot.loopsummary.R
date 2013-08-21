@@ -1,4 +1,5 @@
-plot.loopsummary <- function (a,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,show=NULL,...) {
+plot.loopsummary <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,show=NULL,...) {
+  a <- x
   ti <- (1:101)*pi/50
   Input <- a$values["b.x","Boot.Estimate"]*cos(ti)+a$values["cx","Boot.Estimate"]
   if (a$extended.classical==FALSE) Output <- a$values["b.y","Boot.Estimate"]*cos(ti)^a$values["n","Boot.Estimate"]+a$values["retention","Boot.Estimate"]*sin(ti)^a$values["m","Boot.Estimate"]+a$values["cy","Boot.Estimate"]

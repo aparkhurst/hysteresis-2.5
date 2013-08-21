@@ -1,1 +1,1 @@
-coef.loopsummarylist <- function (g) g$Boot.Estimates
+coef.loopsummarylist <- function (object,...) object$Boot.Estimates

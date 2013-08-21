@@ -1,3 +1,3 @@
-fitted.ellipsesummary <- function(g){
-  return(data.frame("input"=g$pred.x,"output"=g$pred.y))
+fitted.ellipsesummary <- function(object,...){
+  return(data.frame("input"=object$pred.x,"output"=object$pred.y))
 }

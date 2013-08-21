@@ -1,5 +1,6 @@
 print.ellipsesummary <-
-function(g,...) {
+function(x,...) {
+  g <- x
   cat("Summary Call:\n")
   print(g$summarycall)
   cat("Call for Original Fit:\n")

@@ -1,1 +1,1 @@
-coef.fittedloop <- function (g) g$values
+coef.fittedloop <- function (object,...) object$values
