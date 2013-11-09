@@ -108,7 +108,7 @@ In the special case of an ellipse where n=1 and m=1, four methods are available 
 The two-step simple harmonic regression (harmonic2) method, the default, generally produces estimates that are less 
 biased and have lower variances than those produced by the other methods. Since the focus is on rate-dependent hysteresis, 
 knowledge of time for the observations is required (or if unknown, times may be assumed to be equally spaced). On the 
-other hand, if the objective is solely to fit an ellipe, observation times are not needed for the other three methods.
+other hand, if the objective is solely to fit an ellipse, observation times are not needed for the other three methods.
 ```{r}
 set.seed(24)
 ellipse1 <- mel(method=2,retention=0.4,b.x=0.6,b.y=0.8,cx=0,cy=0,sd.x=0.1,sd.y=0.1,phase.angle=0,period=24,n.points=24)
@@ -166,6 +166,21 @@ plot(nlsmodel,main="Non-Linear Model",xlim=c(5,34),ylim=c(23.4,26.9))
 lines(halftrueellipse$x,halftrueellipse$y,col="red")
 ```
 
+Geometric Method
+------------------
+
+The geometric ellipse method used here is based on the work of Gander, Golub and Strebel, and the code used is an R translation of the Matlab code they provided. This method directly minimizes the Euclidean distances from the ellipse through Gauss-Newton minimization. Standard errors are obtainable through either the Delta Method and bootstrapping, however the use of bootstrapping through summary.ellipsefit is discouraged on these ellipses as the geometric method is extremely computationally expensive.
+
+```{r geometric,warning=FALSE}
+set.seed(45)
+ellip <- mel(rote.deg=45,semi.major=5,semi.minor=3,n.points=13,sd.x=0.4,sd.y=0.4)
+true.ellip <- mel(rote.deg=45,semi.major=5,semi.minor=3,n.points=100,period=100)
+ellip.geometric <- fel(ellip$x,ellip$y,method="geometric")
+ellip.geometric
+plot(ellip.geometric,main="Geometric Model")
+lines(true.ellip$x,true.ellip$y,col="red")
+```
+
 Bootstrapping Fitted Ellipses
 ----------------------------------
 
@@ -186,7 +201,7 @@ In addition, residuals can be studentized within the **summary.ellipsefit** func
 
 The value N gives the number of bootstrap replicates, its default is 1000 which may be  low in some situations (Efron).
 In each replication, residuals are resampled with replacement and added to the original fitted values produced by **fel**. The simulated ellipse is then refit using the original method and parameter estimates are obtained. The standard deviations of these estimates are then used to give parameter standard errors, and less biased parameter estimates are obtained by subtracting the estimated bias produced by the method, mean(bootstrap estimates) - (original estimate), from the original estimate.
-Note, if reproducable results are desired use set.seed() command.
+Note, if reproducible results are desired use set.seed() command.
 ### Comparison of Bootstrapped Ellipses
 
 The fitted black ellipses from above are then bootstrapped to reduce bias.

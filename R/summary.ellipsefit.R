@@ -7,6 +7,8 @@ if (boot==TRUE) {
   {res <- harmonic2summary(object,N=N,studentize=studentize,cbb=cbb,joint=joint)}
 else if (object$method=="lm")
 {res <- lmsummary(object,N=N,studentize=studentize,center=center,cbb=cbb,joint=joint)}
+else if (object$method=="geometric")
+{res <- geometricsummary(object,N=N,studentize=studentize,center=center,cbb=cbb,joint=joint)}
 else if (object$method=="direct")
 {res <- directsummary(object,N=N,studentize=studentize,center=center,cbb=cbb,joint=joint)}
   else {res <- nlssummary(object,N=N,studentize=studentize,center=center,cbb=cbb,joint=joint,...)}

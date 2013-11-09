@@ -6,7 +6,7 @@
 Modeling Rate-Dependent Hysteretic Processes
 }
 \description{
-Fit, summarize and plot sinusoidal hysteretic processes using two step harmonic least squares. If the process is elliptical, other methods such as Halir and Flusser's direct specific least squares, ordinary least squares,
+Fit, summarize and plot sinusoidal hysteretic processes using two step harmonic least squares. If the process is elliptical, other methods such as a geometric method, Halir and Flusser's direct specific least squares, ordinary least squares,
 and ellipse-specific non-linear least squares are also available.
 }
 \details{
@@ -19,7 +19,7 @@ License: \tab gpl (>= 1)\cr
 }
 Fits input and output variables x and y that form a hysteresis loop based on the generalized transcendental equation \deqn{x_t=b.x*cos(2pi*t/period+phase.angle)+cx+e_{x,t}} \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+retention*sin(2pi*t/period+phase.angle)^m+cy+e_{y,t}}  where \deqn{t=0,...,n.points-1 if times='equal'} 
 The functions \code{\link{mloop}}, \code{\link{floop}} and the function method \code{\link{summary.fittedloop}} can be used to simulate, fit, obtain derived parameter estimates (see \code{\link{loop.parameters}} or \code{\link{ellipse.parameters}} ), and delta method standard errors for hysteresis loops with independent and normally distributed errors. 
-If m=1 and n=1 then the hysteresis loop will form an ellipse which can be simulated with \code{\link{mel}}, fitted using 4 different available methods with \code{\link{fel}}, and bootstrapped using the function method \code{\link{summary.ellipsefit}}. Derived ellipse parameters (see \code{\link{ellipse.parameters}}) can therefore be obtained along with
+If m=1 and n=1 then the hysteresis loop will form an ellipse which can be simulated with \code{\link{mel}}, fitted using 5 different available methods with \code{\link{fel}}, and bootstrapped using the function method \code{\link{summary.ellipsefit}}. Derived ellipse parameters (see \code{\link{ellipse.parameters}}) can therefore be obtained along with
 standard errors from models under any type of error structure that can be handled by bootstrapping. Studentized residuals are also available ((see \code{\link{residuals.ellipsesummary}}).
 }
 \author{

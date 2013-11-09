@@ -20,7 +20,7 @@ input
 output
 }
   \item{method}{
-the method to be used for fitting; one of either the default \code{method="harmonic2"}, \code{method="nls"}, \code{method="direct"}, or \code{method="lm"}.
+the method to be used for fitting; one of either the default \code{method="harmonic2"}, \code{method="nls"}, \code{method="direct"}, \code{method="lm"} or \code{method="geometric"}.
 }
   \item{period}{
 an optional number that defines the length of the \code{period}.
@@ -35,17 +35,17 @@ can be used to give those times. If not, predicted values are found by minimizin
 an optional vector specifying a subset of observations to be used in the fitting process.
 }
   \item{control}{
-optional and only used if \code{method="nls"}. See \code{\link{nls.control}}.
+optional and only used if \code{method="nls"} or \code{"geometric"}. See \code{\link{nls.control}} for \code{method="nls"}.
 }
   \item{na.action}{
 a function which indicates what should happen when the data contain NAs. The default is set by the \code{na.action} setting of \code{\link{options}}, the factory-fresh default 
 is \code{\link{na.omit}}. Value \code{\link{na.exclude}} can be useful.
 }
   \item{boot}{
-logical, if TRUE results will be bootstrapped by \code{\link{summary.ellipsefit}}.
+logical, if \code{TRUE} results will be bootstrapped by \code{\link{summary.ellipsefit}}.
 }
   \item{...}{
-other optional arguments such as \code{seed}, N=number of realizations, \code{cbb} for circular block bootstrapping, passed to \code{\link{summary.ellipsefit}} if \code{boot=TRUE}.
+other optional arguments passed to \code{\link{summary.ellipsefit}} if \code{boot=TRUE}.
 }
 }
 \details{
@@ -55,7 +55,7 @@ x and y.
 The values of parameters such as area, lag, retention, coercion, split angle and hysteresis.y are estimated from this ellipse. See \code{\link{loop.parameters}}.
 
 The harmonic2 method is a two step harmonic least squares model using generalized transcendental equations presented by Lapshin (1995).  Yang and Parkhurst provide the efficient estimates 
-for parameters and as such "harmonic2" is used as the default. Direct specific least squares (\code{method="direct"}) based on the work of Radim Halir and Jan Flusser is also available although work on delta method standard errors is still in progress. Finally \code{method="lm"} and 
+for parameters and as such "harmonic2" is used as the default. Direct specific least squares (\code{method="direct"}) based on the work of Radim Halir and Jan Flusser is also available although work on delta method standard errors is still in progress. The geometric method is based on the work of Gander, Golub and Strebel and uses the results of an initial direct method to produce an ellipse that minimizes the sum of the squared geometric distances. Finally \code{method="lm"} and 
 ellipse specific non-linear least squares (\code{method="nls"}) are included as well.
 
 If x and y contain more than 1 ellipse that needs to be fit, the argument \code{subjects} can be used to identify a period of data to fit separate ellipses.

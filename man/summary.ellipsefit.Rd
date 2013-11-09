@@ -32,7 +32,7 @@ studentize the residuals to improve performance. Default is true.
 center x and y residuals around zero. Default is false. Irrelevant for "harmonic2" method.
 }
   \item{cbb}{
-allows for circular block bootstrapping. The default is NULL in which case circular block bootstrapping is not performed. If cbb is an integer greater than 1 which is a divisor of either the number of observations for methods "nls", "lm", or "nls" or the number of observations minus 3 for method=harmonic2 then it is used as the block size for circular block bootstrapping.  
+allows for circular block bootstrapping. The default is NULL in which case circular block bootstrapping is not performed. If cbb is an integer greater than 1 which is a divisor of either the number of observations for methods "nls", "lm", "geometric" or the number of observations minus 3 for \code{method="harmonic2"} then it is used as the block size for circular block bootstrapping.  
 }
   \item{joint}{
 logical that defaults to false. Resample input and output residuals paired by observation, instead of separately.  
@@ -51,7 +51,7 @@ Residuals are studentized as if they were produced using the harmonic2 method, r
 
 If residuals are serially correlated than the argument cbb may be used to sample blocks of length cbb instead of individual residuals. Circular block bootstrapping is used, which means that all residuals are equally likely to be included and blocks can be made up of the last points on the ellipse together with the first.
 
-When using the 'nls' or 'lm' methods individual bootstrap replications may occasionally fail to converge, when this occurs an extra replication will take the place of the one that failed to converge and a warning message will be produced.
+When using the 'nls', 'geometric' or 'lm' methods individual bootstrap replications may occasionally fail to converge, when this occurs an extra replication will take the place of the one that failed to converge and a warning message will be produced.
 }
 \value{
 

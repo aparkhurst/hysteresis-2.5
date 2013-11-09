@@ -2,7 +2,7 @@ print.ellipsefit <- function(x,...) {
   cat("Call:\n")
   print(x$call)
   Td <- qt(0.975,x$fit.statistics["d.f."]) 
-  if (x$method!="direct") {
+  if (x$method!="direct" & x$method!="geometric") {
   cat("\nDelta Method Standard Errors and 95% C.I.'s:\n")
   error <- x$Std.Errors
   theEstimates <- x$values[names(error)]

@@ -7,6 +7,22 @@ delta.error <- function(g){
   rotated.se.angle <- coef(summary(g$fit))[5,2]*180/pi
     split.angle = deltaMethod(g$fit, "(atan(sqrt(ampy^2-(ampy*sin(atan (((sqrt((ampx^2+ampy^2+(ampx^2-ampy^2)/((cos(theta))^2-(sin(theta))^2))/2))*cos(theta))/ ((sqrt((ampx^2+ampy^2-(ampx^2-ampy^2)/((cos(theta))^2-(sin(theta))^2))/2))*sin(theta))) - atan((-(sqrt((ampx^2+ampy^2+(ampx^2-ampy^2)/((cos(theta))^2-(sin(theta))^2))/2))*sin(theta))/( (-sqrt((ampx^2+ampy^2-(ampx^2-ampy^2)/((cos(theta))^2-(sin(theta))^2))/2))*cos(theta)))))^2)/ampx))*180/pi")[[2]]
   SE<-c(coef(summary(g$fit))[c(3,4),2],"retention"=retention.se.delta,"coercion"=coercion.se.delta,"area"=area.se.delta,"lag"=lag.se.delta,"split.angle"=split.angle,coef(summary(g$fit))[c(1,2),2],"rote.deg"=rotated.se.angle)}
+ 
+  if (g$method=="geometric") {
+    vmat <- (as.vector(crossprod(g$residuals)/(g$fit.statistics["n"]-5))*solve(g$fit$hessian$J))
+    vmat <- vmat[(g$fit.statistics["n"]+1):(g$fit.statistics["n"]+5),(g$fit.statistics["n"]+1):(g$fit.statistics["n"]+5)]
+    pars <- g$fit$values
+    names(pars) <- c("theta","semi.major","semi.minor","cx","cy")
+    lag.se.delta<-as.vector(deltaMethod(pars, "(atan(-semi.major*sin(theta)*cos(pi/2-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2)+semi.minor*cos(theta)*cos(-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2)/(semi.major*sin(theta)-(-semi.major*sin(theta)*cos(pi/2-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2)+semi.minor*cos(theta)*cos(-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2))*sin(-asin(semi.major*cos(theta)/(sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2)))+pi/2))/cos(-asin(semi.major*cos(theta)/(sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2)))+pi/2)))/(pi*2)",vmat)[[2]]*g$fit.statistics["period"])
+    area.se.delta<-deltaMethod(pars,"semi.major*semi.minor*pi",vmat)[[2]]
+    ampx.delta<-deltaMethod(pars,"sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2)",vmat)[[2]]
+    ampy.delta<-deltaMethod(pars,"(semi.major*sin(theta)-(-semi.major*sin(theta)*cos(pi/2-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2)+semi.minor*cos(theta)*cos(-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2))*sin(-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2))/cos(-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2)",vmat)[[2]]
+    coercion.se.delta <- deltaMethod(pars,  "sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2)/(sqrt(1+((semi.major*sin(theta)-(-semi.major*sin(theta)*cos(pi/2-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2)+semi.minor*cos(theta)*cos(-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2))*sin(-asin(semi.major*cos(theta)/(sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2)))+pi/2))/cos(-asin(semi.major*cos(theta)/(sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2)))+pi/2)/-semi.major*sin(theta)*cos(pi/2+-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2)+semi.minor*cos(theta)*cos(-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2))^2))",vmat )[[2]]
+    retention.se.delta <- deltaMethod(pars, "-semi.major*sin(theta)*cos(pi/2-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2)+semi.minor*cos(theta)*cos(-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2)" ,vmat)[[2]]
+    rotated.se.angle <- sqrt(abs(vmat[1,1]))*180/pi
+    split.angle = deltaMethod(pars, "atan((sqrt((semi.major*sin(theta)-(-semi.major*sin(theta)*cos(pi/2+-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2)+semi.minor*cos(theta)*cos(-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2))*sin(-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2))/cos(-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2))^2-(-semi.major*sin(theta)*cos(pi/2+-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2)+semi.minor*cos(theta)*cos(-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2))^2)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))",vmat)[[2]]*180/pi
+    SE<-c("cx"=sqrt(abs(vmat[3,3])),"cy"=sqrt(abs(vmat[4,4])),"retention"=retention.se.delta,"coercion"=coercion.se.delta,"area"=area.se.delta,"lag"=lag.se.delta,"split.angle"=split.angle,"ampx"=ampx.delta,"ampy"=ampy.delta,"rote.deg"=rotated.se.angle)}
+  
   else if (g$method=="lm") {
     angle.SE.delta<-deltaMethod(g$fit,"atan(xy/(1-y2))*90/pi")[[2]]
     cx.SE.delta<-deltaMethod(g$fit,"-(2*y2*x-xy*y)/(4*y2-xy*xy)")[[2]]
@@ -73,5 +89,6 @@ delta.error <- function(g){
     SE <- c("b.x"=b.x,"b.y"=se2[3] ,"cx"=se1[1],"cy"=se2[1],"retention"=se2[2],"coercion"=coercion,"area"=area,"lag"=as.vector(lag),
 "split.angle"=split.angle,"ampx"=ampx,"ampy"=ampy,"rote.deg"=theta)
   }
+
 SE
   }

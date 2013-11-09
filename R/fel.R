@@ -77,7 +77,10 @@ function(x,y=NULL,method="harmonic2",period=NULL,subjects=NULL,times="unknown",s
         ans <- fel.direct(dat$x,dat$y,dat$times,period,pred.method)
           else if (method=="lm")
             ans <- fel.lm(dat$x,dat$y,dat$times,period,pred.method)
-        else stop("method must be 'harmonic2', 'direct', 'lm' or 'nls'") 
+            else if (method=="geometric") {
+              if (!is.numeric(control)) control <- 1.001
+               ans <- fel.geometric(dat$x,dat$y,control=control,period=period)}
+        else stop("method must be 'harmonic2', 'direct', 'geometric', 'lm' or 'nls'") 
   ans$call <- felcall
   if (method!="direct") ans$Std.Errors <- delta.error(ans)
   ans$Estimates <- ans$values
