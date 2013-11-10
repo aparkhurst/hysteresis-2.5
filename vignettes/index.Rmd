@@ -169,7 +169,7 @@ lines(halftrueellipse$x,halftrueellipse$y,col="red")
 Geometric Method
 ------------------
 
-The geometric ellipse method used here is based on the work of Gander, Golub and Strebel, and the code used is an R translation of the Matlab code they provided. This method directly minimizes the Euclidean distances from the ellipse through Gauss-Newton minimization. Standard errors are obtainable through either the Delta Method and bootstrapping, however the use of bootstrapping through summary.ellipsefit is discouraged on these ellipses as the geometric method is extremely computationally expensive.
+The geometric ellipse method used here is based on the work of Gander, Golub and Strebel, and the code used is an R translation of the Matlab code they provided. This method directly minimizes the Euclidean distances from the ellipse through Gauss-Newton minimization. Standard errors are obtainable through either the Delta Method and bootstrapping, however the use of bootstrapping through summary.ellipsefit is discouraged on these ellipses as the geometric method is extremely computationally expensive. The "geometric" method works best when sd.x=sd.y as it geometric and not statistical error that is being minimized, and it is important to check for false convergence using **plot** after fitting.
 
 ```{r geometric,warning=FALSE}
 set.seed(45)
