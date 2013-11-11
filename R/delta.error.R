@@ -9,8 +9,8 @@ delta.error <- function(g){
   SE<-c(coef(summary(g$fit))[c(3,4),2],"retention"=retention.se.delta,"coercion"=coercion.se.delta,"area"=area.se.delta,"lag"=lag.se.delta,"split.angle"=split.angle,coef(summary(g$fit))[c(1,2),2],"rote.deg"=rotated.se.angle)}
  
   if (g$method=="geometric") {
-    vmat <- (as.vector(crossprod(g$residuals)/(g$fit.statistics["n"]-5))*solve(g$fit$hessian$J))
-    vmat <- vmat[(g$fit.statistics["n"]+1):(g$fit.statistics["n"]+5),(g$fit.statistics["n"]+1):(g$fit.statistics["n"]+5)]
+    hessi <- g$fit$hessian$J[(g$fit.statistics["n"]+1):(g$fit.statistics["n"]+5),(g$fit.statistics["n"]+1):(g$fit.statistics["n"]+5)]
+    vmat <- (as.vector(crossprod(g$residuals)/(g$fit.statistics["n"]-5))*solve(hessi))
     pars <- g$fit$values
     names(pars) <- c("theta","semi.major","semi.minor","cx","cy")
     lag.se.delta<-as.vector(deltaMethod(pars, "(atan(-semi.major*sin(theta)*cos(pi/2-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2)+semi.minor*cos(theta)*cos(-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2)/(semi.major*sin(theta)-(-semi.major*sin(theta)*cos(pi/2-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2)+semi.minor*cos(theta)*cos(-asin(semi.major*cos(theta)/sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2))+pi/2))*sin(-asin(semi.major*cos(theta)/(sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2)))+pi/2))/cos(-asin(semi.major*cos(theta)/(sqrt((semi.major*cos(theta))^2+(semi.minor*sin(theta))^2)))+pi/2)))/(pi*2)",vmat)[[2]]*g$fit.statistics["period"])
