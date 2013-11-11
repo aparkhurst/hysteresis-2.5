@@ -21,6 +21,8 @@ n <- length(model$x)
 cx <- as.vector(results$values[4]); cy <- as.vector(results$values[5]); 
 theta <- as.vector(results$values[1]); semi.major <- as.vector(results$values[2]); 
 semi.minor <- as.vector(results$values[3]); 
+if (theta < 0) while (theta < 0) theta <- theta + 2*pi
+if (theta > 2*pi) while (theta > 2*pi) theta <- theta - 2*pi
 inti <- internal.1(semi.major,semi.minor,theta)
 der <- derived.1(semi.major,semi.minor,theta,inti[1],inti[2],inti[3],period)
 amps <- derived.amps(inti[1],inti[2],inti[3]) 
