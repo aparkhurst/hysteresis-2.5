@@ -1,0 +1,4 @@
+CHANGES IN hysteresis VERSION 2.0
+
+CHANGES
+	* "geometric" method added to fel. This method minimizes geometric error using a non-linear process.
