@@ -31,7 +31,7 @@ focus <- derived.focus(semi.major,semi.minor,theta)
 pred.x <- model$x-results[[3]]
 pred.y <- model$y - results[[4]]
    
-der.summ <- fitstatistics(model$x,model$y,pred.x,pred.y,n,method="lm",model$fit.statistics["period"])
+der.summ <- fitstatistics(model$x,model$y,pred.x,pred.y,n,method="lm",period)
     
 z <- c("cx"=as.vector(cx),"cy"=as.vector(cy),"rote.rad"=as.vector(theta),"semi.major"=as.vector(semi.major),"semi.minor"=semi.minor,"rote.deg"=as.vector(theta)*180/pi,
  "area"=der[1],"lag"=der[2],"coercion"=der[3], 
