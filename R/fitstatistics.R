@@ -13,6 +13,5 @@ AIC.y <- log(Sigma[1,1])*n + 4 * 2
 AIC <- log(prod(diag(Sigma)))*n + (d.f.+sigmadf)*2
   #Based on multivariate AIC formula with covariance terms replaced.
 return(c("MFPE" = MFPE, "AIC.y"=AIC.y,
-         "AIC" = AIC,"n"=n,
-         "period"=period,"d.f."=n-d.f.))
+         "AIC" = AIC,"n"=n, "period"=period,"d.f."=n-d.f.))
 }

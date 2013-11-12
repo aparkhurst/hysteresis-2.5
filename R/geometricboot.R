@@ -43,7 +43,7 @@ function(j=NULL,wr1,wr2,x.pred,y.pred,n,cbb,joint){
   model <- list("period.time"=ti,"values"=c("cx"=as.vector(start$vals["cx"]),"cy"=as.vector(start$vals["cy"]),
                                             "semi.major"=as.vector(start$vals["semi.major"]),"semi.minor"=as.vector(start$vals["semi.minor"]),
                                             "rote.rad"=as.vector(start$vals["theta"])),"x"=x,"y"=y)
-  results <- geom_ellipse(model,1.01)  
+  results <- geom_ellipse(model,1.001)  
   cx <- as.vector(results$values[4]); cy <- as.vector(results$values[5]); 
   theta <- as.vector(results$values[1]); semi.major <- as.vector(results$values[2]); 
   semi.minor <- as.vector(results$values[3]); 
