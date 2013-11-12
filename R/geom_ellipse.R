@@ -15,11 +15,13 @@ geom_ellipse <- function(model,control) {
     y_resid <- y-pars2[n+5]-pars2[n+2]*sin(pars2[n+1])*cos(pars2[1:length(x)])-pars2[n+3]*cos(pars2[n+1])*sin(pars2[1:length(x)])
     SSEold <- SSE
     SSE <- crossprod(x_resid) + crossprod(y_resid)
-    while (SSE > SSEold) {
+    J=1
+    while (SSE > SSEold & J < 10) {
       pars2 <- (pars + pars2)/2
       x_resid <- x-pars2[n+4]-pars2[n+2]*cos(pars2[n+1])*cos(pars2[1:length(x)])+pars2[n+3]*sin(pars2[n+1])*sin(pars2[1:length(x)])
       y_resid <- y-pars2[n+5]-pars2[n+2]*sin(pars2[n+1])*cos(pars2[1:length(x)])-pars2[n+3]*cos(pars2[n+1])*sin(pars2[1:length(x)])
       SSE <- crossprod(x_resid) + crossprod(y_resid)
+      J <- J+1
     }
     SSEratio <- SSEold/SSE
     i=i+1
