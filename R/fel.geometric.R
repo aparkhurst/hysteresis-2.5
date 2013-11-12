@@ -39,7 +39,7 @@ z <- c("cx"=as.vector(cx),"cy"=as.vector(cy),"rote.rad"=as.vector(theta),"semi.m
         "focus.x"=focus[1],"focus.y"=focus[2], "eccentricity"=focus[3],  "n"=n)
 
    res <- list("method"="geometric","x"=x,"y"=y,"pred.x"=pred.x,"pred.y"=pred.y,"period.time"=results$period.time,"values"=z,
-               "fit.statistics"=der.summ,"residuals"=results[[3]]^2+results[[4]]^2,"fit"=results)
+               "fit.statistics"=der.summ,"residuals"=sqrt(results[[3]]^2+results[[4]]^2),"fit"=results)
 
 class(res) <- "ellipsefit"  
 res
