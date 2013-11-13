@@ -25,6 +25,7 @@ geom_step <- function (pars,x_resid,y_resid,n) {
   Y2 <- rbind(DA%*%x_resid+DB%*%y_resid,crossprod(JA,x_resid)+crossprod(JB,y_resid))
   change <- solve(J2 + H,Y2)
   pars <- pars + change
-  list(pars,"J"=J2+H)
+  #list(pars,"J"=J2+H)
+  list(pars,"J"=J2)
 }
 
