@@ -13,9 +13,9 @@ and ellipse-specific non-linear least squares are also available.
 \tabular{ll}{
 Package: \tab hysteresis\cr
 Type: \tab Package\cr
-Version: \tab 1.0\cr
-Date: \tab 2013-2-22\cr
-License: \tab gpl (>= 1)\cr
+Version: \tab 2.0\cr
+Date: \tab 2013-11-14\cr
+License: \tab gpl (>= 2)\cr
 }
 Fits input and output variables x and y that form a hysteresis loop based on the generalized transcendental equation \deqn{x_t=b.x*cos(2pi*t/period+phase.angle)+cx+e_{x,t}} \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+retention*sin(2pi*t/period+phase.angle)^m+cy+e_{y,t}}  where \deqn{t=0,...,n.points-1 if times='equal'} 
 The functions \code{\link{mloop}}, \code{\link{floop}} and the function method \code{\link{summary.fittedloop}} can be used to simulate, fit, obtain derived parameter estimates (see \code{\link{loop.parameters}} or \code{\link{ellipse.parameters}} ), and delta method standard errors for hysteresis loops with independent and normally distributed errors. 
@@ -42,7 +42,7 @@ Miscellaneous \code{\link{plot.ellipsefit}}, \code{\link{plot.ellipsefitlist}}, 
 }
 \examples{
 ###Take a look at the vignette.
-browseURL(system.file('doc/index.html',package='hysteresis'))
+#browseURL(system.file('doc/index.html',package='hysteresis'))
 
 ### Simulate and fit a hysteresis loop with m=3 and n=5.
  loop1 <- mloop(sd.x=0.05,sd.y=0.05,n=5,m=3)

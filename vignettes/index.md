@@ -398,25 +398,20 @@ ellip <- mel(rote.deg = 45, semi.major = 5, semi.minor = 3, n.points = 13, sd.x 
 true.ellip <- mel(rote.deg = 45, semi.major = 5, semi.minor = 3, n.points = 100, 
     period = 100)
 ellip.geometric <- fel(ellip$x, ellip$y, method = "geometric")
-ellip.geometric
+ellip.geometric$values
 ```
 
 ```
-## Call:
-## fel(x = ellip$x, y = ellip$y, method = "geometric")
-## 
-## Delta Method Standard Errors and 95% C.I.'s:
-##             Estimates    S.E.    low   high
-## cx             31.645 0.10906 31.393 31.896
-## cy             38.986 0.06436 38.837 39.134
-## retention       3.104 0.11717  2.834  3.374
-## coercion        2.974 0.03747  2.888  3.061
-## area           37.792 1.75207 33.752 41.832
-## lag             1.810      NA     NA     NA
-## split.angle    33.781 2.69829 27.559 40.004
-## ampx            3.876 0.06250  3.732  4.020
-## ampy            4.044 0.11611  3.777  4.312
-## rote.deg       46.899 0.73892 45.195 48.603
+##           cx           cy     rote.rad   semi.major   semi.minor 
+##      31.6319      39.0220       0.8018       4.9802       2.4089 
+##     rote.deg         area          lag     coercion          b.x 
+##      45.9426      37.6894       1.8648       3.0360       3.8717 
+##          b.y    retention  split.angle hysteresis.x hysteresis.y 
+##       2.4523       3.0986      32.3499       0.7841       1.2635 
+##         ampx         ampy      focus.x      focus.y eccentricity 
+##       3.8717       3.9516       3.0311       3.1325       0.8752 
+##            n 
+##      13.0000
 ```
 
 ```r
