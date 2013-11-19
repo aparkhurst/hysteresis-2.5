@@ -14,7 +14,7 @@ and ellipse-specific non-linear least squares are also available.
 Package: \tab hysteresis\cr
 Type: \tab Package\cr
 Version: \tab 2.0\cr
-Date: \tab 2013-11-14\cr
+Date: \tab 2013-11-19\cr
 License: \tab gpl (>= 2)\cr
 }
 Fits input and output variables x and y that form a hysteresis loop based on the generalized transcendental equation \deqn{x_t=b.x*cos(2pi*t/period+phase.angle)+cx+e_{x,t}} \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+retention*sin(2pi*t/period+phase.angle)^m+cy+e_{y,t}}  where \deqn{t=0,...,n.points-1 if times='equal'} 
