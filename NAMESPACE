@@ -1,7 +1,7 @@
 export(mel)
 export(fel)
 export(floop)
-export(floopsplit)
+export(floopSplit)
 export(floop.repeated)
 export(fel.repeated)
 export(mloop)
