@@ -9,10 +9,10 @@ rstudent.splitloop <- function(model,...) {
   hX <- Xmat%*%solve(crossprod(Xmat))%*%t(Xmat)
   Ind <- (g$period.time > 0) & (g$period.time < pi)
   if (model$classical==FALSE)
-  Ymat <- cbind(rep(1,n),sin(g$period.time)^g$values["m"],cos(g$period.time)^g$values["n"],Ind*sin(g$period.time)^g$values["m"])
+  Ymat <- cbind(rep(1,n),sin(g$period.time)^g$Boot.Estimates["m"],cos(g$period.time)^g$Boot.Estimates["n"],Ind*sin(g$period.time)^g$Boot.Estimates["m"])
   else
     direc <- sign(costp)  
-  Ymat <- cbind(rep(1,n),sin(g$period.time)^g$values["m"],direc*abs(cos(g$period.time))^g$values["n"],Ind*sin(g$period.time)^g$values["m"])
+  Ymat <- cbind(rep(1,n),sin(g$period.time)^g$Boot.Estimates["m"],direc*abs(cos(g$period.time))^g$Boot.Estimates["n"],Ind*sin(g$period.time)^g$Boot.Estimates["m"])
   hY <- Ymat%*%solve(crossprod(Ymat))%*%t(Ymat)
   r.Ta <- wr1/sqrt(1-diag(hX))
   r.Tb <- wr2/sqrt(1-diag(hY))     
