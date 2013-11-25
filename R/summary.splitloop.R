@@ -28,9 +28,9 @@ summary.splitloop <- function(object,boot=TRUE,N=1000,cbb=NULL,joint=FALSE,seed=
     rad<-g$period.time+full["phase.angle","Boot.Estimate"]
     pred.x<-full["b.x","Boot.Estimate"]*cos(rad)+full["cx","Boot.Estimate"] 
     if (g$extended.classical==FALSE)
-      pred.y<-full["b.y","Boot.Estimate"]*cos(rad)^g$values["n"]+full["retention","Boot.Estimate"]*sin(rad)^g$values["m"]+full["cy","Boot.Estimate"]
+      pred.y<-full["b.y","Boot.Estimate"]*cos(rad)^g$values["n"]+Ind*full["retention.above","Boot.Estimate"]*sin(rad)^g$values["m"]+(1-Ind)*full["retention.below","Boot.Estimate"]*sin(rad)^g$values["m"]+full["cy","Boot.Estimate"]
     else
-      pred.y<-sign(cos(rad))*full["b.y","Boot.Estimate"]*abs(cos(rad))^g$values["n"]+full["retention","Boot.Estimate"]*sin(rad)^g$values["m"]+full["cy","Boot.Estimate"]
+      pred.y<-sign(cos(rad))*full["b.y","Boot.Estimate"]*abs(cos(rad))^g$values["n"]+Ind*full["retention.above","Boot.Estimate"]*sin(rad)^g$values["m"]+(1-Ind)*full["retention.below","Boot.Estimate"]*sin(rad)^g$values["m"]+full["cy","Boot.Estimate"]
    bootEst<-full[,"Boot.Estimate"]
     names(bootEst) <- rownames(full)
     bootStd<-full[,"Std.Error"]

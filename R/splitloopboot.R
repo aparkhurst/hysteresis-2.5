@@ -38,7 +38,7 @@ splitloopboot <-
       direc <- sign(costp)
       maty <- cbind(rep(1,length(t2)),sin(t2)^m,direc*abs(costp)^n,Ind*sin(t2)^m)
     }
-    yfit <- lm.fit(maty,dat$y)
+    yfit <- lm.fit(maty,y)
     cy <- as.vector(coef(yfit)[1])
     retention.below <- abs(as.vector(coef(yfit)[2]))
     retention.above <- abs(as.vector(coef(yfit)[2])+as.vector(coef(yfit)[4]))
