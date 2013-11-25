@@ -12,8 +12,8 @@ plot.splitloop <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALS
  
   points(a$y~a$x,pch=1,cex=0.85)
   if (split.line==TRUE) {
-  if (a$extended.classical==FALSE) split.line <- a$values["b.y"]*cos(ti)^a$values["n"]+a$values["cy"]
-  else split.line <- sign(cos(ti))*a$values["b.y"]*abs(cos(ti))^a$values["n"]+a$values["cy"]
+  if (a$extended.classical==FALSE) split.line <- a$values["b.y"]*cos(ti2)^a$values["n"]+a$values["cy"]
+  else split.line <- sign(cos(ti))*a$values["b.y"]*abs(cos(ti2))^a$values["n"]+a$values["cy"]
   lines(Input,split.line,lty=2)}
   if(putNumber==TRUE) text(a$x,a$y,as.character(format(1:length(a$y),digits=4)))
 }

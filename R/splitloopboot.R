@@ -33,10 +33,10 @@ splitloopboot <-
     cx<-coef(Ta.lm)[[1]]
     costp <- cos(t2)
     Ind <- (t2 < pi) & (t2 > 0) 
-    if (extended.classical==FALSE) maty <- cbind(rep(1,length(dat$x)),sin(t2)^m,costp^n,Ind*sin(t2)^m)
+    if (extended.classical==FALSE) maty <- cbind(rep(1,length(t2)),sin(t2)^m,costp^n,Ind*sin(t2)^m)
     if (extended.classical==TRUE) {
       direc <- sign(costp)
-      maty <- cbind(rep(1,length(dat$x)),sin(t2)^m,direc*abs(costp)^n,Ind*sin(t2)^m)
+      maty <- cbind(rep(1,length(t2)),sin(t2)^m,direc*abs(costp)^n,Ind*sin(t2)^m)
     }
     yfit <- lm.fit(maty,dat$y)
     cy <- as.vector(coef(yfit)[1])
