@@ -26,6 +26,7 @@ summary.splitloop <- function(object,boot=TRUE,N=1000,cbb=NULL,joint=FALSE,seed=
       full$Bias
     
     rad<-g$period.time+full["phase.angle","Boot.Estimate"]
+    Ind <- (rad > 0) & (rad < 0)
     pred.x<-full["b.x","Boot.Estimate"]*cos(rad)+full["cx","Boot.Estimate"] 
     if (g$extended.classical==FALSE)
       pred.y<-full["b.y","Boot.Estimate"]*cos(rad)^g$values["n"]+Ind*full["retention.above","Boot.Estimate"]*sin(rad)^g$values["m"]+(1-Ind)*full["retention.below","Boot.Estimate"]*sin(rad)^g$values["m"]+full["cy","Boot.Estimate"]
