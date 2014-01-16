@@ -7,6 +7,8 @@
  \alias{plot.fittedlooplist}
  \alias{plot.loopsummary}
  \alias{plot.loopsummarylist}
+  \alias{plot.splitloop}
+ \alias{plot.splitloopsummary}
 \title{
 Plot a fitted ellipse or hysteresis loop.
 }
@@ -29,6 +31,9 @@ ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,show=NULL,...)
 
 \method{plot}{fittedlooplist}(x,main=NULL,values=NULL,...)
 \method{plot}{loopsummarylist}(x,main=NULL,values=NULL,...)
+
+\method{plot}{splitloop}(x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,main=NULL,...)
+\method{plot}{splitloopsummary}(x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,main=NULL,...)
 
 }
 \arguments{

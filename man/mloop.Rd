@@ -1,5 +1,6 @@
 \name{mloop}
 \alias{mloop}
+\alias{mloopSplit}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Simulate (Make) a Hysteresis Loop
@@ -11,6 +12,7 @@ Simulate a hysteresis loop with a variety of possible parameters.
 mloop(cx = 0, cy = 0, retention = 0.2, b.x = 0.6, b.y = 0.8,n = 1, m = 1, 
      sd.x = 0, sd.y = 0, phase.angle = 0, n.points = 24, 
     period = 24,extended.classical=FALSE)  
+mloopSplit(cx=0,cy=0,retention.above=0.2,retention.below=0.15,b.x=0.6,b.y=0.8,n=1,m=1,sd.x=0,sd.y=0,phase.angle=0,n.points=24,period=24,extended.classical=FALSE))
 }
 
 \arguments{
@@ -37,6 +39,12 @@ number. Center of output y.
 }
   \item{retention}{
 number. Split point, represents vertical distance from center to upper loop trajectory. It is the intersection of the loop and the output axis characterizing the distortion in the response at the average input challenge.
+}
+  \item{retention.above}{
+number. Retention above the split line.
+}
+  \item{retention.below}{
+number. Retention below the split line.
 }
   \item{sd.x}{
 number. Standard deviation of the normally distributed variation in the input vector x. }

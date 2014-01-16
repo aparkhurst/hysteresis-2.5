@@ -1,6 +1,7 @@
 \name{summary.ellipsefit}
 \alias{summary.ellipsefit}
 \alias{summary.fittedloop}
+\alias{summary.splitloop}
 
 \title{
 Summarizing and Bootstrapping Fitted Ellipses or Loops
@@ -13,6 +14,8 @@ summary methods for classes \code{ellipsefit} and \code{fittedloop} created by t
 \method{summary}{ellipsefit}(object,boot=TRUE, N = 1000, 
 studentize=TRUE, center=FALSE, cbb=NULL, joint=FALSE,seed=NULL,...)
 \method{summary}{fittedloop}(object,boot=TRUE,N=1000,
+cbb=NULL,joint=FALSE,seed=NULL,...)
+\method{summary}{splitloop}(object,boot=TRUE,N=1000,
 cbb=NULL,joint=FALSE,seed=NULL,...)
 }
 \arguments{
@@ -45,7 +48,7 @@ further arguments passed to or from other methods.
 }
 }
 \details{
-Bootstrap \code{ellipsefit} or \code{fittedloop} objects created by fitting hysteretic data with one of the functions \code{\link{fel}} or \code{\link{floop}} and produce statistical summaries. Bootstrapping reduces the bias on estimates and also gives standard errors. Bootstrap estimates are created by subtracting original estimates from bootstrap means to get a bias estimate, and then subtracting this bias from the original estimate.
+Bootstrap objects created by fitting hysteretic data with one of the functions \code{\link{fel}} or \code{\link{floop}} and produce statistical summaries. Bootstrapping reduces the bias on estimates and also gives standard errors. Bootstrap estimates are created by subtracting original estimates from bootstrap means to get a bias estimate, and then subtracting this bias from the original estimate.
 
 Residuals are studentized as if they were produced using the harmonic2 method, regardless of which method was actually used to produce them. However, unpublished simulation studies show that these studentized residuals provide better 95 percent coverages for all methods despite this. This studentization is not true studentization as in \code{\link{rstudent.ellipsefit}} as it only accounts for the influence matrix and does not divide by the standard deviation.
 

@@ -1,5 +1,6 @@
 \name{floop}
 \alias{floop}
+\alias{floopSplit}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Fit a Hysteresis Loop
@@ -11,6 +12,9 @@ Fits a hysteresis loop given values of m and n chosen by the user.
 floop(x, y=NULL, n = 1, m = 1,times="equal", period = NULL, 
 subjects=NULL, subset=NULL,na.action= getOption("na.action"),
 extended.classical=FALSE,boot=FALSE,...) 
+floopSplit(x,y=NULL,n=1,m=1,times="equal",period=NULL,
+subjects=NULL, subset=NULL,na.action=getOption("na.action"),
+extended.classical=FALSE,boot=FALSE,...)
 }
 
 \arguments{
@@ -56,9 +60,11 @@ other optional arguments such as \code{seed}, N=number of realizations, \code{cb
 }
 }
 \details{
-Fits input and output variables x and y that form a hysteresis loop of the form \deqn{x_t=b.x*cos(2pi*t/period+phase.angle)+cx+e_{x,t}} \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+retention*sin(2pi*t/period+phase.angle)^m+cy+e_{y,t}}  where \deqn{t=0,...,n.points-1 if times='equal'} and the error terms e are independently and normally distributed. Also produces a vector of derived values.}
+Fits input and output variables x and y that form a hysteresis loop of the form \deqn{x_t=b.x*cos(2pi*t/period+phase.angle)+cx+e_{x,t}} \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+retention*sin(2pi*t/period+phase.angle)^m+cy+e_{y,t}}  where \deqn{t=0,...,n.points-1 if times='equal'} and the error terms e are independently and normally distributed. Also produces a vector of derived values.
+If \code{floopSplit} is used the output is instead fitted by \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+retention.above*sin(2pi*t/period+phase.angle)^m*I(0 < 2pi*t/period+phase.angle < pi)+retention.below*sin(2pi*t/period+phase.angle)^m*I(pi < 2pi*t/period+phase.angle < 2*pi)+cy+e_{y,t}} meaning that retention is assumed to have different values above and below the split line.
+}
 \value{
-floop returns an object of class \code{fittedloop}.
+\code{floop} returns an object of class \code{fittedloop}. \code{floopSplit} returns an object of class \code{splitloop}.
   \item{call}{the function call.}
   \item{fit}{information dependent on the fitting method used.}
  \item{x}{the input.}
