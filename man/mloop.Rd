@@ -12,7 +12,7 @@ Simulate a hysteresis loop with a variety of possible parameters.
 mloop(cx = 0, cy = 0, retention = 0.2, b.x = 0.6, b.y = 0.8,n = 1, m = 1, 
      sd.x = 0, sd.y = 0, phase.angle = 0, n.points = 24, 
     period = 24,extended.classical=FALSE)  
-mloopSplit(cx=0,cy=0,retention.above=0.2,retention.below=0.15,b.x=0.6,b.y=0.8,n=1,m=1,sd.x=0,sd.y=0,phase.angle=0,n.points=24,period=24,extended.classical=FALSE))
+mloop2r(cx=0,cy=0,retention.above=0.2,retention.below=0.15,b.x=0.6,b.y=0.8,n=1,m=1,sd.x=0,sd.y=0,phase.angle=0,n.points=24,period=24,extended.classical=FALSE))
 }
 
 \arguments{

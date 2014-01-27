@@ -18,9 +18,10 @@ Date: \tab 2013-11-19\cr
 License: \tab gpl (>= 2)\cr
 }
 Fits input and output variables x and y that form a hysteresis loop based on the generalized transcendental equation \deqn{x_t=b.x*cos(2pi*t/period+phase.angle)+cx+e_{x,t}} \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+retention*sin(2pi*t/period+phase.angle)^m+cy+e_{y,t}}  where \deqn{t=0,...,n.points-1 if times='equal'} 
-The functions \code{\link{mloop}}, \code{\link{floop}} and the function method \code{\link{summary.fittedloop}} can be used to simulate, fit, obtain derived parameter estimates (see \code{\link{loop.parameters}} or \code{\link{ellipse.parameters}} ), and delta method standard errors for hysteresis loops with independent and normally distributed errors. 
-If m=1 and n=1 then the hysteresis loop will form an ellipse which can be simulated with \code{\link{mel}}, fitted using 5 different available methods with \code{\link{fel}}, and bootstrapped using the function method \code{\link{summary.ellipsefit}}. Derived ellipse parameters (see \code{\link{ellipse.parameters}}) can therefore be obtained along with
-standard errors from models under any type of error structure that can be handled by bootstrapping. Studentized residuals are also available ((see \code{\link{residuals.ellipsesummary}}).
+The functions \code{\link{mloop}} and \code{\link{floop}} can be used to simulate, fit, and obtain derived parameter estimates (see \code{\link{loop.parameters}} or \code{\link{ellipse.parameters}} ) along with delta method standard errors for hysteresis loops.. Additionally \code{\link{summary.fittedloop}} can be used to bootstrap results in order to produce less biased standard errors for derived parameters and obtain a model fit that is not dependent on the assumption of independent and normally distributed errors.
+If m=1 and n=1 then the hysteresis loop will form an ellipse which can be simulated with \code{\link{mel}}, fitted using 5 different available methods with \code{\link{fel}}, and bootstrapped using the function method \code{\link{summary.ellipsefit}}.
+If the upper and lower halves of the loop are structered differently, then the functions \code{\link{mloop2r}}, \code{\link{floop2r}} and \code{\link{summary.splitloop}} should be used. These functions fit a model with two values of retention for when the curve is above and below the split line.
+Studentized residuals are also available ((see \code{\link{residuals.ellipsesummary}}).
 }
 \author{
 Spencer Maynes, Fan Yang, and Anne Parkhurst.

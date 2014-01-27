@@ -1,4 +1,4 @@
-mloopSplit <- function(cx=0,cy=0,retention.above=0.2,retention.below=0.15,b.x=0.6,b.y=0.8,n=1,m=1,sd.x=0,sd.y=0,phase.angle=0,n.points=24,period=24,extended.classical=FALSE) {
+mloop2r <- function(cx=0,cy=0,retention.above=0.2,retention.below=0.15,b.x=0.6,b.y=0.8,n=1,m=1,sd.x=0,sd.y=0,phase.angle=0,n.points=24,period=24,extended.classical=FALSE) {
   t2 <- (1:n.points)/period*2*pi+phase.angle/180*pi
   Ind <- (t2 < pi) & (t2 > 0) 
   if (extended.classical==FALSE) {
