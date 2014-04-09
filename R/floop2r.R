@@ -93,6 +93,7 @@ floop2r <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, su
    n <- exp(logn)
    t <- cumsum(times)
    phase.angle <- t[1]
+   t2 <- t - phase.angle
    costp <- cos(t) 
    sintp <- sin(t) 
    direc <- sign(costp)
