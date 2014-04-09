@@ -10,7 +10,7 @@ summary.splitloop <- function(object,boot=TRUE,N=1000,cbb=NULL,joint=FALSE,seed=
       k <- obs/cbb
       if (abs(k-round(k)) > 0.00001) stop("number of observations - 3 divided by cbb needs to be an integer.")}
     
-    if (method=="harmonic2")
+    if (g$method=="harmonic2")
     bootdat<-mapply(splitloopboot,j=1:N,MoreArgs=list(pred.x=g$pred.x,pred.y=g$pred.y,xresid=xresid,yresid=yresid,ti=g$period.time,obs=obs,n=g$values["n"],m=g$values["m"],extended.classical=g$extended.classical,cbb=cbb,joint=joint,period=g$period))
     else bootdat<-mapply(splitloopbootgeom,j=1:N,MoreArgs=list(pred.x=g$pred.x,pred.y=g$pred.y,xresid=xresid,yresid=yresid,obs=obs,extended.classical=g$extended.classical,cbb=cbb,joint=joint,period=g$period))
 
