@@ -16,14 +16,17 @@ splitloopbootgeom <-
       x<-xresid2[xressamp]+pred.x[-index2]
     }
     else {  
+    else {  
       index <- sample(1:(obs+3),3,replace=FALSE)
+      index2 <- sample(1:(obs+3),5,replace=FALSE)
       if (joint==FALSE) {
-    y<-sample(yresid,obs,replace=T)+pred.y[-index]
-    x<-sample(xresid,obs,replace=T)+pred.x[-index]
+    y<-sample(yresid,obs-2,replace=TRUE)+pred.y[-index2]
+    x<-sample(xresid,obs,replace=TRUE)+pred.x[-index]
       }
       else {
         resid.sampler <- sample(1:(obs+3),obs,replace=TRUE)
-        y<-yresid[resid.sampler]+pred.y[-index]
+        resid.sampler2 <- sample(1:(obs+3),obs-2,replace=TRUE)
+        y<-yresid[resid.sampler2]+pred.y[-index2]
         x<-xresid[resid.sampler]+pred.x[-index]
       }
     }
