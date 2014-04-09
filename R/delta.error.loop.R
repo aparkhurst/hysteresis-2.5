@@ -55,7 +55,7 @@ else splitSE <- NA
     areaSE <- NA
     splitSE <- NA
     hysteresis.ySE <- deltamethod(~x7/x4,coefs,vmat2)
-    lagSE <- deltamethod(~atan2(x7,x4),coefs,vmat2)*g$period/(pi*2)
+    lagSE <- deltamethod(~atan(x7/x4),coefs,vmat2)*g$period/(pi*2)
     SEs<- list("n"=SEn,"m"=SEm,"b.x"=sqrt(vmat2[3,3]),"b.y"=sqrt(vmat2[4,4]),"phase.angle"=sqrt(vmat[1,1]),
                "cx"=sqrt(vmat2[1,1]),"cy"=sqrt(vmat2[2,2]),"retention"=sqrt(vmat2[7,7]),
                "coercion"=coercionSE,"area"=areaSE,"lag"=lagSE, "split.angle"=splitSE,"hysteresis.x"=hysteresis.xSE,"hysteresis.y"=hysteresis.ySE)
