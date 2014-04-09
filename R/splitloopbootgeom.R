@@ -16,7 +16,6 @@ splitloopbootgeom <-
       x<-xresid2[xressamp]+pred.x[-index2]
     }
     else {  
-    else {  
       index <- sample(1:(obs+3),3,replace=FALSE)
       index2 <- sample(1:(obs+3),5,replace=FALSE)
       if (joint==FALSE) {
