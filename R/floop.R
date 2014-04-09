@@ -83,6 +83,8 @@ fit <- list(xfit,yfit)
    b.y <- par[length(x)+4]
    logm <- par[length(x)+5]
    logn <- par[length(x)+6]
+   m <- exp(logm)
+   n <- exp(logn)
    retention <- par[length(x)+7]
    t <- cumsum(times)
    phase.angle <- t[1]
