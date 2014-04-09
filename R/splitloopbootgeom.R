@@ -42,6 +42,7 @@ splitloopbootgeom <-
     logn <- par[length(x)+6]
     retention.above <- par[length(x)+7]
     retention.below <- par[length(x)+8]
+    phase.angle=times[1]
     m <- exp(logm)
     n <- exp(logn)
     if (n==1) beta.split.angle<-atan2(b.y,b.x)*180/pi 
