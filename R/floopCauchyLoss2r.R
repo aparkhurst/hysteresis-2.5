@@ -15,7 +15,7 @@ floopCauchyLoss2r <- function (par,x,y,midspread) {
   direcsin <- sign(sintp)
   pred.x <- cx+b.x*costp
   pred.y <- cy+(direcsin < 0)*direcsin*retention.below*abs(sintp)^exp(logm)+(direcsin > 0)*direcsin*retention.above*abs(sintp)^exp(logm)+direc*(b.y*abs(costp)^exp(logn))
-  logloss <- crossprod(y-pred.y)+crossprod(x-pred.x)
+  logloss <- crossprod(y-pred.y[1:length(y)])+crossprod(x-pred.x)
   logloss
 }
 
