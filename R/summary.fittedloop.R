@@ -9,9 +9,11 @@ summary.fittedloop <- function(object,boot=TRUE,N=1000,cbb=NULL,joint=FALSE,seed
     if (is.numeric(cbb)==TRUE){
       k <- obs/cbb
       if (abs(k-round(k)) > 0.00001) stop("number of observations - 3 divided by cbb needs to be an integer.")}
-    
-    bootdat<-mapply(loopboot,j=1:N,MoreArgs=list(pred.x=g$pred.x,pred.y=g$pred.y,xresid=xresid,yresid=yresid,ti=g$period.time,obs=obs,n=g$values["n"],m=g$values["m"],extended.classical=g$extended.classical,cbb=cbb,joint=joint,period=g$period))
-    bootdat<-t(bootdat)
+    if (g$method=="harmonic2")
+    bootdat <- mapply(loopboot,j=1:N,MoreArgs=list(pred.x=g$pred.x,pred.y=g$pred.y,xresid=xresid,yresid=yresid,ti=g$period.time,obs=obs,n=g$values["n"],m=g$values["m"],extended.classical=g$extended.classical,cbb=cbb,joint=joint,period=g$period))
+    else     bootdat <- mapply(loopbootgeom,j=1:N,MoreArgs=list(pred.x=g$pred.x,pred.y=g$pred.y,xresid=xresid,yresid=yresid,obs=obs,extended.classical=g$extended.classical,cbb=cbb,joint=joint,period=g$period))
+
+    bootdat <- t(bootdat)
     colnames(bootdat) <- names(g$values)
     
     error<-apply(bootdat,2,sd,na.rm=T)
@@ -27,16 +29,16 @@ summary.fittedloop <- function(object,boot=TRUE,N=1000,cbb=NULL,joint=FALSE,seed
     
     rad<-g$period.time+full["phase.angle","Boot.Estimate"]
     pred.x<-full["b.x","Boot.Estimate"]*cos(rad)+full["cx","Boot.Estimate"] 
-    if (g$extended.classical==FALSE)
+    if (g$extended.classical==FALSE & g$method=="harmonic2")
       pred.y<-full["b.y","Boot.Estimate"]*cos(rad)^g$values["n"]+full["retention","Boot.Estimate"]*sin(rad)^g$values["m"]+full["cy","Boot.Estimate"]
     else
-      pred.y<-sign(cos(rad))*full["b.y","Boot.Estimate"]*abs(cos(rad))^g$values["n"]+full["retention","Boot.Estimate"]*sin(rad)^g$values["m"]+full["cy","Boot.Estimate"]
+      pred.y<-sign(cos(rad))*full["b.y","Boot.Estimate"]*abs(cos(rad))^full["n","Boot.Estimate"]+sign(sin(rad))*full["retention","Boot.Estimate"]*abs(sin(rad))^full["m","Boot.Estimate"]+full["cy","Boot.Estimate"]
    bootEst<-full[,"Boot.Estimate"]
     names(bootEst) <- rownames(full)
     bootStd<-full[,"Std.Error"]
     names(bootStd) <- rownames(full)
     full2<-list("values"=full,"Boot.Estimates"=bootEst,"Boot.Std.Errors"=bootStd,
-                "pred.x"=pred.x,"pred.y"=pred.y, "x"=g$x,"y"=g$y,"call"=g$call,"extended.classical"=g$extended.classical,"boot.data"=bootdat,"boot"=TRUE)
+                "pred.x"=pred.x,"pred.y"=pred.y, "x"=g$x,"y"=g$y,"call"=g$call,"extended.classical"=g$extended.classical,"boot.data"=bootdat,"boot"=TRUE,"method"=g$method)
     full2$summarycall <- summarycall
     full2$residuals <- sqrt((g$x-pred.x)^2+(g$y-pred.y)^2)
     full2$period.time <- g$period.time

@@ -9,12 +9,14 @@ Fit a Hysteresis Loop
 Fits a hysteresis loop given values of m and n chosen by the user.
 }
 \usage{
-floop(x, y=NULL, n = 1, m = 1,times="equal", period = NULL, 
-subjects=NULL, subset=NULL,na.action= getOption("na.action"),
-extended.classical=FALSE,boot=FALSE,...) 
+floop(x,y=NULL,n=1,m=1,times="equal",period=NULL,
+subjects=NULL, subset=NULL,na.action=getOption("na.action"),
+extended.classical=FALSE,boot=FALSE,method="harmonic2",
+...) 
 floop2r(x,y=NULL,n=1,m=1,times="equal",period=NULL,
 subjects=NULL, subset=NULL,na.action=getOption("na.action"),
-extended.classical=FALSE,boot=FALSE,...)
+extended.classical=FALSE,boot=FALSE,method="harmonic2",
+...)
 }
 
 \arguments{
@@ -55,6 +57,9 @@ Allows the user to fit classical loops with any n>1 instead of just odd numbered
   \item{boot}{
 logical, if TRUE results will be bootstrapped by the default arguments of \code{\link{summary.fittedloop}}.
 }
+  \item{method}{
+if the default "harmonic2" times, along with m and n are either supplied by the user or given default values. Otherwise a non-linear "geometric" method that minimizes the sum of squared geometric residuals will be utilized.
+}
  \item{...}{
 other optional arguments such as \code{seed}, N=number of realizations, \code{cbb} for circular block bootstrapping, passed to \code{\link{summary.ellipsefit}} if \code{boot=TRUE}.
 }
@@ -80,6 +85,7 @@ Although degree of freedom adjustments are made for other methods, measures of f
 \item{values}{a named vector of parameter estimates. See \code{\link{loop.parameters}}, same as Estimates here.}
  \item{Estimates}{a named vector of parameter estimates. See \code{\link{loop.parameters}}, same as values.}  
   \item{Std.Errors}{standard errors for parameters derived using the delta method.}
+   \item{method}{fitting method used.}
 
 if \code{boot==TRUE} \code{\link{floop}} returns an object of class \code{loopsummary} by making a call to \code{\link{summary.fittedloop}}. See \code{\link{summary.fittedloop}}.
 

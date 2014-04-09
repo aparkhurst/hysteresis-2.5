@@ -1,17 +1,19 @@
-splitloopboot <-
+splitloopbootgeom <-
   function(j=NULL,pred.x,pred.y,xresid,yresid,ti,obs,n,m,extended.classical,cbb,joint,period){
     if (is.numeric(cbb)==TRUE) {
       index <- sample(1:(obs+3),3,replace=FALSE)
+      index2 <- sample(1:(obs+3),5,replace=FALSE)
       xresid2 <- c(xresid,xresid)
       yresid2 <- c(yresid,yresid)
-      k <- obs/cbb
+      k <- round(obs/cbb)
+      k2 <- round((obs-2)/cbb) #Round so not exact if obs/cbb and obs-2/cbb aren't integers.
       xblocks <- sample(1:(obs+3),k,replace=TRUE)
-      if (joint==FALSE) yblocks <- sample(1:(obs+3),k,replace=TRUE)
-      else yblocks <- xblocks
+      if (joint==FALSE) yblocks <- sample(1:(obs+3),k2,replace=TRUE)
+      else yblocks <- xblocks[1:k2]
       xressamp <- c(t(outer(xblocks,0:(cbb-1),FUN="+")))
       yressamp <- c(t(outer(yblocks,0:(cbb-1),FUN="+")))
       y<-yresid2[yressamp]+pred.y[-index]
-      x<-xresid2[xressamp]+pred.x[-index]
+      x<-xresid2[xressamp]+pred.x[-index2]
     }
     else {  
       index <- sample(1:(obs+3),3,replace=FALSE)
@@ -26,23 +28,22 @@ splitloopboot <-
       }
     }
     
-    Ta.lm<-lm.fit(cbind(rep(1,obs),sin(ti[-index]),cos(ti[-index])),x)            
-    b.x<-sqrt(coef(Ta.lm)[[2]]^2+coef(Ta.lm)[[3]]^2)
-    phase.angle<- atan2(coef(Ta.lm)[[3]],coef(Ta.lm)[[2]])-pi/2
-    t2 <- ti[-index] + phase.angle
-    cx<-coef(Ta.lm)[[1]]
-    costp <- cos(t2)
-    Ind <- (t2 < pi) & (t2 > 0) 
-    if (extended.classical==FALSE) maty <- cbind(rep(1,length(t2)),sin(t2)^m,costp^n,Ind*sin(t2)^m)
-    if (extended.classical==TRUE) {
-      direc <- sign(costp)
-      maty <- cbind(rep(1,length(t2)),sin(t2)^m,direc*abs(costp)^n,Ind*sin(t2)^m)
-    }
-    yfit <- lm.fit(maty,y)
-    cy <- as.vector(coef(yfit)[1])
-    retention.below <- abs(as.vector(coef(yfit)[2]))
-    retention.above <- abs(as.vector(coef(yfit)[2])+as.vector(coef(yfit)[4]))
-    b.y <- as.vector(coef(yfit)[3])
+    midspread <- 2*pi/length(x)
+    mod <- optim(par=c("t"=rep(2*pi/length(x),length(x)),"cx"=0,"cy"=0,"b.x"=range(x)/2,"b.y"=range(y)/2,"logm"=0,
+                       "logn"=0,"retention.above"=0,"retention.below"=0),fn=floopCauchyLoss2r,x=x,y=y,
+                 midspread=midspread,method="BFGS",hessian=TRUE)
+    par <- mod$par
+    times <- par[1:length(x)]
+    cx <- par[length(x)+1]
+    cy <- par[length(x)+2]
+    b.x <- par[length(x)+3]
+    b.y <- par[length(x)+4]
+    logm <- par[length(x)+5]
+    logn <- par[length(x)+6]
+    retention.above <- par[length(x)+7]
+    retention.below <- par[length(x)+8]
+    m <- exp(logm)
+    n <- exp(logn)
     if (n==1) beta.split.angle<-atan2(b.y,b.x)*180/pi 
     else if (n >= 2) beta.split.angle <- 0
     else beta.split.angle<-NA

@@ -1,4 +1,4 @@
-floop <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, subset=NULL,na.action=getOption("na.action"),extended.classical=FALSE,boot=FALSE,...) {
+floop <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, subset=NULL,na.action=getOption("na.action"),extended.classical=FALSE,boot=FALSE,method="harmonic2",...) {
  if (boot==TRUE) return(summary(floop(x,y,n,m,times,period,subjects,subset,na.action,extended.classical),...))
   if (m==1 & n==1) return(fel(x,y,times=times,period=period,subjects=subjects,subset=subset,na.action=na.action,method="harmonic2"))
   floopcall <- match.call()
@@ -43,7 +43,8 @@ floop <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, subs
     attr(ans,"call") <- floopcall
     return(ans)
   }
-  
+ 
+ if (method=="harmonic2") {
   if (is.null(period))
     period <- length(dat$x)
  suppressWarnings(if (times=="equal")
@@ -68,6 +69,32 @@ floop <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, subs
  pred.x<-cx+b.x*cos(t+phase.angle)
   if (extended.classical==FALSE) pred.y<-cy+retention*sin(t+phase.angle)^m+b.y*costp^n
  if (extended.classical==TRUE)  pred.y<-cy+retention*sin(t+phase.angle)^m+direc*(b.y*abs(costp)^n)
+fit <- list(xfit,yfit)
+  } else {
+   midspread = 2*pi/length(x)
+   mod=optim(par=c("t"=rep(2*pi/length(x),length(x)),"cx"=0,"cy"=0,"b.x"=range(x)/2,"b.y"=range(y)/2,"logm"=0,
+                   "logn"=0,"retention"=0),fn=floopCauchyLoss,x=x,y=y,
+             midspread=midspread,method="BFGS",hessian=TRUE)
+   par = mod$par
+   times <- par[1:length(x)]
+   cx <- par[length(x)+1]
+   cy <- par[length(x)+2]
+   b.x <- par[length(x)+3]
+   b.y <- par[length(x)+4]
+   logm <- par[length(x)+5]
+   logn <- par[length(x)+6]
+   retention <- par[length(x)+7]
+   t <- cumsum(times)
+   phase.angle <- t[1]
+   costp <- cos(t) 
+   sintp <- sin(t) 
+   t <- t - phase.angle
+   direc <- sign(costp)
+   direcsin <- sign(sintp)
+   pred.x <- cx+b.x*costp
+   pred.y <- cy+direcsin*retention*abs(sintp)^exp(logm)+direc*(b.y*abs(costp)^exp(logn))
+   fit <- mod
+ } 
   residuals <- sqrt((dat$x-pred.x)^2+(dat$y-pred.y)^2)
   if (n==1) beta.split.angle<-atan2(b.y,b.x)*180/pi 
     else if (n >= 2) beta.split.angle <- 0
@@ -78,8 +105,8 @@ floop <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, subs
   area <- (0.5/(beta((m+3)/2,(m+3)/2)*(m+2))+1/beta((m+1)/2,(m+1)/2)-1/beta((m+3)/2,(m-1)/2))/(2^m)*pi*abs(retention*b.x)
  lag<-abs(atan2(retention,b.y))*period/(pi*2)
   ans <- list("values"=c("n"=n, "m"=m,"b.x"=b.x,"b.y"=b.y,"phase.angle"=as.vector(phase.angle),"cx"=cx,"cy"=cy,"retention"=retention,
-               "coercion"=coercion,"area"=area, "lag"=lag,"beta.split.angle"=beta.split.angle,"hysteresis.x"=hysteresis.x, "hysteresis.y"=hysteresis.y),"fit"=list(xfit,yfit),
-              "x"=dat$x,"y"=dat$y,"pred.x"=pred.x,"pred.y"=pred.y,"period"=period, "period.time"=t+phase.angle,"residuals"=residuals,"call"=floopcall, "extended.classical"=extended.classical)
+               "coercion"=coercion,"area"=area, "lag"=lag,"beta.split.angle"=beta.split.angle,"hysteresis.x"=hysteresis.x, "hysteresis.y"=hysteresis.y),"fit"=fit,
+              "x"=dat$x,"y"=dat$y,"pred.x"=pred.x,"pred.y"=pred.y,"period"=period, "period.time"=t+phase.angle,"residuals"=residuals,"call"=floopcall, "extended.classical"=extended.classical,"method"=method)
 ans$call <- floopcall
  ans$Std.Errors <- unlist(delta.error.loop(ans))
  ans$Estimates <- ans$values

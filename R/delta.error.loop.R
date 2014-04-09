@@ -1,4 +1,5 @@
 delta.error.loop <- function(g) {
+  if (g$method=="harmonic2") {
   z <- g$fit[[1]]
   rss <- sum(z$residuals^2)
   p <- z$rank
@@ -41,5 +42,24 @@ else splitSE <- NA
 
   SEs<- list("n"=NA,"m"=NA,"b.x"=b.xSE,"b.y"=se2[3],"phase.angle"=phase.angleSE,
              "cx"=se1[1],"cy"=se2[1],"retention"=se2[2],"coercion"=coercionSE,"area"=areaSE,"lag"=lagSE, "split.angle"=splitSE,"hysteresis.x"=hysteresis.xSE,"hysteresis.y"=hysteresis.ySE)
+  }
+  else {
+    n <- length(g$x) 
+    coefs <- g$fit$par[(n+1):(n+7)]
+    vmat <- (as.vector(2*crossprod(g$residuals)/(n-7))*solve(g$fit$hessian))
+    vmat2 <- vmat[(n+1):(n+7),(n+1):(n+7)]
+    SEm <- deltamethod("~exp(x5)",coefs,vmat2)
+    SEn <- deltamethod("~exp(x6)",coefs,vmat2)
+    coercionSE <- deltamethod("~x3/sqrt(1+(x4/x7)^(2/x5))",coefs,vmat2)
+    hysteresis.xSE <- deltamethod("~1/sqrt(1+(x4/x7)^(2/x5))",coefs,vmat2)
+    areaSE <- NA
+    splitSE <- NA
+    hysteresis.ySE <- deltamethod("~x7/x4",coefs,vmat2)
+    lagSE <- deltamethod("~atan2(x7,x4)",coefs,vmat2)*g$period/(pi*2)
+    SEs<- list("n"=SEn,"m"=SEm,"b.x"=sqrt(vmat2[3,3]),"b.y"=sqrt(vmat2[4,4]),"phase.angle"=sqrt(vmat[1,1]),
+               "cx"=sqrt(vmat2[1,1]),"cy"=sqrt(vmat2[2,2]),"retention"=sqrt(vmat2[7,7]),
+               "coercion"=coercionSE,"area"=areaSE,"lag"=lagSE, "split.angle"=splitSE,"hysteresis.x"=hysteresis.xSE,"hysteresis.y"=hysteresis.ySE)
+    
+  }
   SEs
 }
