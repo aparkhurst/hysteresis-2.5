@@ -76,7 +76,7 @@ floop2r <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, su
  }
  else {
    midspread <- 2*pi/length(x)
-   mod <- optim(par=c("t"=rep(2*pi/length(x),length(x)),"cx"=0,"cy"=0,"b.x"=range(x)/2,"b.y"=range(y)/2,"logm"=0,
+   mod <- optim(par=c("t"=rep(2*pi/length(x),length(x)),"cx"=0,"cy"=0,"b.x"=diff(range(x))/2,"b.y"=diff(range(y))/2,"logm"=0,
                    "logn"=0,"retention.above"=0,"retention.below"=0),fn=floopCauchyLoss2r,x=x,y=y,
              midspread=midspread,method="BFGS",hessian=TRUE)
    par <- as.vector(mod$par)
