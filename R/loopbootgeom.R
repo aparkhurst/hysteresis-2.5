@@ -1,4 +1,4 @@
-loopboot <-
+loopbootgeom <-
   function(j=NULL,pred.x,pred.y,xresid,yresid,obs,extended.classical,cbb,joint,period){
     if (is.numeric(cbb)==TRUE) {
       index <- sample(1:(obs+3),3,replace=FALSE)
