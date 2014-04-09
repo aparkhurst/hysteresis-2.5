@@ -2,7 +2,7 @@ plot.splitloop <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALS
   a <- x
   ti <- (1:101)*pi/50
   ti2 <- ti + a$values["phase.angle"]
-  if (a$method="harmonic2") {
+  if (a$method=="harmonic2") {
   Ind <- (ti2 < pi) & (ti2 > 0)
   Input <- a$values["b.x"]*cos(ti2)+a$values["cx"]
   if (a$extended.classical==FALSE) Output <- a$values["b.y"]*cos(ti2)^a$values["n"]+Ind*a$values["retention.above"]*sin(ti2)^a$values["m"]+(1-Ind)*a$values["retention.below"]*sin(ti2)^a$values["m"]+a$values["cy"]
