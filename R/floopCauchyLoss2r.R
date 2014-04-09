@@ -7,7 +7,7 @@ floopCauchyLoss2r <- function (par,x,y,midspread) {
   logm <- par[length(x)+5]
   logn <- par[length(x)+6]
   retention.above <- par[length(x)+7]
-  retention.below <- par[length(x)+7]
+  retention.below <- par[length(x)+8]
   times <- cumsum(t)
   costp <- cos(times) 
   sintp <- sin(times) 
