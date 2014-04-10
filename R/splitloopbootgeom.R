@@ -24,7 +24,7 @@ splitloopbootgeom <-
       }
       else {
         resid.sampler <- sample(1:(obs+3),obs,replace=TRUE)
-        y<-yresid[resid.sampler[1:(obs-3)]+pred.y[-index2]
+        y<-yresid[resid.sampler[1:(obs-3)]]+pred.y[-index2]
         x<-xresid[resid.sampler]+pred.x[-index]
       }
     }
