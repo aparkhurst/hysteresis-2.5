@@ -1,31 +1,30 @@
 splitloopbootgeom <-
   function(j=NULL,pred.x,pred.y,xresid,yresid,ti,obs,n,m,extended.classical,cbb,joint,period){
     if (is.numeric(cbb)==TRUE) {
-      index <- sample(1:(obs+3),3,replace=FALSE)
-      index2 <- sample(1:(obs+3),5,replace=FALSE)
+    index2 <- sample(1:(obs+3),6,replace=FALSE)
+      index <- index2[1:3]
       xresid2 <- c(xresid,xresid)
       yresid2 <- c(yresid,yresid)
       k <- round(obs/cbb)
-      k2 <- round((obs-2)/cbb) #Round so not exact if obs/cbb and obs-2/cbb aren't integers.
+      k2 <- round((obs-3)/cbb) #Round so not exact if obs/cbb and obs-2/cbb aren't integers.
       xblocks <- sample(1:(obs+3),k,replace=TRUE)
       if (joint==FALSE) yblocks <- sample(1:(obs+3),k2,replace=TRUE)
       else yblocks <- xblocks[1:k2]
       xressamp <- c(t(outer(xblocks,0:(cbb-1),FUN="+")))
       yressamp <- c(t(outer(yblocks,0:(cbb-1),FUN="+")))
-      y<-yresid2[yressamp]+pred.y[-index]
-      x<-xresid2[xressamp]+pred.x[-index2]
+      y<-yresid2[yressamp]+pred.y[-index2]
+      x<-xresid2[xressamp]+pred.x[-index]
     }
     else {  
-      index <- sample(1:(obs+3),3,replace=FALSE)
-      index2 <- sample(1:(obs+3),5,replace=FALSE)
+    index2 <- sample(1:(obs+3),6,replace=FALSE)
+      index <- index2[1:3]
       if (joint==FALSE) {
-    y<-sample(yresid,obs-2,replace=TRUE)+pred.y[-index2]
+    y<-sample(yresid,obs-3,replace=TRUE)+pred.y[-index2]
     x<-sample(xresid,obs,replace=TRUE)+pred.x[-index]
       }
       else {
         resid.sampler <- sample(1:(obs+3),obs,replace=TRUE)
-        resid.sampler2 <- sample(1:(obs+3),obs-2,replace=TRUE)
-        y<-yresid[resid.sampler2]+pred.y[-index2]
+        y<-yresid[resid.sampler[1:(obs-3)]+pred.y[-index2]
         x<-xresid[resid.sampler]+pred.x[-index]
       }
     }
