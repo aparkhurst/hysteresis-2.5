@@ -84,7 +84,7 @@ for (i in 1:length(x)) {
 inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals["theta"])
    mod=optim(par=c("t"=ti,"cx"=start$vals["cx"],"cy"=start$vals["cy"],"b.x"=inti[1],"b.y"=inti[2],"logm"=0,
                    "logn"=0,"retention"=inti[3]),fn=floopCauchyLoss,x=x,y=y,
-             midspread=midspread,method="BFGS",hessian=TRUE)
+             method="BFGS",hessian=TRUE)
    par = as.vector(mod$par)
    times <- par[1:length(x)]
    cx <- par[length(x)+1]
