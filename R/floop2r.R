@@ -78,7 +78,7 @@ floop2r <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, su
  else {
  start <- direct(dat$x,dat$y) 
 
-ti<-t
+ti<-c(t[1],diff(t))
 inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals["theta"])
    mod=optim(par=c("t"=ti,"cx"=start$vals["cx"],"cy"=start$vals["cy"],"b.x"=(inti[1]+diff(range(dat$x))/2)/2,"b.y"=(inti[2]+diff(range(dat$y))/2)/2,"logm"=log(m),
                    "logn"=log(n),"retention.above"=inti[3]/2,"retention.below"=inti[3]/2),fn=floopCauchyLoss,x=dat$x,y=dat$y,
