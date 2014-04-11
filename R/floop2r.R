@@ -77,8 +77,15 @@ floop2r <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, su
  }
  else {
  start <- direct(dat$x,dat$y) 
-
-ti<-c(t[1],diff(t))
+ti<-numeric(length(x))
+for (i in 1:length(x)) {
+  x0<-x[i]
+  y0<-y[i]
+  zmin1<-optimize(ellipsespot,c(0,pi),"x0"=x0,"y0"=y0,"cx"=start$vals["cx"],"cy"=start$vals["cy"],"semi.major"=start$vals["semi.major"],"semi.minor"=start$vals["semi.minor"],"rote.rad"=start$vals["theta"])
+  zmin2<-optimize(ellipsespot,c(pi,2*pi),"x0"=x0,"y0"=y0,"cx"=start$vals["cx"],"cy"=start$vals["cy"],"semi.major"=start$vals["semi.major"],"semi.minor"=start$vals["semi.minor"],"rote.rad"=start$vals["theta"])
+  ti[i]<-ifelse(zmin1$objective < zmin2$objective, zmin1, zmin2)[[1]]
+}
+ti<-c(ti[1],diff(ti))
 inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals["theta"])
    mod=optim(par=c("t"=ti,"cx"=start$vals["cx"],"cy"=start$vals["cy"],"b.x"=(inti[1]+diff(range(dat$x))/2)/2,"b.y"=(inti[2]+diff(range(dat$y))/2)/2,"logm"=log(m),
                    "logn"=log(n),"retention.above"=inti[3]/2,"retention.below"=inti[3]/2),fn=floopCauchyLoss,x=dat$x,y=dat$y,
