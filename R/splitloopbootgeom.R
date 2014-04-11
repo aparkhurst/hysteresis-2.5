@@ -31,7 +31,8 @@ splitloopbootgeom <-
     
  start <- direct(x[1:length(y)],y) 
 
-ti<-(1:length(x))*2*pi/length(x)
+ti<-rep(2*pi/length(x),length(x))
+
 
 inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals["theta"])
    mod=optim(par=c("t"=ti,"cx"=start$vals["cx"],"cy"=start$vals["cy"],"b.x"=inti[1],"b.y"=inti[2],"logm"=0,
