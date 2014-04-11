@@ -72,12 +72,12 @@ floop <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, subs
  if (extended.classical==TRUE)  pred.y<-cy+retention*sin(t+phase.angle)^m+direc*(b.y*abs(costp)^n)
 fit <- list(xfit,yfit)
   } else {
-   start <- direct(x,y) 
+   start <- direct(dat$x,dat$y) 
 
 ti<-t
 inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals["theta"])
    mod=optim(par=c("t"=ti,"cx"=start$vals["cx"],"cy"=start$vals["cy"],"b.x"=inti[1],"b.y"=inti[2],"logm"=log(m),
-                   "logn"=log(n),"retention"=inti[3]/2),fn=floopCauchyLoss,x=x,y=y,
+                   "logn"=log(n),"retention"=inti[3]/2),fn=floopCauchyLoss,x=dat$x,y=dat$y,
              method="BFGS",hessian=TRUE)
    par = as.vector(mod$par)
    times <- par[1:length(x)]
