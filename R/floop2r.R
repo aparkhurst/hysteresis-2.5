@@ -49,7 +49,7 @@ floop2r <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, su
     period <- length(dat$x)
  suppressWarnings(if (times=="equal")
   t <- (0:(length(dat$x)-1))/period*pi*2
- else t <- 2*times/period*pi
+ else t <- 2*times/period*pi)
  if (method=="harmonic2") {
  matx <- cbind(rep(1,length(dat$x)),sin(t),cos(t))
  
