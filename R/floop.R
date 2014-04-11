@@ -73,10 +73,11 @@ floop <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, subs
 fit <- list(xfit,yfit)
   } else {
    start <- direct(dat$x,dat$y) 
-
+#Starting values taken as mean of those from direct ellipse fit, straight line from max to min.
+#m and n start chosen by user.
 ti<-t
 inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals["theta"])
-   mod=optim(par=c("t"=ti,"cx"=start$vals["cx"],"cy"=start$vals["cy"],"b.x"=inti[1],"b.y"=inti[2],"logm"=log(m),
+   mod=optim(par=c("t"=ti,"cx"=start$vals["cx"],"cy"=start$vals["cy"],"b.x"=(inti[1]+diff(range(dat$x))/2)/2,"b.y"=(inti[2]+diff(range(dat$y))/2)/2,"logm"=log(m),
                    "logn"=log(n),"retention"=inti[3]/2),fn=floopCauchyLoss,x=dat$x,y=dat$y,
              method="BFGS",hessian=TRUE)
    par = as.vector(mod$par)
