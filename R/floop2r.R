@@ -44,12 +44,13 @@ floop2r <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, su
     return(ans)
   }
 
- if (method=="harmonic2") {
+ 
   if (is.null(period))
     period <- length(dat$x)
  suppressWarnings(if (times=="equal")
   t <- (0:(length(dat$x)-1))/period*pi*2
- else t <- 2*times/period*pi)
+ else t <- 2*times/period*pi
+ if (method=="harmonic2") {
  matx <- cbind(rep(1,length(dat$x)),sin(t),cos(t))
  
  xfit <- lm.fit(matx,dat$x)
@@ -75,12 +76,12 @@ floop2r <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, su
   fit <- list(xfit,yfit)
  }
  else {
- start <- direct(x,y) 
+ start <- direct(dat$x,dat$y) 
 
-ti<-(1:length(x))*2*pi/length(x)
+ti<-t
 inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals["theta"])
-   mod=optim(par=c("t"=ti,"cx"=start$vals["cx"],"cy"=start$vals["cy"],"b.x"=inti[1],"b.y"=inti[2],"logm"=0,
-                   "logn"=0,"retention.above"=inti[3]/2,"retention.below"=inti[3]/2),fn=floopCauchyLoss,x=x,y=y,
+   mod=optim(par=c("t"=ti,"cx"=start$vals["cx"],"cy"=start$vals["cy"],"b.x"=inti[1],"b.y"=inti[2],"logm"=log(m),
+                   "logn"=log(n),"retention.above"=inti[3]/2,"retention.below"=inti[3]/2),fn=floopCauchyLoss,x=dat$x,y=dat$y,
              method="BFGS",hessian=TRUE)
    par <- as.vector(mod$par)
    times <- par[1:length(x)]
