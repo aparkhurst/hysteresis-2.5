@@ -71,9 +71,19 @@ floop <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, subs
  if (extended.classical==TRUE)  pred.y<-cy+retention*sin(t+phase.angle)^m+direc*(b.y*abs(costp)^n)
 fit <- list(xfit,yfit)
   } else {
-   midspread = 2*pi/length(x)
-   mod=optim(par=c("t"=rep(2*pi/length(x),length(x)),"cx"=0,"cy"=0,"b.x"=diff(range(x))/2,"b.y"=diff(range(y))/2,"logm"=0,
-                   "logn"=0,"retention"=0),fn=floopCauchyLoss,x=x,y=y,
+   start <- direct(x,y) 
+
+ti<-numeric(length(x))
+for (i in 1:length(x)) {
+  x0<-x[i]
+  y0<-y[i]
+  zmin1<-optimize(ellipsespot,c(0,pi),"x0"=x0,"y0"=y0,"cx"=start$vals["cx"],"cy"=start$vals["cy"],"semi.major"=start$vals["semi.major"],"semi.minor"=start$vals["semi.minor"],"rote.rad"=start$vals["theta"])
+  zmin2<-optimize(ellipsespot,c(pi,2*pi),"x0"=x0,"y0"=y0,"cx"=start$vals["cx"],"cy"=start$vals["cy"],"semi.major"=start$vals["semi.major"],"semi.minor"=start$vals["semi.minor"],"rote.rad"=start$vals["theta"])
+  ti[i]<-ifelse(zmin1$objective < zmin2$objective, zmin1, zmin2)[[1]]
+}
+inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals["theta"])
+   mod=optim(par=c("t"=ti,"cx"=start$vals["cx"],"cy"=start$vals["cy"],"b.x"=inti[1],"b.y"=inti[2],"logm"=0,
+                   "logn"=0,"retention"=inti[3]),fn=floopCauchyLoss,x=x,y=y,
              midspread=midspread,method="BFGS",hessian=TRUE)
    par = as.vector(mod$par)
    times <- par[1:length(x)]
