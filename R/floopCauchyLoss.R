@@ -1,4 +1,4 @@
-floopCauchyLoss <- function (par,x,y,midspread) {
+floopCauchyLoss <- function (par,x,y) {
   t <- par[1:length(x)]
   cx <- par[length(x)+1]
   cy <- par[length(x)+2]
