@@ -1,4 +1,4 @@
-floop <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, subset=NULL,na.action=getOption("na.action"),extended.classical=FALSE,boot=FALSE,method="harmonic2",...) {
+floop <- function(x,y=NULL,n=1,m=1,times="unknown",period=NULL,subjects=NULL, subset=NULL,na.action=getOption("na.action"),extended.classical=FALSE,boot=FALSE,method="harmonic2",...) {
  if (boot==TRUE) return(summary(floop(x,y,n,m,times,period,subjects,subset,na.action,extended.classical),...))
   if (m==1 & n==1 & method=="harmonic2") return(fel(x,y,times=times,period=period,subjects=subjects,subset=subset,na.action=na.action,method="harmonic2"))
   floopcall <- match.call()
@@ -49,7 +49,7 @@ floop <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, subs
     period <- length(dat$x)
  suppressWarnings(if (times=="equal")
   t <- (0:(length(dat$x)-1))/period*pi*2
- else t <- 2*times/period*pi)
+ else if (is.numeric(times)) t <- 2*times/period*pi)
   if (method=="harmonic2") {
  matx <- cbind(rep(1,length(dat$x)),sin(t),cos(t))
  
@@ -75,6 +75,7 @@ fit <- list(xfit,yfit)
    start <- direct(dat$x,dat$y) 
 #Starting values taken as mean of those from direct ellipse fit, straight line from max to min.
 #m and n start chosen by user.
+if (times=="unknown") {
 ti<-numeric(length(x))
 for (i in 1:length(x)) {
   x0<-x[i]
@@ -84,6 +85,9 @@ for (i in 1:length(x)) {
   ti[i]<-ifelse(zmin1$objective < zmin2$objective, zmin1, zmin2)[[1]]
 }
 ti<-c(ti[1],diff(ti))
+}
+else ti <- -c(t[1],diff(t))
+
 inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals["theta"])
    mod=optim(par=c("t"=ti,"cx"=start$vals["cx"],"cy"=start$vals["cy"],"b.x"=(inti[1]+diff(range(dat$x))/2)/2,"b.y"=(inti[2]+diff(range(dat$y))/2)/2,"logm"=log(m),
                    "logn"=log(n),"retention"=inti[3]/2),fn=floopCauchyLoss,x=dat$x,y=dat$y,
