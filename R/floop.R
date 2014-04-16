@@ -1,4 +1,4 @@
-floop <- function(x,y=NULL,n=1,m=1,times="unknown",period=NULL,subjects=NULL, subset=NULL,na.action=getOption("na.action"),extended.classical=FALSE,boot=FALSE,method="harmonic2",...) {
+floop <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, subset=NULL,na.action=getOption("na.action"),extended.classical=FALSE,boot=FALSE,method="harmonic2",...) {
  if (boot==TRUE) return(summary(floop(x,y,n,m,times,period,subjects,subset,na.action,extended.classical),...))
   if (m==1 & n==1 & method=="harmonic2") return(fel(x,y,times=times,period=period,subjects=subjects,subset=subset,na.action=na.action,method="harmonic2"))
   floopcall <- match.call()
