@@ -7,8 +7,8 @@
 \alias{residuals.ellipsesummarylist}
 \alias{residuals.fittedlooplist}
 \alias{residuals.loopsummarylist}
-\alias{residuals.splitloop}
-\alias{residuals.splitloopsummary}
+\alias{residuals.loop2r}
+\alias{residuals.loop2rsummary}
 \alias{rstudent.ellipsefit}
 \alias{rstudent.ellipsesummary}
 \alias{rstudent.fittedloop}
