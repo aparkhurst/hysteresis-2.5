@@ -17,8 +17,8 @@
 \alias{rstudent.ellipsesummarylist}
 \alias{rstudent.fittedlooplist}
 \alias{rstudent.loopsummarylist}
-\alias{rstudent.splitloop}
-\alias{rstudent.splitloopsummary}
+\alias{rstudent.loop2r}
+\alias{rstudent.loop2rsummary}
 \alias{fitted.ellipsefit}
 \alias{fitted.ellipsesummary}
 \alias{fitted.fittedloop}
@@ -27,8 +27,8 @@
 \alias{fitted.ellipsesummarylist}
 \alias{fitted.fittedlooplist}
 \alias{fitted.loopsummarylist}
-\alias{fitted.splitloop}
-\alias{fitted.splitloopsummary}
+\alias{fitted.loop2r}
+\alias{fitted.loop2rsummary}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Residuals, studentized residuals and fitted values for the hysteresis package. 
