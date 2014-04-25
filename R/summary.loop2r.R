@@ -44,7 +44,7 @@ summary.loop2r <- function(object,boot=TRUE,N=1000,cbb=NULL,joint=FALSE,seed=NUL
     full2$summarycall <- summarycall
     full2$residuals <- sqrt((g$x-pred.x)^2+(g$y-pred.y)^2)
     full2$period.time <- g$period.time
-  class(full2) <- "splitloopsummary"  
+  class(full2) <- "loop2rsummary"  
     full2 
   }
   else { res <- g
