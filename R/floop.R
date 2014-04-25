@@ -118,7 +118,7 @@ inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals[
   if (n==1) beta.split.angle<-atan2(b.y,b.x)*180/pi 
     else if (n >= 2) beta.split.angle <- 0
     else beta.split.angle<-NA
-  hysteresis.x <- 1/sqrt(1+(b.y/retention)^(2/m))
+  hysteresis.x <- 1/sqrt(1+(b.y/abs(retention))^(2/m))
   coercion <- hysteresis.x*b.x
   hysteresis.y <- retention/b.y
   area <- (0.5/(beta((m+3)/2,(m+3)/2)*(m+2))+1/beta((m+1)/2,(m+1)/2)-1/beta((m+3)/2,(m-1)/2))/(2^m)*pi*abs(retention*b.x)
