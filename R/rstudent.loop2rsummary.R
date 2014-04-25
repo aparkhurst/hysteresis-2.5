@@ -1,4 +1,4 @@
-rstudent.splitloopsummary <- function(model,...) {
+rstudent.loop2rsummary <- function(model,...) {
   g <- model
   n <- length(g$x)
   wr1<- g$x-g$pred.x
