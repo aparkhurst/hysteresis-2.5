@@ -1,4 +1,4 @@
-plot.splitloopsummary <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,main=NULL,...) {
+plot.loop2rsummary <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,main=NULL,...) {
   a <- x
   ti <- (1:101)*pi/50
   ti <- ti + a$values["phase.angle","Boot.Estimate"]
