@@ -1,4 +1,4 @@
-print.splitloop <- function (x,...) {
+print.loop2r <- function (x,...) {
   cat("Call:\n")
   print(x$call)
   cat("Estimates:\n")
