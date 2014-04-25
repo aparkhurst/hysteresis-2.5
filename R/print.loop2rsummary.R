@@ -1,4 +1,4 @@
-print.splitloopsummary <- function (x,...) {
+print.loop2rsummary <- function (x,...) {
   cat("Summary Call:\n")
   print(x$summarycall)
   cat("Call for Original Fit:\n")
