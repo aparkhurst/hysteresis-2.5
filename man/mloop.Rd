@@ -1,6 +1,6 @@
 \name{mloop}
 \alias{mloop}
-\alias{mloopSplit}
+\alias{mloop2r}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Simulate (Make) a Hysteresis Loop
