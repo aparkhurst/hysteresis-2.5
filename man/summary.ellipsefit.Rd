@@ -1,7 +1,7 @@
 \name{summary.ellipsefit}
 \alias{summary.ellipsefit}
 \alias{summary.fittedloop}
-\alias{summary.splitloop}
+\alias{summary.loop2r}
 
 \title{
 Summarizing and Bootstrapping Fitted Ellipses or Loops
@@ -15,7 +15,7 @@ summary methods for classes \code{ellipsefit} and \code{fittedloop} created by t
 studentize=TRUE, center=FALSE, cbb=NULL, joint=FALSE,seed=NULL,...)
 \method{summary}{fittedloop}(object,boot=TRUE,N=1000,
 cbb=NULL,joint=FALSE,seed=NULL,...)
-\method{summary}{splitloop}(object,boot=TRUE,N=1000,
+\method{summary}{loop2r}(object,boot=TRUE,N=1000,
 cbb=NULL,joint=FALSE,seed=NULL,...)
 }
 \arguments{
