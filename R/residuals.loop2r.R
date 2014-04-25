@@ -1,4 +1,4 @@
-residuals.splitloop <- function(object,...){
+residuals.loop2r <- function(object,...){
   g <- object
   resid.x <-g$pred.x-g$x
   resid.y <-g$pred.y-g$y
