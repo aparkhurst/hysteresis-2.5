@@ -39,7 +39,7 @@ Extract input, output, geometric and algebraic residuals, studentized residuals 
 \usage{
 ##S3 methods for classes 'ellipsefit', 'ellipsesummary', 'fittedloop',
 ##'loopsummary','ellipsefitlist', 'ellipsesummarylist', 'fittedlooplist',
-##'loopsummarylist', 'splitloop' and 'splitloopsummary'.
+##'loopsummarylist', 'loop2r' and 'loop2rsummary'.
 \method{residuals}{ellipsefit}(object,...)
 \method{rstudent}{ellipsefit}(model,...)
 \method{fitted}{ellipsefit}(object,...)
