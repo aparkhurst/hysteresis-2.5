@@ -13,7 +13,7 @@ floopCauchyLoss <- function (par,x,y) {
   direc <- sign(costp)
   direcsin <- sign(sintp)
   pred.x <- cx+b.x*costp
-  pred.y <- cy+direcsin*retention*abs(sintp)^exp(logm)+direc*(b.y*abs(costp)^exp(logn))
+  pred.y <- cy+direcsin*retention*abs(sintp)^exp(logm)+direc*b.y*abs(costp)^exp(logn)
   logloss <- crossprod(y-pred.y[1:length(y)])+crossprod(x-pred.x)
   logloss
 }
