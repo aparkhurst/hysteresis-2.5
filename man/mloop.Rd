@@ -38,7 +38,9 @@ number. Center of input x.
 number. Center of output y.
 }
   \item{retention}{
-number. Split point, represents vertical distance from center to upper loop trajectory. It is the intersection of the loop and the output axis characterizing the distortion in the response at the average input challenge.
+number. Split point, represents vertical distance from center to upper loop trajectory. 
+It is the intersection of the loop and the output axis characterizing the distortion in 
+the response at the average input challenge. Assumes symmetrical curve above and below split line.
 }
   \item{retention.above}{
 number. Retention above the split line. \code{mloop2r} creates a loop where retention above and below the split line may be different.
