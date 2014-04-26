@@ -6,7 +6,8 @@
 Fit a Hysteresis Loop
 }
 \description{
-Fits a hysteresis loop given values of m and n chosen by the user.
+Fits a hysteresis loop given values of m and n chosen by the user. \code{floop2r} fits an assymetric loop with different values
+ for retention above and below the split line.
 }
 \usage{
 floop(x,y=NULL,n=1,m=1,times="equal",period=NULL,
