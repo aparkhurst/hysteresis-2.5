@@ -10,7 +10,6 @@ Summarizing and Bootstrapping Fitted Ellipses or Loops
 summary methods for classes \code{ellipsefit} and \code{fittedloop} created by the functions \code{\link{fel}} and \code{\link{floop}}. Can bootstrap results to produce parameter estimates with reduced bias and standard errors.
 }
 \usage{
-## S3 method for class 'ellipsefit'
 \method{summary}{ellipsefit}(object,boot=TRUE, N = 1000, 
 studentize=TRUE, center=FALSE, cbb=NULL, joint=FALSE,seed=NULL,...)
 \method{summary}{fittedloop}(object,boot=TRUE,N=1000,
