@@ -20,7 +20,7 @@ if (g$method=="harmonic2") {
   cov.Ta<- R1*resvar1
   cov.Tb<- R2*resvar2
   
-  cov.matrix <- cbind(rbind(cov.Ta,matrix(0,3,3)),rbind(matrix(0,4,4),cov.Tb))
+  cov.matrix <- cbind(rbind(cov.Ta,matrix(0,4,3)),rbind(matrix(0,3,4),cov.Tb))
   retention.aboveSE <- cov.matrix[5,5]+cov.matrix[7,7]+2*cov.matrix[5,7]
   b.xSE<-deltamethod(~sqrt(x2^2+x3^2),c(z$coefficients,z2$coefficients), cov.matrix)
   phase.angleSE<-deltamethod(~atan(x3/x2),c(z$coefficients,z2$coefficients), cov.matrix)
