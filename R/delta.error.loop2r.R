@@ -55,20 +55,26 @@ else splitSE <- NA
   }
   else {
     n <- length(g$x) 
-    coefs <- g$fit$par[(n+1):(n+7)]
-    vmat <- (as.vector(2*crossprod(g$residuals)/(n-7))*solve(g$fit$hessian))
-    vmat2 <- vmat[(n+1):(n+7),(n+1):(n+7)]
+    coefs <- g$fit$par[(n+1):(n+8)]
+    vmat <- (as.vector(2*crossprod(g$residuals)/(n-8))*solve(g$fit$hessian))
+    vmat2 <- vmat[(n+1):(n+8),(n+1):(n+8)]
     SEm <- deltamethod(~exp(x5),coefs,vmat2)
     SEn <- deltamethod(~exp(x6),coefs,vmat2)
-    coercionSE <- deltamethod(~x3/sqrt(1+(x4/x7)^(2/x5)),coefs,vmat2)
-    hysteresis.xSE <- deltamethod(~1/sqrt(1+(x4/x7)^(2/x5)),coefs,vmat2)
+    coercion.aboveSE <- deltamethod(~x3/sqrt(1+(x4/x7)^(2/x5)),coefs,vmat2)
+    coercion.belowSE <- deltamethod(~x3/sqrt(1+(x4/x8)^(2/x5)),coefs,vmat2)
+    hysteresis.x.aboveSE <- deltamethod(~1/sqrt(1+(x4/x7)^(2/x5)),coefs,vmat2)
+    hysteresis.x.belowSE <- deltamethod(~1/sqrt(1+(x4/x8)^(2/x5)),coefs,vmat2)
     areaSE <- NA
     splitSE <- NA
-    hysteresis.ySE <- deltamethod(~x7/x4,coefs,vmat2)
-    lagSE <- deltamethod(~atan(x7/x4),coefs,vmat2)*g$period/(pi*2)
+    hysteresis.y.aboveSE <- deltamethod(~x7/x4,coefs,vmat2)
+    hysteresis.y.belowSE <- deltamethod(~x8/x4,coefs,vmat2)
+    lag.aboveSE <- deltamethod(~atan(x7/x4),coefs,vmat2)*g$period/(pi*2)
+    lag.belowSE <- deltamethod(~atan(x8/x4),coefs,vmat2)*g$period/(pi*2)
     SEs<- list("n"=SEn,"m"=SEm,"b.x"=sqrt(vmat2[3,3]),"b.y"=sqrt(vmat2[4,4]),"phase.angle"=sqrt(vmat[1,1]),
-               "cx"=sqrt(vmat2[1,1]),"cy"=sqrt(vmat2[2,2]),"retention"=sqrt(vmat2[7,7]),
-               "coercion"=coercionSE,"area"=areaSE,"lag"=lagSE, "split.angle"=splitSE,"hysteresis.x"=hysteresis.xSE,"hysteresis.y"=hysteresis.ySE)
+               "cx"=sqrt(vmat2[1,1]),"cy"=sqrt(vmat2[2,2]),"retention.above"=sqrt(vmat2[7,7]),"retention.below"=sqrt(vmat2[8,8]),
+               "coercion.above"=coercion.aboveSE,"coercion.below"=coercion.belowSE,"area"=areaSE,"lag.above"=lag.aboveSE,
+               "lag.below"=lag.belowSE,"split.angle"=splitSE,"hysteresis.x.above"=hysteresis.x.aboveSE,
+               "hysteresis.x.below"=hysteresis.x.belowSE,"hysteresis.y.above"=hysteresis.y.aboveSE,"hysteresis.y.below"=hysteresis.y.belowSE)
     
   }
   SEs
