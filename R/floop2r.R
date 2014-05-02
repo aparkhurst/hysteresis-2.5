@@ -135,7 +135,7 @@ inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals[
               "x"=dat$x,"y"=dat$y,"pred.x"=pred.x,"pred.y"=pred.y,"period"=period, "period.time"=t2,"residuals"=residuals,"call"=floopcall, "extended.classical"=extended.classical,"method"=method)
 ans$call <- floopcall
  ans$Estimates <- ans$values
- ans$Std.Errors <- unlist(delta.error.loop2r(ans))
+ ans$Std.Errors <- try(unlist(delta.error.loop2r(ans)))
   class(ans) <- "loop2r"
   ans
 }
