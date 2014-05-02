@@ -1,4 +1,4 @@
-delta.error.loop2r <- function (x) {
+delta.error.loop2r <- function (g) {
 if (g$method=="harmonic2") {
   z <- g$fit[[1]]
   rss <- sum(z$residuals^2)
