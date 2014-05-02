@@ -45,7 +45,7 @@ else splitSE <- NA
 
   leftpart <- (0.5/(beta((m + 3)/2, (m + 3)/2) * (m + 2)) + 1/beta((m + 
           1)/2, (m + 1)/2) - 1/beta((m + 3)/2, (m - 1)/2))/(2^m) * pi
-  form <- sprintf("~(%f * x5* atan(x3/x2))/2+(%f * (x5+x7)* atan(x3/x2))/2",leftpart)
+  form <- sprintf("~(%f * (x5+x7/2)* atan(x3/x2))/2",leftpart)
   areaSE <-   deltamethod(as.formula(form),c(z$coefficients,z2$coefficients), cov.matrix)
 
   SEs<- list("n"=NA,"m"=NA,"b.x"=b.xSE,"b.y"=se2[3],"phase.angle"=phase.angleSE,
