@@ -20,8 +20,8 @@ summary.loop2r <- function(object,boot=TRUE,N=1000,cbb=NULL,joint=FALSE,seed=NUL
     error<-apply(bootdat,2,sd,na.rm=T)
     ranges<-apply(bootdat,2,quantile,probs=c(0.025,0.25,0.5,0.75,0.975),na.rm=T)
     themean<-apply(bootdat,2,mean,na.rm=T)
-    full <- data.frame(g$values,t(ranges),error, themean)
-    colnames(full) <- c("Orig.Estimate","B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975","Std.Error","Boot.Mean")
+    full <- data.frame(g$values,t(ranges),error, themean,g$Std.Errors)
+    colnames(full) <- c("Orig.Estimate","B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975","Std.Error","Boot.Mean","Delta.Error")
     
     full$Bias <- full$Boot.Mean-full$Orig.Estimate
     full$Boot.Estimate <- full$Orig.Estimate-full$Bias
