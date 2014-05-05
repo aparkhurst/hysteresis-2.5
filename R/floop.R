@@ -127,7 +127,7 @@ inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals[
                "coercion"=coercion,"area"=area, "lag"=lag,"beta.split.angle"=beta.split.angle,"hysteresis.x"=hysteresis.x, "hysteresis.y"=hysteresis.y),"fit"=fit,
               "x"=dat$x,"y"=dat$y,"pred.x"=pred.x,"pred.y"=pred.y,"period"=period, "period.time"=t+phase.angle,"residuals"=residuals,"call"=floopcall, "extended.classical"=extended.classical,"method"=method)
 ans$call <- floopcall
- ans$Std.Errors <- unlist(delta.error.loop(ans))
+ ans$Std.Errors <- unlist(try(delta.error.loop(ans)))
  ans$Estimates <- ans$values
   class(ans) <- "fittedloop"
   ans
