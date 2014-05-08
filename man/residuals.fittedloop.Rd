@@ -1,4 +1,4 @@
-\name{residuals.ellipsefit}
+\name{residuals.fittedloop}
 \alias{residuals.ellipsefit}
 \alias{residuals.ellipsesummary}
 \alias{residuals.fittedloop}
