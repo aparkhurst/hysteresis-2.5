@@ -1,4 +1,4 @@
-\name{summary.ellipsefit}
+\name{summary.fittedloop}
 \alias{summary.ellipsefit}
 \alias{summary.fittedloop}
 \alias{summary.loop2r}
