@@ -1,4 +1,4 @@
-\name{plot.ellipsefit}
+\name{plot.fittedloop}
 \alias{plot.ellipsefit}
 \alias{plot.ellipsesummary}
  \alias{plot.ellipsefitlist}
