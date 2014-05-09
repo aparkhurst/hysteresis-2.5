@@ -62,7 +62,7 @@ logical, if TRUE results will be bootstrapped by the default arguments of \code{
 if the default "harmonic2" times, along with m and n are either supplied by the user or given default values. Otherwise a non-linear "geometric" method that minimizes the sum of squared geometric residuals will be utilized.
 }
  \item{...}{
-other optional arguments such as \code{seed}, N=number of realizations, \code{cbb} for circular block bootstrapping, passed to \code{\link{summary.ellipsefit}} if \code{boot=TRUE}.
+other optional arguments such as \code{seed}, N=number of realizations, \code{cbb} for circular block bootstrapping, passed to \code{\link{summary.fittedloop}} if \code{boot=TRUE}.
 }
 }
 \details{
