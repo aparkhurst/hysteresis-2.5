@@ -127,6 +127,7 @@ inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals[
   hysteresis.y.above <- retention.above/b.y
  hysteresis.y.below <- retention.below/b.y
   area <- (0.5/(beta((m+3)/2,(m+3)/2)*(m+2))+1/beta((m+1)/2,(m+1)/2)-1/beta((m+3)/2,(m-1)/2))/(2^m)*pi*abs((retention.above+retention.below)*b.x)/2
+ if (method=="harmonic2" & m %% 2==0) area <- 0
  lag.above<-abs(atan2(retention.above,b.y))*period/(pi*2)
  lag.below<-abs(atan2(retention.below,b.y))*period/(pi*2)
   ans <- list("values"=c("n"=n, "m"=m,"b.x"=b.x,"b.y"=b.y,"phase.angle"=as.vector(phase.angle),"cx"=cx,"cy"=cy,"retention.above"=retention.above,
