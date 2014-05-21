@@ -55,8 +55,8 @@ if (is.null(values)) plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,..
   
   points(a$y~a$x,pch=1,cex=0.85)
   if (split.line==TRUE) {
-  if (a$extended.classical==FALSE & a$method=="harmonic2") split.line <- a$values["b.y","Boot.Estimate"]*cos(ti)^a$values["n","Boot.Estimate"]+a$values["cy","Boot.Estimate"]
-  else  split.line <- sign(cos(ti))*a$values["b.y","Boot.Estimate"]*abs(cos(ti))^a$values["n","Boot.Estimate"]+a$values["cy","Boot.Estimate"]
-  lines(Input,split.line,lty=2)}
+  if (a$extended.classical==FALSE & a$method=="harmonic2") splitLine <- a$values["b.y","Boot.Estimate"]*cos(ti)^a$values["n","Boot.Estimate"]+a$values["cy","Boot.Estimate"]
+  else  splitLine <- sign(cos(ti))*a$values["b.y","Boot.Estimate"]*abs(cos(ti))^a$values["n","Boot.Estimate"]+a$values["cy","Boot.Estimate"]
+  lines(Input,splitLine,lty=2)}
   if(putNumber==TRUE) text(a$x,a$y,as.character(format(1:length(a$y),digits=4)))
 }
