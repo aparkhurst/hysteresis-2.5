@@ -1,5 +1,5 @@
 harmonic2summary <-
-function (g,N,studentize,cbb,joint,repeated) {
+function (g,N,studentize,cbb,joint,twice) {
 xresid<-g$pred.x-g$x
 yresid<-g$pred.y-g$y
 n <- length(xresid)-3
@@ -36,7 +36,7 @@ full$Boot.Estimate <- full$Orig.Estimate-full$Bias
 full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]<-full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]-
   2*full$Bias
 
-if (repeated==TRUE) {
+if (twice==TRUE) {
 themean2 <- full$Boot.Estimate
 bias2 <- full$Bias
 rad2<-g$period.time+themean2[5]
