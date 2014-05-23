@@ -33,9 +33,12 @@ colnames(full) <- c("Orig.Estimate","B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q
 
 full$Bias <- full$Boot.Mean-full$Orig.Estimate
 full$Boot.Estimate <- full$Orig.Estimate-full$Bias
+full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]<-full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]-
+  2*full$Bias
 
 if (repeated==TRUE) {
 themean2 <- full$Boot.Estimate
+bias2 <- full$Bias
 rad2<-g$period.time+themean2[5]
      pred.x2 <- themean2[3]*cos(rad2)+themean2[1]
      pred.y2 <- themean2[4]*cos(rad2)+themean2[5]*sin(rad2)+themean2[2]
@@ -58,13 +61,13 @@ colnames(full) <- c("Orig.Estimate","B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q
 
 full$Bias <- full$Boot.Mean-themean2
 full$Boot.Estimate <- full$Orig.Estimate-full$Bias
+full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]<-full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]-
+  2*full$Bias+bias2
 }
 
 if (diff(range(bootdat[,"rote.deg"])) > 170)
   warning("Bootstrapped rote.deg values on both sides of 0, 180 degrees.")
   
-full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]<-full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]-
-  full$Bias
 
 rad<-g$period.time+full["phase.angle","Boot.Estimate"]
 pred.x<-full["b.x","Boot.Estimate"]*cos(rad)+full["cx","Boot.Estimate"] 
