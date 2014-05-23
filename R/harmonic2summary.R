@@ -41,7 +41,7 @@ themean2 <- full$Boot.Estimate
 bias2 <- full$Bias
 rad2<-g$period.time+themean2[5]
      pred.x2 <- themean2[3]*cos(rad2)+themean2[1]
-     pred.y2 <- themean2[4]*cos(rad2)+themean2[5]*sin(rad2)+themean2[2]
+     pred.y2 <- themean2[4]*cos(rad2)+themean2[6]*sin(rad2)+themean2[2]
      xresid2<-pred.x2-g$x
      yresid2<-pred.y2-g$y
 bootdatrep<-mapply(harmonic2boot,j=1:N,MoreArgs=list(pred.x=pred.x2,pred.y=pred.y2,xresid=xresid2,yresid=yresid2,ti=g$period.time,n=n,cbb=cbb,joint=joint))
