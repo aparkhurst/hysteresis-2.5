@@ -1,5 +1,5 @@
 harmonic2summary <-
-function (g,N,studentize,cbb,joint,twice) {
+function (g,N,studentize,cbb,joint,EBS) {
 xresid<-g$pred.x-g$x
 yresid<-g$pred.y-g$y
 n <- length(xresid)-3
@@ -36,33 +36,14 @@ full$Boot.Estimate <- full$Orig.Estimate-full$Bias
 full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]<-full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]-
   2*full$Bias
 
-if (twice==TRUE) {
-themean2 <- full$Boot.Estimate
-bias2 <- full$Bias
-rad2<-g$period.time+themean2[5]
-     pred.x2 <- themean2[3]*cos(rad2)+themean2[1]
-     pred.y2 <- themean2[4]*cos(rad2)+themean2[6]*sin(rad2)+themean2[2]
-     xresid2<-pred.x2-g$x
-     yresid2<-pred.y2-g$y
-bootdatrep<-mapply(harmonic2boot,j=1:N,MoreArgs=list(pred.x=pred.x2,pred.y=pred.y2,xresid=xresid2,yresid=yresid2,ti=g$period.time,n=n,cbb=cbb,joint=joint))
-bootdatrep<-t(bootdatrep)
-bootderivedrep <- matrix(derived.2(bootdatrep[,3],bootdatrep[,4],bootdatrep[,6],rep(g$fit.statistics["period"],N)),nrow=N,ncol=3)
-bootinternal1rep <- matrix(internal.2(bootdatrep[,3],bootdatrep[,4],bootdatrep[,6],bootdatrep[,5]),nrow=N,ncol=4)
-bootampsrep <- matrix(derived.amps(bootdatrep[,3],bootdatrep[,4],bootdatrep[,6]),nrow=N,ncol=5)  
-bootfocusrep <- matrix(derived.focus(bootinternal1rep[,3],bootinternal1rep[,4],bootinternal1rep[,1]),nrow=N,ncol=3)
-bootdatrep <- data.frame(bootdatrep,bootderivedrep,bootinternal1rep,bootampsrep,bootfocusrep)  
-colnames(bootdatrep) <- names(g$values)
-bootdat <- bootdatrep
-themean<-apply(bootdat,2,mean,na.rm=TRUE)
-error<-apply(bootdat,2,sd,na.rm=TRUE)
-ranges<-apply(bootdat,2,quantile,probs=c(0.025,0.25,0.5,0.75,0.975),na.rm=TRUE)
-full <- data.frame(g$values,t(ranges),error, themean)
-colnames(full) <- c("Orig.Estimate","B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975","Std.Error","Boot.Mean")
+if (EBS==TRUE) {
+alpha <- full$Orig.Estimate-3*full$Std.Error
+beta <- full$Orig.Estimate+3*full$Std.Error
+ranparams<- matrix(runif(length(alpha)*200,alpha,beta),length(alpha),200)
+for (i in 1:200) {
 
-full$Bias <- full$Boot.Mean-themean2
-full$Boot.Estimate <- full$Orig.Estimate-full$Bias
-full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]<-full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]-
-  2*full$Bias+bias2
+}
+
 }
 
 if (diff(range(bootdat[,"rote.deg"])) > 170)
