@@ -1,5 +1,6 @@
 harmonic2summary <-
 function (g,N,studentize,cbb,joint,EBS) {
+
 xresid<-g$pred.x-g$x
 yresid<-g$pred.y-g$y
 n <- length(xresid)-3
@@ -31,19 +32,56 @@ ranges<-apply(bootdat,2,quantile,probs=c(0.025,0.25,0.5,0.75,0.975),na.rm=TRUE)
 full <- data.frame(g$values,t(ranges),error, themean)
 colnames(full) <- c("Orig.Estimate","B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975","Std.Error","Boot.Mean")
 
+if (EBS==FALSE) {
 full$Bias <- full$Boot.Mean-full$Orig.Estimate
 full$Boot.Estimate <- full$Orig.Estimate-full$Bias
 full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]<-full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]-
   2*full$Bias
+}
 
 if (EBS==TRUE) {
 alpha <- full$Orig.Estimate-3*full$Std.Error
 beta <- full$Orig.Estimate+3*full$Std.Error
 ranparams<- matrix(runif(length(alpha)*200,alpha,beta),length(alpha),200)
+biasmat<- matrix(NA,length(alpha),200)
+themeanmat<- matrix(NA,length(alpha),200)
 for (i in 1:200) {
-
+themean2 <- ranparams[,i]
+rad2<-g$period.time+themean2[5]
+      pred.x2 <- themean2[3]*cos(rad2)+themean2[1]
+      pred.y2 <- themean2[4]*cos(rad2)+themean2[6]*sin(rad2)+themean2[2]
+     xresid2<-pred.x2-g$x
+      yresid2<-pred.y2-g$y
+      n <- length(xresid)-3
+  if (is.numeric(cbb)==TRUE){
+k <- n/cbb
+if (abs(k-round(k)) > 0.00001) stop("number of observations - 3 divided by cbb needs to be an integer.")}
+if (studentize==TRUE) {
+  h.Ta <- lm.influence(g$fit[[1]])$hat
+  h.Tb <- lm.influence(g$fit[[2]])$hat
+  r.Ta <- xresid/sqrt(1-h.Ta)
+  r.Tb <- yresid/sqrt(1-h.Tb)     
+  xresid2 <- r.Ta-mean(r.Ta)
+  yresid2 <- r.Tb-mean(r.Tb) 
 }
-
+    
+ bootdatrep<-mapply(harmonic2boot,j=1:100,MoreArgs=list(pred.x=pred.x2,pred.y=pred.y2,xresid=xresid2,yresid=yresid2,ti=g$period.time,n=n,cbb=cbb,joint=joint))
+ bootdatrep<-t(bootdatrep)
+ bootderivedrep <- matrix(derived.2(bootdatrep[,3],bootdatrep[,4],bootdatrep[,6],rep(g$fit.statistics["period"],N)),nrow=N,ncol=3)
+ bootinternal1rep <- matrix(internal.2(bootdatrep[,3],bootdatrep[,4],bootdatrep[,6],bootdatrep[,5]),nrow=N,ncol=4)
+ bootampsrep <- matrix(derived.amps(bootdatrep[,3],bootdatrep[,4],bootdatrep[,6]),nrow=N,ncol=5)  
+ bootfocusrep <- matrix(derived.focus(bootinternal1rep[,3],bootinternal1rep[,4],bootinternal1rep[,1]),nrow=N,ncol=3)
+ bootdatrep <- data.frame(bootdatrep,bootderivedrep,bootinternal1rep,bootampsrep,bootfocusrep)  
+ colnames(bootdatrep) <- names(g$values)
+ themeanrep<-apply(bootdatrep,2,mean,na.rm=TRUE)
+ themeanmat[,i] <- themeanrep
+ biasmat[,i] <- themeanrep-themean2
+}
+biasmodel <- lm.fit(x=t(themeanmat),y=t(biasmat)) 
+full$Bias <- t(coef(biasmodel))%*%full$Orig.Estimate
+full$Boot.Estimate <- full$Orig.Estimate-full$Bias
+full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]<-full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]-
+  2*full$Bias
 }
 
 if (diff(range(bootdat[,"rote.deg"])) > 170)
