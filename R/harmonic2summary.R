@@ -78,7 +78,11 @@ if (studentize==TRUE) {
  biasmat[,i] <- themeanrep-themean2
 }
 biasmodel <- lm.fit(x=t(themeanmat),y=t(biasmat)) 
-full$Bias <- t(coef(biasmodel))%*%full$Orig.Estimate
+bmcoefs <- t(coef(biasmodel))
+bmcoefs[is.na(bmcoefs)] <- 0
+OREst2 <- full$Orig.Estimate
+OREst2[is.na(OREst2)] <- 0
+full$Bias <- bmcoefs%*%full$Orig.Estimate
 full$Boot.Estimate <- full$Orig.Estimate-full$Bias
 full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]<-full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]-
   2*full$Bias
