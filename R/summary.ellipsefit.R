@@ -1,10 +1,10 @@
 summary.ellipsefit <-
-function(object,boot=TRUE,N=1000,studentize=TRUE,center=FALSE,cbb=NULL,joint=FALSE,seed=NULL,twice=TRUE,...) {
+function(object,boot=TRUE,N=1000,studentize=TRUE,center=FALSE,cbb=NULL,joint=FALSE,seed=NULL,EBS=FALSE,...) {
 if (!is.null(seed)) set.seed(seed)
 thecall <- match.call()
 if (boot==TRUE) {
   if (object$method=="harmonic2")
-  {res <- harmonic2summary(object,N=N,studentize=studentize,cbb=cbb,joint=joint,twice=twice)}
+  {res <- harmonic2summary(object,N=N,studentize=studentize,cbb=cbb,joint=joint,EBS=EBS)}
 else if (object$method=="lm")
 {res <- lmsummary(object,N=N,studentize=studentize,center=center,cbb=cbb,joint=joint)}
 else if (object$method=="geometric")
