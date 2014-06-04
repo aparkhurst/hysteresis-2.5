@@ -11,11 +11,11 @@ summary methods for classes \code{ellipsefit} and \code{fittedloop} created by t
 }
 \usage{
 \method{summary}{ellipsefit}(object,boot=TRUE, N = 1000, 
-studentize=TRUE, center=FALSE, cbb=NULL, joint=FALSE,seed=NULL,...)
+studentize=TRUE, center=FALSE, cbb=NULL, joint=FALSE,seed=NULL,EBS=FALSE,...)
 \method{summary}{fittedloop}(object,boot=TRUE,N=1000,
-cbb=NULL,joint=FALSE,seed=NULL,...)
+cbb=NULL,joint=FALSE,seed=NULL,EBS=FALSE,...)
 \method{summary}{loop2r}(object,boot=TRUE,N=1000,
-cbb=NULL,joint=FALSE,seed=NULL,...)
+cbb=NULL,joint=FALSE,seed=NULL,EBS=FALSE,...)
 }
 \arguments{
   \item{object}{
@@ -42,6 +42,9 @@ logical that defaults to false. Resample input and output residuals paired by ob
   \item{seed}{
 either NULL or a positive integer. Set the random number seed.
 }
+  \item{EBS}{
+logical with default of FALSE. Whether to use extended bootstrap bias correction which allows for non-additive bias correction but is also 
+more computationally expensive. See details.
   \item{\dots}{
 further arguments passed to or from other methods.
 }
@@ -53,6 +56,9 @@ Residuals are studentized as if they were produced using the harmonic2 method, r
 
 If residuals are serially correlated than the argument cbb may be used to sample blocks of length cbb instead of individual residuals. Circular block bootstrapping is used, which means that all residuals are equally likely to be included and blocks can be made up of the last points on the ellipse together with the first.
 
+The EBS option implements the Extended Bootstrap Bias Correction method of Correa 2009. This method should be used if estimates for 
+derived parameters are especially important as the default bootstrapping method assumes an additive bias, which appears to be an incorrect assumption in the cases of area and lag among other parameters.
+ The EBS method is not implemented as the default as it can be computationally slow, it requires an 20000+N total bootstrap iterations.
 When using the 'nls', 'geometric' or 'lm' methods individual bootstrap replications may occasionally fail to converge, when this occurs an extra replication will take the place of the one that failed to converge and a warning message will be produced.
 }
 \value{
@@ -77,6 +83,8 @@ For bootstrapping
 }
 \references{
 Yang, F. and A. Parkhurst, Efficient Estimation of Elliptical Hysteresis (submitted)
+
+Corrêa, Solange, Extended Bootstrap Bias Correction with Application to Multilevel Modelling of Survey Data under Informative Sampling.
 }
 \author{
 Spencer Maynes, Fan Yang, and Anne Parkhurst.
