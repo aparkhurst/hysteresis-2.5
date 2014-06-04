@@ -32,17 +32,19 @@ ranges<-apply(bootdat,2,quantile,probs=c(0.025,0.25,0.5,0.75,0.975),na.rm=TRUE)
 full <- data.frame(g$values,t(ranges),error, themean)
 colnames(full) <- c("Orig.Estimate","B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975","Std.Error","Boot.Mean")
 
-if (EBS==FALSE) {
 full$Bias <- full$Boot.Mean-full$Orig.Estimate
 full$Boot.Estimate <- full$Orig.Estimate-full$Bias
 full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]<-full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]-
   2*full$Bias
-}
 
 if (EBS==TRUE) {
-alpha <- full$Orig.Estimate-3*full$Std.Error
-beta <- full$Orig.Estimate+3*full$Std.Error
+alpha <- full$Boot.Estimate-3*full$Std.Error
+beta <- full$Boot.Estimate+3*full$Std.Error
 ranparams<- matrix(runif(length(alpha)*200,alpha,beta),length(alpha),200)
+ranparams[7:9,] <- t(matrix(derived.2(ranparams[3,],ranparams[4,],ranparams[6,],rep(g$fit.statistics["period"],200)),nrow=200,ncol=3))
+ranparams[10:13,] <- t(matrix(internal.2(ranparams[3,],ranparams[4,],ranparams[6,],ranparams[5,]),nrow=200,ncol=4))
+ranparams[14:18,] <- t(matrix(derived.amps(ranparams[3,],ranparams[4,],ranparams[6,]),nrow=200,ncol=5))  
+ranparams[19:21,] <- t(matrix(derived.focus(ranparams[12,],ranparams[13,],ranparams[10,]),nrow=200,ncol=3))
 biasmat<- matrix(NA,length(alpha),200)
 themeanmat<- matrix(NA,length(alpha),200)
 for (i in 1:200) {
