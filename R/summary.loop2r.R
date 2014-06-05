@@ -26,7 +26,7 @@ summary.loop2r <- function(object,boot=TRUE,N=1000,cbb=NULL,joint=FALSE,seed=NUL
     full$Bias <- full$Boot.Mean-full$Orig.Estimate
     full$Boot.Estimate <- full$Orig.Estimate-full$Bias
     full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]<-full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]-
-      full$Bias
+      2*full$Bias
     
     rad<-g$period.time+full["phase.angle","Boot.Estimate"]
     Ind <- (rad > 0) & (rad < 0)
