@@ -82,7 +82,7 @@ if (studentize==TRUE) {
 bmcoefs <- matrix(NA,nrow=j,ncol=j+1)
 for (j in 1:dim(biasmat)[1]) {
 biasmodel <- lars(x=cbind(rep(1,200),t(themeanmat)),y=t(biasmat[j,])) 
-bmcoefs[j,] <- coef(biasmodel)[which.min(summary(biasmodel)$Cp),]
+bmcoefs[j,] <- try(coef(biasmodel)[which.min(summary(biasmodel)$Cp),])
 }
 bmcoefs[is.na(bmcoefs)] <- 0
 OREst2 <- full$Orig.Estimate
