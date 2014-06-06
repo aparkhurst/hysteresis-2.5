@@ -45,6 +45,7 @@ either NULL or a positive integer. Set the random number seed.
   \item{EBS}{
 logical with default of FALSE. Whether to use extended bootstrap bias correction which allows for non-additive bias correction but is also 
 more computationally expensive. See details.
+}
   \item{\dots}{
 further arguments passed to or from other methods.
 }
