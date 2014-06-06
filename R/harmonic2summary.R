@@ -81,7 +81,7 @@ if (studentize==TRUE) {
 }
 bmcoefs <- matrix(NA,nrow=dim(biasmat)[1],ncol=dim(biasmat)[1]+1)
 for (j in 1:dim(biasmat)[1]) {
-biasmodel <- lars(x=cbind(rep(1,200),t(themeanmat)),y=as.vector(biasmat[j,])) 
+biasmodel <- try(lars(x=cbind(rep(1,200),t(themeanmat)),y=as.vector(biasmat[j,]))) 
 try(bmcoefs[j,] <- coef(biasmodel)[which.min(summary(biasmodel)$Cp),])
 }
 bmcoefs[is.na(bmcoefs)] <- 0
