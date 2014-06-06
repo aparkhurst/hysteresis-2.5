@@ -79,8 +79,11 @@ if (studentize==TRUE) {
  themeanmat[,i] <- themeanrep
  biasmat[,i] <- themeanrep-themean2
 }
-biasmodel <- lm.fit(x=cbind(rep(1,200),t(themeanmat)),y=t(biasmat)) 
-bmcoefs <- t(coef(biasmodel))
+bmcoefs <- matrix(NA,nrow=j,ncol=j+1)
+for (j in 1:dim(biasmat)[1]) {
+biasmodel <- lars(x=cbind(rep(1,200),t(themeanmat)),y=t(biasmat[j,])) 
+bmcoefs[j,] <- coef(biasmodel)[which.min(summary(biasmodel)$Cp),]
+}
 bmcoefs[is.na(bmcoefs)] <- 0
 OREst2 <- full$Orig.Estimate
 OREst2[is.na(OREst2)] <- 0
