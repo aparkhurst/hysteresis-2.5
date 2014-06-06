@@ -79,7 +79,7 @@ if (studentize==TRUE) {
  themeanmat[,i] <- themeanrep
  biasmat[,i] <- themeanrep-themean2
 }
-bmcoefs <- matrix(NA,nrow=j,ncol=j+1)
+bmcoefs <- matrix(NA,nrow=dim(biasmat)[1],ncol=dim(biasmat)[1]+1)
 for (j in 1:dim(biasmat)[1]) {
 biasmodel <- lars(x=cbind(rep(1,200),t(themeanmat)),y=as.vector(biasmat[j,])) 
 try(bmcoefs[j,] <- coef(biasmodel)[which.min(summary(biasmodel)$Cp),])
