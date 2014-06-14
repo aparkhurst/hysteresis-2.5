@@ -1,4 +1,4 @@
-harmonic2summary <-
+harmonic2summaryEBS <-
 function (g,N,studentize,cbb,joint,EBS) {
 
 xresid<-g$pred.x-g$x
