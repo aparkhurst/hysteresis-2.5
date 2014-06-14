@@ -19,8 +19,8 @@ plot.loopsummary <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FA
     if (a$extended.classical==FALSE & a$method=="harmonic2") splitLine <- a$values["b.y","Boot.Estimate"]*cos(ti)^a$values["n","Boot.Estimate"]+a$values["cy","Boot.Estimate"]
   else  splitLine <- sign(cos(ti))*a$values["b.y","Boot.Estimate"]*abs(cos(ti))^a$values["n","Boot.Estimate"]+a$values["cy","Boot.Estimate"]
 
-  if (is.null(xlim)) xlim <-c(min(c(a$x,Input)),max(c(a$x,Input)))
-  if (is.null(ylim)) ylim <- c(min(c(a$y,Output,split.line)),max(c(a$y,Output,split.line)))                           
+  if (is.null(xlim)) xlim <-range(c(a$x,Input))
+  if (is.null(ylim)) ylim <- range(c(a$y,Output,splitLine))                           
   if (is.null(values)) plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,...)
   else {
     if (values=="inherent") {
