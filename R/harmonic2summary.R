@@ -1,5 +1,5 @@
 harmonic2summary <-
-function (g,N,studentize,cbb,joint,EBS) {
+function (g,N,studentize,cbb,joint) {
 
 xresid<-g$pred.x-g$x
 yresid<-g$pred.y-g$y
