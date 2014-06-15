@@ -6,7 +6,7 @@ Author: Spencer Maynes, Fan Yang, and Anne Parkhurst
 Maintainer: Anne Parkhurst <aparkhurst@unl.edu>
 Depends:
     car,
-    msm, nlrwr, lars
+    msm, nlrwr
 Suggests:
     knitr
 VignetteBuilder: knitr
