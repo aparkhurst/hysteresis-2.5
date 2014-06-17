@@ -176,8 +176,9 @@ R translation of the Matlab code they provided. This method directly minimizes t
 ellipse through Gauss-Newton minimization. Standard errors are obtainable through either the Delta Method
 and bootstrapping, however the use of bootstrapping through summary.ellipsefit is discouraged on these ellipses
 as the geometric method is extremely computationally expensive. The "geometric" method works best when sd.x=sd.y,
-and it is important to check for false convergence using **plot** after fitting.
-
+and it is important to check for false convergence. One way to check for false convergence is to examine the plot 
+after fitting the data.
+ 
 ```{r geometric,warning=FALSE}
 set.seed(101)
 ellip <- mel(rote.deg=45,semi.major=5,semi.minor=3,n.points=13,sd.x=0.4,sd.y=0.4)
