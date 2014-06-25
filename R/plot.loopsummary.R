@@ -1,4 +1,4 @@
-plot.loopsummary <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,show=NULL,...) {
+plot.loopsummary <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,...) {
   a <- x
   ti <- (1:101)*pi/50
   
@@ -59,10 +59,6 @@ plot.loopsummary <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FA
     mtext(paste("Hysteresis x=",format(a$values["hysteresis.x","Boot.Estimate"],digits=3)," Hysteresis y=",format(a$values["hysteresis.y","Boot.Estimate"],digits=3)),side=3,line=0.0,cex=0.75)
   }
   }
-  
-  if (any(show %in% c("b.x","b.y"))) segments(a$values["cx","Boot.Estimate"],a$values["cy","Boot.Estimate"],a$values["cx","Boot.Estimate"]+a$values["b.x","Boot.Estimate"],a$values["cy","Boot.Estimate"]+a$values["b.y","Boot.Estimate"],col="blue")
-  if (any(show=="retention")) segments(a$values["cx","Boot.Estimate"],a$values["cy","Boot.Estimate"],a$values["cx","Boot.Estimate"],a$values["cy","Boot.Estimate"]+a$values["retention","Boot.Estimate"],col="purple")
-  if (any(show=="coercion")) segments(a$values["cx","Boot.Estimate"],a$values["cy","Boot.Estimate"],a$values["cx","Boot.Estimate"]+a$values["coercion","Boot.Estimate"],a$values["cy","Boot.Estimate"],col="green")
   
   
   points(a$y~a$x,pch=1,cex=0.85)
