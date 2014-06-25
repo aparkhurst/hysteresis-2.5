@@ -1,4 +1,4 @@
-plot.ellipsesummary<-function(x,putNumber=FALSE,values=NULL,xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,show=NULL,...){
+plot.ellipsesummary<-function(x,putNumber=FALSE,values=NULL,xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,...){
 a <- x
   if (newPred==TRUE)
   {
@@ -70,18 +70,6 @@ if (is.null(values)) plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,..
   }
 points(a$y~a$x,pch=1,cex=0.85)
 
-if (any(show=="semi.major")) segments(a$values["cx","Boot.Estimate"],a$values["cy","Boot.Estimate"],a$values["cx","Boot.Estimate"]+a$values["semi.major","Boot.Estimate"]*cos(a$values["rote.deg","Boot.Estimate"]/180*pi),a$values["cy","Boot.Estimate"]+a$values["semi.major","Boot.Estimate"]*sin(a$values["rote.deg","Boot.Estimate"]/180*pi),col="red")
-if (any(show=="semi.minor")) segments(a$values["cx","Boot.Estimate"],a$values["cy","Boot.Estimate"],a$values["cx","Boot.Estimate"]+a$values["semi.minor","Boot.Estimate"]*cos(a$values["rote.deg","Boot.Estimate"]/180*pi+pi/2),a$values["cy","Boot.Estimate"]+a$values["semi.minor","Boot.Estimate"]*sin(a$values["rote.deg","Boot.Estimate"]/180*pi+pi/2),col="red")
-
-if (any(show %in% c("b.x","b.y"))) segments(a$values["cx","Boot.Estimate"],a$values["cy","Boot.Estimate"],a$values["cx","Boot.Estimate"]+a$values["b.x","Boot.Estimate"],a$values["cy","Boot.Estimate"]+a$values["b.y","Boot.Estimate"],col="blue")
-  if (any(show %in% c("focus.x","focus.y"))) points(c(a$values["cx","Boot.Estimate"]+a$values["focus.x","Boot.Estimate"],a$values["cx","Boot.Estimate"]-a$values["focus.x","Boot.Estimate"]),c(a$values["cy","Boot.Estimate"]+a$values["focus.y","Boot.Estimate"],a$values["cy","Boot.Estimate"]-a$values["focus.y","Boot.Estimate"]),col="gold",cex=2,pch=19)
-  if (any(show=="rote.deg")) { arrows(a$values["cx","Boot.Estimate"]+a$values["coercion","Boot.Estimate"],a$values["cy","Boot.Estimate"],a$values["cx","Boot.Estimate"]+a$values["focus.x","Boot.Estimate"],a$values["cy","Boot.Estimate"]+a$values["focus.y","Boot.Estimate"])
-                               segments(a$values["cx","Boot.Estimate"],a$values["cy","Boot.Estimate"],a$values["cx","Boot.Estimate"]+a$values["coercion","Boot.Estimate"],a$values["cy","Boot.Estimate"],lty=2)
-  }
-if (any(show=="retention")) segments(a$values["cx","Boot.Estimate"],a$values["cy","Boot.Estimate"],a$values["cx","Boot.Estimate"],a$values["cy","Boot.Estimate"]+a$values["retention","Boot.Estimate"],col="purple")
-
-if (any(show=="coercion")) segments(a$values["cx","Boot.Estimate"],a$values["cy","Boot.Estimate"],a$values["cx","Boot.Estimate"]+a$values["coercion","Boot.Estimate"],a$values["cy","Boot.Estimate"],col="green")
-  
 if (putNumber==TRUE){
   text(a$x,a$y,as.character(format(1:length(a$y),digits=4)))
 }
