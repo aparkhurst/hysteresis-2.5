@@ -78,7 +78,7 @@ if (split.line==TRUE) {
 tiS <- (1:101)*pi/50
 InputS <- a$values["b.x","Boot.Estimate"]*cos(tiS)+a$values["cx","Boot.Estimate"]
 splitLine <- a$values["b.y","Boot.Estimate"]*cos(tiS)+a$values["cy","Boot.Estimate"]
-lines(inputS,splitLine,lty=2)
+lines(InputS,splitLine,lty=2)
 }
 
 }
