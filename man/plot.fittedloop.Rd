@@ -17,9 +17,9 @@ A scatterplot of x and y fitted with an ellipse or hysteresis loop. Uses objects
 }
 \usage{
 \method{plot}{ellipsefit}(x,putNumber=FALSE,values=NULL,
-xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,show=NULL,...)
+xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,show=NULL,split.line=FALSE,...)
 \method{plot}{ellipsesummary}(x,putNumber=FALSE,values=NULL,
-xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,...)
+xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,split.line=FALSE,...)
 
 \method{plot}{ellipsefitlist}(x,main=NULL, values=NULL, ...) 
 \method{plot}{ellipsesummarylist}(x,main=NULL, values=NULL, ...) 
