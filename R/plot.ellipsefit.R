@@ -1,4 +1,4 @@
-plot.ellipsefit<-function(x,putNumber=FALSE,values=NULL,xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,show=NULL,...)
+plot.ellipsefit<-function(x,putNumber=FALSE,values=NULL,xlim=NULL,ylim=NULL,main=NULL,newPred=TRUE,show=NULL,split.line=FALSE,...)
   {
   a <- x
   if (newPred==TRUE)
@@ -86,6 +86,11 @@ if (any(show %in% c("b.x","b.y"))) segments(a$values["cx"],a$values["cy"],a$valu
   
 if(putNumber==TRUE) text(a$x,a$y,as.character(format(1:length(a$y),digits=4)))
 
-
+if (split.line==TRUE) {
+tiS <- (1:101)*pi/50
+newXS <- a$values["b.x"]*cos(tiS)+a$values["cx"]
+splitLine <- a$values["b.y"]*cos(tiS)+a$values["cy"]
+lines(newXS,splitLine,lty=2)
+}
 
 }
