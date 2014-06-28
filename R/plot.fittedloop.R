@@ -16,8 +16,8 @@ plot.fittedloop <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FAL
     Output <- a$values["cy"]+direcsin*a$values["retention"]*abs(sintp)^a$values["m"]+direc*a$values["b.y"]*abs(costp)^a$values["n"]
     
   }
-   if (a$extended.classical==FALSE & a$method=="harmonic2") splitLine <- a$values["b.y"]*cos(ti)^a$values["n"]+a$values["cy"]
-  else splitLine <- sign(cos(ti))*a$values["b.y"]*abs(cos(ti))^a$values["n"]+a$values["cy"]
+  splitLine <- a$values["b.y"]*cos(ti)+a$values["cy"]
+  
   if (is.null(xlim)) xlim <-range(c(a$x,Input))
   if (is.null(ylim)) ylim <- range(c(a$y,Output,splitLine))                           
  if (is.null(values)) plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,...)
