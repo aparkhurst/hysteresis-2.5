@@ -48,6 +48,7 @@ if (is.null(values)) plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,..
     mtext(paste(" Lag above=",format(a$values["lag.above"],digits=3)," Lag below=",format(a$values["lag.below"],digits=3)," Split Angle=",format(a$values["split.angle"],digits=3)),side=3,line=0.95,cex=0.75)
     mtext(paste("Hysteresis x above=",format(a$values["hysteresis.x.above"],digits=3),"Hysteresis x below=",format(a$values["hysteresis.x.below"],digits=3)," Hysteresis y above=",format(a$values["hysteresis.y.above"],digits=3),"Hysteresis y below=",format(a$values["hysteresis.y.below"],digits=3)),side=3,line=0.0,cex=0.75)
   }
+  else plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,...)
   }
  
   points(a$y~a$x,pch=1,cex=0.85)
