@@ -58,6 +58,7 @@ plot.loopsummary <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FA
     mtext(paste("Lag=",format(a$values["lag","Boot.Estimate"],digits=3)," Split Angle=",format(a$values["split.angle","Boot.Estimate"],digits=3)),side=3,line=0.95,cex=0.75)
     mtext(paste("Hysteresis x=",format(a$values["hysteresis.x","Boot.Estimate"],digits=3)," Hysteresis y=",format(a$values["hysteresis.y","Boot.Estimate"],digits=3)),side=3,line=0.0,cex=0.75)
   }
+  else plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,...)
   }
   
   
