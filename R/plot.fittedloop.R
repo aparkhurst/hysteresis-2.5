@@ -58,6 +58,7 @@ plot.fittedloop <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FAL
     mtext(paste("Lag=",format(a$values["lag"],digits=3)," Split Angle=",format(a$values["split.angle"],digits=3)),side=3,line=0.95,cex=0.75)
     mtext(paste("Hysteresis x=",format(a$values["hysteresis.x"],digits=3)," Hysteresis y=",format(a$values["hysteresis.y"],digits=3)),side=3,line=0.0,cex=0.75)
   }
+  else plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,...)
   }
   
   if (any(show %in% c("b.x","b.y"))) segments(a$values["cx"],a$values["cy"],a$values["cx"]+a$values["b.x"],a$values["cy"]+a$values["b.y"],col="blue")
