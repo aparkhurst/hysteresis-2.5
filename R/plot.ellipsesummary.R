@@ -67,6 +67,7 @@ if (is.null(values)) plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,..
     mtext(paste("rote.deg=",format(a$values["rote.deg","Boot.Estimate"],digits=3)," focus.x=",format(a$values["focus.x","Boot.Estimate"],digits=3)," focus.y=",format(a$values["focus.y","Boot.Estimate"],digits=3)),side=3,line=0.95,cex=0.75)
     mtext(paste("S-major Axis=",format(a$values["semi.major","Boot.Estimate"],digits=3)," S-minor Axis=",format(a$values["semi.minor","Boot.Estimate"],digits=3)," Eccentricity=",format(a$values["eccentricity","Boot.Estimate"],digits=3)),side=3,line=0.0,cex=0.75)
   }
+  else plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,...)
   }
 points(a$y~a$x,pch=1,cex=0.85)
 
