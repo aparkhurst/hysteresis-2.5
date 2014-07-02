@@ -14,8 +14,7 @@ newX <- a$pred.x
 newX[length(newX)+1] <- newX[1] }
   if (is.null(xlim)) xlim <-c(min(c(a$x,newX)),max(c(a$x,newX)))
   if (is.null(ylim)) ylim <- c(min(c(a$y,newY)),max(c(a$y,newY)))                           
-if (is.null(values)) plot(newY~newX,type="l",ylim=ylim,xlim=xlim,main=main,...)
-  else {
+if (!is.null(values)) {
     if (values=="inherent") {
       plot(newY~newX,type="l",ylim=ylim,xlim=xlim,...)
       title(line=3, paste(main),cex=1.2)
@@ -69,7 +68,10 @@ if (is.null(values)) plot(newY~newX,type="l",ylim=ylim,xlim=xlim,main=main,...)
       mtext(paste("rote.deg=",format(a$values["rote.deg"],digits=3)," focus.x=",format(a$values["focus.x"],digits=3)," focus.y=",format(a$values["focus.y"],digits=3)),side=3,line=0.95,cex=0.75)
       mtext(paste("S-major Axis=",format(a$values["semi.major"],digits=3)," S-minor Axis=",format(a$values["semi.minor"],digits=3)," Eccentricity=",format(a$values["eccentricity"],digits=3)),side=3,line=0.0,cex=0.75)
     }
-  }
+ else plot(newY~newX,type="l",ylim=ylim,xlim=xlim,main=main,...)
+ }
+ else plot(newY~newX,type="l",ylim=ylim,xlim=xlim,main=main,...) 
+ 
 points(a$y~a$x,pch=1,cex=0.85)
 
 if (any(show=="semi.major")) segments(a$values["cx"],a$values["cy"],a$values["cx"]+a$values["semi.major"]*cos(a$values["rote.deg"]/180*pi),a$values["cy"]+a$values["semi.major"]*sin(a$values["rote.deg"]/180*pi),col="red")
