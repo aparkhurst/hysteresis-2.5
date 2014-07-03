@@ -39,7 +39,7 @@ floop2r <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, su
       Std.Errors <- data.frame(subjectmat,Std.Errors)
     }
     ans <- list("models"=ans,"Estimates"=values,"Std.Errors"=Std.Errors)
-    class(ans) <- "fittedlooplist" 
+    class(ans) <- "fittedlooplist2r" 
     attr(ans,"call") <- floopcall
     return(ans)
   }
