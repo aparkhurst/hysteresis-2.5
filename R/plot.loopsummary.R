@@ -32,7 +32,7 @@ plot.loopsummary <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FA
       mtext(paste("Retention=",format(a$values["retention","Boot.Estimate"],digits=3)),side=3,line=0.0,cex=0.75)
     }
     
-    if (values=="hysteresis") {
+    else if (values=="hysteresis") {
       plot(Output~Input,type="l",ylim=ylim,xlim=xlim,...)
       title(line=3, paste(main),cex=1.2)
       mtext(paste(
@@ -41,7 +41,7 @@ plot.loopsummary <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FA
       mtext(paste("Retention=",format(a$values["retention","Boot.Estimate"],digits=3)," Coercion=",format(a$values["coercion","Boot.Estimate"],digits=3)),side=3,line=0.0,cex=0.75)
     }
     
-    if (values=="hysteresis.all") {
+    else if (values=="hysteresis.all") {
       plot(Output~Input,type="l",ylim=ylim,xlim=xlim,...)
       title(line=3, paste(main),cex=1.2)
       mtext(paste(
@@ -50,7 +50,7 @@ plot.loopsummary <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FA
       mtext(paste("Coercion=",format(a$values["coercion","Boot.Estimate"],digits=3)," Hysteresis x=",format(a$values["hysteresis.x","Boot.Estimate"],digits=3)," Hysteresis y=",format(a$values["hysteresis.y","Boot.Estimate"],digits=3)),side=3,line=0.0,cex=0.75)
     }
   
-  if (values=="derived") {
+  else if (values=="derived") {
     plot(Output~Input,type="l",ylim=ylim,xlim=xlim,...)
     title(line=3, paste(main),cex=1.2)
     mtext(paste(
