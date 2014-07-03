@@ -7,6 +7,8 @@
 \alias{residuals.ellipsesummarylist}
 \alias{residuals.fittedlooplist}
 \alias{residuals.loopsummarylist}
+\alias{residuals.fittedlooplist2r}
+\alias{residuals.loopsummarylist2r}
 \alias{residuals.loop2r}
 \alias{residuals.loop2rsummary}
 \alias{rstudent.ellipsefit}
@@ -17,6 +19,8 @@
 \alias{rstudent.ellipsesummarylist}
 \alias{rstudent.fittedlooplist}
 \alias{rstudent.loopsummarylist}
+\alias{rstudent.fittedlooplist2r}
+\alias{rstudent.loopsummarylist2r}
 \alias{rstudent.loop2r}
 \alias{rstudent.loop2rsummary}
 \alias{fitted.ellipsefit}
@@ -27,6 +31,8 @@
 \alias{fitted.ellipsesummarylist}
 \alias{fitted.fittedlooplist}
 \alias{fitted.loopsummarylist}
+\alias{fitted.fittedlooplist2r}
+\alias{fitted.loopsummarylist2r}
 \alias{fitted.loop2r}
 \alias{fitted.loop2rsummary}
 %- Also NEED an '\alias' for EACH other topic documented here.
