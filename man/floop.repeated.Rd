@@ -11,7 +11,10 @@ Fit a sinusoidal hysteretic process between an input and an output variable acro
 \usage{
 floop.repeated(x,y=NULL,m=1,n=1,subjects=NULL,repeated=NULL,
 subjects.in="all",repeated.in="all",...)
+floop2r.repeated(x,y=NULL,m=1,n=1,subjects=NULL,repeated=NULL,
+subjects.in="all",repeated.in="all",...)
 \method{summary}{fittedlooplist}(object,N=1000,boot=TRUE,seed=NULL,...)
+\method{summary}{fittedlooplist2r}(object,N=1000,boot=TRUE,seed=NULL,...)
 }
 \arguments{
   \item{x}{
