@@ -24,7 +24,7 @@ if (!is.null(values)) {
       mtext(paste("Retention=",format(a$values["retention"],digits=3)),side=3,line=0.0,cex=0.75)
     }
     
-    if (values=="hysteresis") {
+   else if (values=="hysteresis") {
       plot(newY~newX,type="l",ylim=ylim,xlim=xlim,...)
       title(line=3, paste(main),cex=1.2)
       mtext(paste(
@@ -33,7 +33,7 @@ if (!is.null(values)) {
       mtext(paste("Retention=",format(a$values["retention"],digits=3)," Coercion=",format(a$values["coercion"],digits=3)),side=3,line=0.0,cex=0.75)
     }
     
-    if (values=="hysteresis.all") {
+   else if (values=="hysteresis.all") {
       plot(newY~newX,type="l",ylim=ylim,xlim=xlim,...)
       title(line=3, paste(main),cex=1.2)
       mtext(paste(
@@ -42,7 +42,7 @@ if (!is.null(values)) {
       mtext(paste("Coercion=",format(a$values["coercion"],digits=3)," Hysteresis x=",format(a$values["hysteresis.x"],digits=3)," Hysteresis y=",format(a$values["hysteresis.y"],digits=3)),side=3,line=0.0,cex=0.75)
     }
   
-  if (values=="derived") {
+ else if (values=="derived") {
     plot(newY~newX,type="l",ylim=ylim,xlim=xlim,...)
     title(line=3, paste(main),cex=1.2)
     mtext(paste(
@@ -51,7 +51,7 @@ if (!is.null(values)) {
     mtext(paste("Hysteresis x=",format(a$values["hysteresis.x"],digits=3)," Hysteresis y=",format(a$values["hysteresis.y"],digits=3)),side=3,line=0.0,cex=0.75)
   }
   
-  if (values=="ellipse") {
+ else if (values=="ellipse") {
     plot(newY~newX,type="l",ylim=ylim,xlim=xlim,...)
     title(line=3, paste(main),cex=1.2)
     mtext(paste(
@@ -60,7 +60,7 @@ if (!is.null(values)) {
     mtext(paste("S-major Axis=",format(a$values["semi.major"],digits=3)," S-minor Axis=",format(a$values["semi.minor"],digits=3)),side=3,line=0.0,cex=0.75)
   }
 
-    if (values=="ellipse.all") {
+  else  if (values=="ellipse.all") {
       plot(newY~newX,type="l",ylim=ylim,xlim=xlim,...)
       title(line=3, paste(main),cex=1.2)
       mtext(paste("Cx=",format(a$values["cx"],digits=3)," Cy=",format(a$values["cy"],digits=3),
