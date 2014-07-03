@@ -6,7 +6,7 @@
 Fit a Hysteresis Loop
 }
 \description{
-Fits a hysteresis loop given values of m and n chosen by the user. \code{floop2r} fits an assymetric loop with different values
+Fits a hysteresis loop given values of m and n chosen by the user. \code{floop2r} fits an asymetric loop with different values
  for retention above and below the split line.
 }
 \usage{
@@ -53,7 +53,8 @@ is \code{\link{na.omit}}. Value \code{\link{na.exclude}} can be useful.
   \item{extended.classical}{ 
 logical. If true, fit a classical hysteresis loop regardless of n. Uses \deqn{y_t=sign(cos(2*pi*t/period))*b.y*abs(cos(2*pi*t/period))^n + retention*sin(2*pi*t/period)^m+cy+e_{y,t}} instead of 
 \deqn{y_t=b.y*cos(2*pi*t/period)^n+retention*sin(2*pi*t/period)^m+cy+e_{y,t}}
-Allows the user to fit classical loops with any n>1 instead of just odd numbered n. Default is false.
+Allows the user to fit sinusoidal hysteresis loops with any positive real value of n>1 instead of just odd numbered n. 
+Default is false.
 }
   \item{boot}{
 logical, if TRUE results will be bootstrapped by the default arguments of \code{\link{summary.fittedloop}}.
@@ -62,16 +63,18 @@ logical, if TRUE results will be bootstrapped by the default arguments of \code{
 if the default "harmonic2" times, along with m and n are either supplied by the user or given default values. Otherwise a non-linear "geometric" method that minimizes the sum of squared geometric residuals will be utilized.
 }
  \item{...}{
-other optional arguments such as \code{seed}, N=number of realizations, \code{cbb} for circular block bootstrapping, passed to \code{\link{summary.fittedloop}} if \code{boot=TRUE}.
+other optional arguments such as \code{seed}, N=number of realizations, \code{cbb} for circular block bootstrapping, are passed to \code{\link{summary.fittedloop}} if \code{boot=TRUE}.
 }
 }
 \details{
-Fits input and output variables x and y that form a hysteresis loop of the form \deqn{x_t=b.x*cos(2pi*t/period+phase.angle)+cx+e_{x,t}} \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+retention*sin(2pi*t/period+phase.angle)^m+cy+e_{y,t}}  where \deqn{t=0,...,n.points-1 if times='equal'} and the error terms e are independently and normally distributed. Also produces a vector of derived values.
-If \code{floop2r} is used, retention is assumed to be different above and below the split line that seperates the upper and lower loop trajectories, and the output is instead fitted by \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+retention.above*sin(2pi*t/period+phase.angle)^m*I(0 < 2pi*t/period+phase.angle < pi)+retention.below*sin(2pi*t/period+phase.angle)^m*I(pi < 2pi*t/period+phase.angle < 2*pi)+cy+e_{y,t}} 
+Fits sinusoidal input and output variables x and y that form a hysteresis loop of the form
+\deqn{x_t=b.x*cos(2pi*t/period+phase.angle)+cx+e_{x,t}} \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+
+retention*sin(2pi*t/period+phase.angle)^m+cy+e_{y,t}}  where \deqn{t=0,...,(n.points-1) if times='equal'} and the error terms e are independently and normally distributed. Also produces a vector of derived values.
+  If \code{floop2r} is used, retention is assumed to be different above and below the split line that seperates the upper and lower loop trajectories, and the output is instead fitted by \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+retention.above*sin(2pi*t/period+phase.angle)^m*I(0 < 2pi*t/period+phase.angle < pi)+retention.below*sin(2pi*t/period+phase.angle)^m*I(pi < 2pi*t/period+phase.angle < 2*pi)+cy+e_{y,t}} 
 where retention.above and retention.below are retention above and below the split line.
 }
 \value{
-\code{floop} returns an object of class \code{fittedloop}. \code{floop2r} returns an object of class \code{splitloop}.
+\code{floop} returns an object of class \code{fittedloop}.  \code{floop2r} returns an object of class \code{splitloop}.
   \item{call}{the function call.}
   \item{fit}{information dependent on the fitting method used.}
  \item{x}{the input.}
