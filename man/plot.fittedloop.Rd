@@ -5,8 +5,10 @@
  \alias{plot.ellipsesummarylist}
  \alias{plot.fittedloop}
  \alias{plot.fittedlooplist}
+  \alias{plot.fittedlooplist2r}
  \alias{plot.loopsummary}
  \alias{plot.loopsummarylist}
+  \alias{plot.loopsummarylist2r}
   \alias{plot.loop2r}
  \alias{plot.loop2rsummary}
 \title{
@@ -31,6 +33,8 @@ ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,...)
 
 \method{plot}{fittedlooplist}(x,main=NULL,values=NULL,...)
 \method{plot}{loopsummarylist}(x,main=NULL,values=NULL,...)
+\method{plot}{fittedlooplist2r}(x,main=NULL,values=NULL,...)
+\method{plot}{loopsummarylist2r}(x,main=NULL,values=NULL,...)
 
 \method{plot}{loop2r}(x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,main=NULL,...)
 \method{plot}{loop2rsummary}(x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,main=NULL,...)
