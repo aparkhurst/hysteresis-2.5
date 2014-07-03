@@ -24,7 +24,7 @@ if (is.null(values)) plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,..
     mtext(paste("Retention=",format(a$values["retention","Boot.Estimate"],digits=3)),side=3,line=0.0,cex=0.75)
   }
   
-  if (values=="hysteresis") {
+ else if (values=="hysteresis") {
     plot(Output~Input,type="l",ylim=ylim,xlim=xlim,...)
     title(line=3, paste(main),cex=1.2)
     mtext(paste(
@@ -33,7 +33,7 @@ if (is.null(values)) plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,..
     mtext(paste("Retention=",format(a$values["retention","Boot.Estimate"],digits=3)," Coercion=",format(a$values["coercion","Boot.Estimate"],digits=3)),side=3,line=0.0,cex=0.75)
   }
   
-  if (values=="hysteresis.all") {
+else  if (values=="hysteresis.all") {
     plot(Output~Input,type="l",ylim=ylim,xlim=xlim,...)
     title(line=3, paste(main),cex=1.2)
     mtext(paste(
@@ -42,7 +42,7 @@ if (is.null(values)) plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,..
     mtext(paste("Coercion=",format(a$values["coercion","Boot.Estimate"],digits=3)," Hysteresis x=",format(a$values["hysteresis.x","Boot.Estimate"],digits=3)," Hysteresis y=",format(a$values["hysteresis.y","Boot.Estimate"],digits=3)),side=3,line=0.0,cex=0.75)
   }
   
-  if (values=="derived") {
+  else if (values=="derived") {
     plot(Output~Input,type="l",ylim=ylim,xlim=xlim,...)
     title(line=3, paste(main),cex=1.2)
     mtext(paste(
@@ -51,7 +51,7 @@ if (is.null(values)) plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,..
     mtext(paste("Hysteresis x=",format(a$values["hysteresis.x","Boot.Estimate"],digits=3)," Hysteresis y=",format(a$values["hysteresis.y","Boot.Estimate"],digits=3)),side=3,line=0.0,cex=0.75)
   }
   
-  if (values=="ellipse") {
+  else if (values=="ellipse") {
     plot(Output~Input,type="l",ylim=ylim,xlim=xlim,...)
     title(line=3, paste(main),cex=1.2)
     mtext(paste(
@@ -59,7 +59,7 @@ if (is.null(values)) plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,..
     mtext(paste("rote.deg=",format(a$values["rote.deg","Boot.Estimate"],digits=3)," Eccentricity=",format(a$values["eccentricity","Boot.Estimate"],digits=3)),side=3,line=0.95,cex=0.75)
     mtext(paste("S-major Axis=",format(a$values["semi.major","Boot.Estimate"],digits=3)," S-minor Axis=",format(a$values["semi.minor","Boot.Estimate"],digits=3)),side=3,line=0.0,cex=0.75)
   }
-  if (values=="ellipse.all") {
+  else if (values=="ellipse.all") {
     plot(Output~Input,type="l",ylim=ylim,xlim=xlim,...)
     title(line=3, paste(main),cex=1.2)
     mtext(paste("Cx=",format(a$values["cx","Boot.Estimate"],digits=3)," Cy=",format(a$values["cy","Boot.Estimate"],digits=3),
