@@ -33,7 +33,7 @@ if (is.null(values)) plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,..
       mtext(paste("Retention.above=",format(a$values["retention.above","Boot.Estimate"],digits=3)," Retention.below=",format(a$values["retention.below","Boot.Estimate"],digits=3)),side=3,line=0.0,cex=0.75)
     }
     
-    if (values=="hysteresis" | values=="hysteresis.all") {
+   else if (values=="hysteresis" | values=="hysteresis.all") {
       plot(Output~Input,type="l",ylim=ylim,xlim=xlim,...)
       title(line=3, paste(main),cex=1.2)
       mtext(paste(
@@ -42,7 +42,7 @@ if (is.null(values)) plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,..
       mtext(paste("Retention.above=",format(a$values["retention.above","Boot.Estimate"],digits=3)," Retention.below=",format(a$values["retention.below","Boot.Estimate"],digits=3)," Coercion above=",format(a$values["coercion.above","Boot.Estimate"],digits=3)," Coercion below=",format(a$values["coercion.below","Boot.Estimate"],digits=3)),side=3,line=0.0,cex=0.75)
     }
   
-  if (values=="derived") {
+  else if (values=="derived") {
     plot(Output~Input,type="l",ylim=ylim,xlim=xlim,...)
     title(line=3, paste(main),cex=1.2)
     mtext(paste(
