@@ -6,7 +6,7 @@
 Fit a Hysteresis Loop
 }
 \description{
-Fits a hysteresis loop given values of m and n chosen by the user. \code{floop2r} fits an asymetric loop with different values
+Fits a hysteresis loop given values of n and m chosen by the user. \code{floop2r} fits an asymetric loop with different values
  for retention above and below the split line.
 }
 \usage{
@@ -28,13 +28,13 @@ numeric input vector.
 numeric output vector.
 }
   \item{n}{
-a positive integer. Shape parameter of the hysteresis loop. Default is 1, which makes loop an ellipse when m is also equal to 1. See details.
+a positive integer. Shape parameter regulating the central "plateau" of the hysteresis loop. Default is 1, which makes loop an ellipse when m is also equal to 1. See details.
 }
   \item{m}{
-a number, usually odd and always positive. Bulging parameter of the hysteresis loop. Default is 1, which makes loop an ellipse when n is also equal to 1. In this case floop will automatically make a call to \code{\link{fel}}. See details.
+an odd positive number. Bulging parameter of the hysteresis loop. Default is 1, which makes loop an ellipse when n is also equal to 1. In this case floop will automatically make a call to \code{\link{fel}}. See details.
 }
   \item{period}{
-length of time required to make a full loop. Reciprocal of frequency, and if times="equal" the number of points needed to make a full loop.
+length of time required to make a full loop. Reciprocal of frequency, and if times = "equal", the number of points needed to make a full loop.
 }
   \item{subjects}{
 an optional factor or list of factors, each of the same length as x. Use to identify a list of different loops to be fit from one set of data, in which case \code{floop} returns an object of class \code{fittedlooplist} instead of \code{fittedloop}.
@@ -51,16 +51,16 @@ a function which indicates what should happen when the data contain NAs. The def
 is \code{\link{na.omit}}. Value \code{\link{na.exclude}} can be useful.
 }
   \item{extended.classical}{ 
-logical. If true, fit a classical hysteresis loop regardless of n. Uses \deqn{y_t=sign(cos(2*pi*t/period))*b.y*abs(cos(2*pi*t/period))^n + retention*sin(2*pi*t/period)^m+cy+e_{y,t}} instead of 
+logical. If true, uses \deqn{y_t=sign(cos(2*pi*t/period))*b.y*abs(cos(2*pi*t/period))^n + retention*sin(2*pi*t/period)^m+cy+e_{y,t}} instead of 
 \deqn{y_t=b.y*cos(2*pi*t/period)^n+retention*sin(2*pi*t/period)^m+cy+e_{y,t}}
-Allows the user to fit sinusoidal hysteresis loops with any positive real value of n>1 instead of just odd numbered n. 
+Allows the user to fit sinusoidal hysteresis loops with any positive real value of n > 1 instead of just odd numbered n. 
 Default is false.
 }
   \item{boot}{
 logical, if TRUE results will be bootstrapped by the default arguments of \code{\link{summary.fittedloop}}.
 }
   \item{method}{
-if the default "harmonic2" times, along with m and n are either supplied by the user or given default values. Otherwise a non-linear "geometric" method that minimizes the sum of squared geometric residuals will be utilized.
+if the default "harmonic2" is used, times along with m and n are either supplied by the user or given default values. Otherwise a non-linear "geometric" method that minimizes the sum of squared geometric residuals will be utilized.
 }
  \item{...}{
 other optional arguments such as \code{seed}, N=number of realizations, \code{cbb} for circular block bootstrapping, are passed to \code{\link{summary.fittedloop}} if \code{boot=TRUE}.
@@ -69,12 +69,14 @@ other optional arguments such as \code{seed}, N=number of realizations, \code{cb
 \details{
 Fits sinusoidal input and output variables x and y that form a hysteresis loop of the form
 \deqn{x_t=b.x*cos(2pi*t/period+phase.angle)+cx+e_{x,t}} \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+
-retention*sin(2pi*t/period+phase.angle)^m+cy+e_{y,t}}  where \deqn{t=0,...,(n.points-1) if times='equal'} and the error terms e are independently and normally distributed. Also produces a vector of derived values.
-  If \code{floop2r} is used, retention is assumed to be different above and below the split line that seperates the upper and lower loop trajectories, and the output is instead fitted by \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+retention.above*sin(2pi*t/period+phase.angle)^m*I(0 < 2pi*t/period+phase.angle < pi)+retention.below*sin(2pi*t/period+phase.angle)^m*I(pi < 2pi*t/period+phase.angle < 2*pi)+cy+e_{y,t}} 
+retention*sin(2pi*t/period+phase.angle)^m+cy+e_{y,t}}  where \deqn{t=0,...,(n.points-1) if times='equal'} and the error terms, e, are independently and normally distributed. Also produces a vector of derived values.
+  \If \code{floop2r} is used, retention is assumed to be different above and below the split line that seperates the upper and lower loop trajectories, and 
+  addition terms are included in the model.
+  \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+retention.above*sin(2pi*t/period+phase.angle)^m*I(0 < 2pi*t/period+phase.angle < pi)+retention.below*sin(2pi*t/period+phase.angle)^m*I(pi < 2pi*t/period+phase.angle < 2*pi)+cy+e_{y,t}} 
 where retention.above and retention.below are retention above and below the split line.
 }
 \value{
-\code{floop} returns an object of class \code{fittedloop}.  \code{floop2r} returns an object of class \code{splitloop}.
+\code{floop} returns an object of class \code{fittedloop} while  \code{floop2r} returns an object of class \code{splitloop}.
   \item{call}{the function call.}
   \item{fit}{information dependent on the fitting method used.}
  \item{x}{the input.}
@@ -83,7 +85,7 @@ where retention.above and retention.below are retention above and below the spli
   \item{pred.y}{fitted y values.}
   \item{period.time}{time vector used to fit x and y.}
   \item{residuals}{residuals measured by Euclidean distance.The function \code{\link{residuals.fittedloop}} can produce other types of residuals}
-  \item{extended.classical}{whether or not an extended classical loop is fit.}
+  \item{extended.classical}{whether or not an extended loop is fit.}
   \item{fit.statistics}{rudimentary measures, based on the "harmonic2" method, include the Multivariate Final Prediction Error (MFPE) and the AIC for both the output alone and the two variables in combination. 
 Although degree of freedom adjustments are made for other methods, measures of fit require further study.}
 
@@ -118,10 +120,10 @@ loopf.model$Estimates      #List estimates only
 loopf.model$Std.Errors     #List delta standard errors  
 
 ### Plot hysteresis loop.
-plot(loopf.model,main="Simulated Hysteresis Loop n=1 m=3",
-values="hysteresis.all")
-plot(loopf.model,main="Simulated Hysteresis Loop n=1 m=3",
-values="hysteresis.all",show=c("retention","coercion"))
+plot(loopf.model,main="Simulated Hysteresis Loop n=1 m=3", values="hysteresis.all")
+### Show characteristics of loop on plot
+plot(loopf.model,main="Simulated Hysteresis Loop n=1 m=3",values="hysteresis.all",
+show=c("retention","coercion"))
           
 ### Bootstrap estimates and standard errors (Seed is necessary if want to reproduce results)
 booted.loopf <- floop(loopf$x,loopf$y,retention=.5,n=1,m=3,
@@ -132,10 +134,10 @@ booted.loopf$Boot.Std.Errors   #Gives boot standard errors
 plot(booted.loopf,main="Simulated Bootstrapped Loop n=1, m=3",
 putNumber=TRUE,values="hysteresis.all")
 
-#2r split loop example
-loop2 <- mloop2r(n=3,m=5,sd.x=0.05,sd.y=0.05,retention.above=0.6,retention.below=0.2)
-loop2.fit <- floop2r(x=loop2$x,y=loop2$y,n=3,m=5)
-boot.loop2 <- summary(loop2.fit,cbb=3)
+#2r Split loop Example
+loop2 = mloop2r(n=3,m=5,sd.x=0.05,sd.y=0.05,retention.above=0.6,retention.below=0.2)
+loop2.fit = floop2r(x=loop2$x,y=loop2$y,n=3,m=5)
+boot.loop2 = summary(loop2.fit,cbb=3,seed=1523)
 boot.loop2
 plot(boot.loop2,split.line=TRUE)
 
