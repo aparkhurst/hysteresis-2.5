@@ -45,7 +45,7 @@ is \code{\link{na.omit}}. Value \code{\link{na.exclude}} can be useful.
 logical, if \code{TRUE} results will be bootstrapped by \code{\link{summary.ellipsefit}}.
 }
   \item{...}{
-other optional arguments passed to \code{\link{summary.ellipsefit}} if \code{boot=TRUE}.
+other othrt optional arguments passed to \code{\link{summary.ellipsefit}} if \code{boot=TRUE}.
 }
 }
 \details{
