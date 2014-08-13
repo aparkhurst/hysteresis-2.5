@@ -5,7 +5,7 @@
 Fitting Ellipses
 }
 \description{
-Fit a sinusoidal hysteretic (elliptical) process between an input and an output.
+Fit a sinusoidal hysteretic (elliptical) process between an input and an output.  HELP
 }
 \usage{
 fel(x, y=NULL, method = "harmonic2", period = NULL, subjects = NULL,
