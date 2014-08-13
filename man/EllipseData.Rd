@@ -1,6 +1,6 @@
 \name{EllipseData}
 \alias{EllipseData}
-\docType{data}
+\docType{data} 
 \title{
 Simulated Ellipse Data for 6 Ellipses with period=24.
 }
