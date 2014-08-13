@@ -70,7 +70,7 @@ other optional arguments such as \code{seed}, N=number of realizations, \code{cb
 Fits sinusoidal input and output variables x and y that form a hysteresis loop of the form
 \deqn{x_t=b.x*cos(2pi*t/period+phase.angle)+cx+e_{x,t}} \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+
 retention*sin(2pi*t/period+phase.angle)^m+cy+e_{y,t}}  where \deqn{t=0,...,(n.points-1) if times='equal'} and the error terms, e, are independently and normally distributed. Also produces a vector of derived values.
-  \If \code{floop2r} is used, retention is assumed to be different above and below the split line that seperates the upper and lower loop trajectories, and 
+  If \code{floop2r} is used, retention is assumed to be different above and below the split line that seperates the upper and lower loop trajectories, and 
   addition terms are included in the model.
   \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+retention.above*sin(2pi*t/period+phase.angle)^m*I(0 < 2pi*t/period+phase.angle < pi)+retention.below*sin(2pi*t/period+phase.angle)^m*I(pi < 2pi*t/period+phase.angle < 2*pi)+cy+e_{y,t}} 
 where retention.above and retention.below are retention above and below the split line.
