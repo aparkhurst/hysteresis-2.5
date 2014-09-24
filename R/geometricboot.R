@@ -47,6 +47,6 @@ function(j=NULL,wr1,wr2,x.pred,y.pred,n,cbb,joint){
   cx <- as.vector(results$values[4]); cy <- as.vector(results$values[5]); 
   theta <- as.vector(results$values[1]); semi.major <- as.vector(results$values[2]); 
   semi.minor <- as.vector(results$values[3]); 
-          z <- c("cx"=cx,"cy"=cy,"theta"=theta,"semi.major"=semi.major,"semi.minor"=semi.minor,"theta.deg"=theta*180/pi)
+          z <- c("cx"=cx,"cy"=cy,"theta"=theta,"semi.major"=semi.major,"semi.minor"=semi.minor,"theta.deg"=theta*180/pi,"phase.angle"=ti[1])
           z
       }
