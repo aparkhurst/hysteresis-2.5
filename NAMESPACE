@@ -1,6 +1,8 @@
 export(mel)
 export(fel)
 export(floop)
+export(floopReflect)
+export(felReflect)
 export(floop2r)
 export(floop.repeated)
 export(floop2r.repeated)
