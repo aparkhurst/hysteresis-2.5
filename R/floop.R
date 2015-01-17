@@ -50,7 +50,7 @@ floop <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, subs
  suppressWarnings(if (times=="equal")
   t <- (1:length(dat$x))/period*pi*2
  else if (is.numeric(times)) t <- 2*times/period*pi)
-  if (method=="harmonic2") {
+  if (method!="geometric") {
  matx <- cbind(rep(1,length(dat$x)),sin(t),cos(t))
  
  xfit <- lm.fit(matx,dat$x)
@@ -87,7 +87,7 @@ for (i in 1:length(dat$x)) {
 ti<-c(ti[1],diff(ti))
 }
 else ti <- c(t[1],diff(t))
-
+if (method!="geometric" & method!="harmonic2") warning("method not recognized")
 inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals["theta"])
    mod=optim(par=c("t"=ti,"cx"=(start$vals["cx"]+mean(dat$x))/2,"cy"=(start$vals["cy"]+mean(dat$y))/2,"b.x"=(inti[1]+diff(range(dat$x))/2)/2,"b.y"=(inti[2]+diff(range(dat$y))/2)/2,"logm"=log(m),
                    "logn"=log(n),"retention"=inti[3]/2),fn=floopCauchyLoss,x=dat$x,y=dat$y,
