@@ -40,11 +40,11 @@ Derived Hysteresis Parameters
   \item{coercion}{
   the horizontal distance of the input from the center. It indicates the strain the forcing function places on the output. It is the positive root of intersection between the loop and input axis.
   }
-  \item{area}{
-  the area of the hysteresis loop. Can indicate the work done during one cycle or period.
-  }
   \item{lag}{
   lag indicates the delay between attributes of the output and the input (such as peak to peak for the ellipse when m=1, n=1).
+  }
+  \item{area}{
+  the area of the hysteresis loop. Can indicate the work done during one cycle or period.
   }
   \item{split.angle}{
   beta, the angle between the tangent to the un-split curve at the center and the input axis.
