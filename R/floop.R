@@ -87,7 +87,7 @@ for (i in 1:length(dat$x)) {
 ti<-c(ti[1],diff(ti))
 }
 else ti <- c(t[1],diff(t))
-if (method!="geometric" & method!="harmonic2") warning("method not recognized")
+if (method!="geometric" & method!="harmonic2") warning("method should be either geometric or harmonic2")
 inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals["theta"])
    mod=optim(par=c("t"=ti,"cx"=(start$vals["cx"]+mean(dat$x))/2,"cy"=(start$vals["cy"]+mean(dat$y))/2,"b.x"=(inti[1]+diff(range(dat$x))/2)/2,"b.y"=(inti[2]+diff(range(dat$y))/2)/2,"logm"=log(m),
                    "logn"=log(n),"retention"=inti[3]/2),fn=floopCauchyLoss,x=dat$x,y=dat$y,
