@@ -11,7 +11,7 @@ rstudent.loop2r <- function(model,...) {
   if (model$classical==FALSE)
   Ymat <- cbind(rep(1,n),sin(g$period.time)^g$values["m"],cos(g$period.time)^g$values["n"],Ind*sin(g$period.time)^g$values["m"])
   else
-    direc <- sign(costp)  
+    direc <- sign(cos(g$period.time))  
   Ymat <- cbind(rep(1,n),sin(g$period.time)^g$values["m"],direc*abs(cos(g$period.time))^g$values["n"],Ind*sin(g$period.time)^g$values["m"])
   hY <- Ymat%*%solve(crossprod(Ymat))%*%t(Ymat)
   r.Ta <- wr1/sqrt(1-diag(hX))

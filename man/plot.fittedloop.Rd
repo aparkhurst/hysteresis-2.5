@@ -36,8 +36,8 @@ ylim=NULL,putNumber=FALSE,values=NULL,main=NULL,...)
 \method{plot}{fittedlooplist2r}(x,main=NULL,values=NULL,...)
 \method{plot}{loopsummarylist2r}(x,main=NULL,values=NULL,...)
 
-\method{plot}{loop2r}(x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,main=NULL,...)
-\method{plot}{loop2rsummary}(x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,main=NULL,...)
+\method{plot}{loop2r}(x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,main=NULL,values=NULL,...)
+\method{plot}{loop2rsummary}(x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FALSE,main=NULL,values=NULL,...)
 
 }
 \arguments{

@@ -126,7 +126,7 @@ inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals[
   coercion.above <- hysteresis.x.above*b.x
  coercion.below <- hysteresis.x.below*b.x
   } else {
-  warining("hysteresis.x and coercion only available if m=n")
+  warning("hysteresis.x and coercion only available if m=n")
   hysteresis.x.above <- NA
  hysteresis.x.below <- NA
   coercion.above <- NA
