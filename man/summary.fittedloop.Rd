@@ -78,7 +78,7 @@ For bootstrapping
 \references{
 Yang, F. and A. Parkhurst, Efficient Estimation of Elliptical Hysteresis (submitted)
 
-Corrêa, Solange, Extended Bootstrap Bias Correction with Application to Multilevel Modelling of Survey Data under Informative Sampling.
+Correa, Solange, Extended Bootstrap Bias Correction with Application to Multilevel Modelling of Survey Data under Informative Sampling.
 }
 \author{
 Spencer Maynes, Fan Yang, and Anne Parkhurst.

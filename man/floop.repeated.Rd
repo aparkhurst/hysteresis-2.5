@@ -2,7 +2,7 @@
 \alias{floop.repeated}
 \alias{summary.fittedlooplist}
 \alias{floop2r.repeated}
-\alias{summary2r.fittedlooplist}
+\alias{summary.fittedlooplist2r}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Methods for easily fitting multiple loops from repeated measures designs.
