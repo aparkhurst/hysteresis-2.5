@@ -2,7 +2,7 @@ floop <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, subs
  if (boot==TRUE) return(summary(floop(x,y,n,m,times,period,subjects,subset,na.action,extended.classical,method=method),...))
   if (m==1 & n==1) return(fel(x,y,times=times,period=period,subjects=subjects,subset=subset,na.action=na.action,method=method))
   floopcall <- match.call()
-  if (method!="geometric" & method!="harmonic2") warning("method should be either geometric or harmonic2")
+  if (method!="geometric" & method!="harmonic2") stop("method should be either geometric or harmonic2")
   if (ncol(matrix(x)) > 2)
     times <- x[,3]
   dat <- xy.coords(x,y)
