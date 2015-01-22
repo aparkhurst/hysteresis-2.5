@@ -118,8 +118,14 @@ inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals[
   if (n==1) beta.split.angle<-atan2(b.y,b.x)*180/pi 
     else if (n >= 2) beta.split.angle <- 0
     else beta.split.angle<-NA
+    if (m==n) {
   hysteresis.x <- 1/sqrt(1+(b.y/abs(retention))^(2/m))
   coercion <- hysteresis.x*b.x
+  } else {
+  warining("hysteresis.x and coercion only available if m=n")
+  hysteresis.x <- NA
+  coercion <- NA
+  }
   hysteresis.y <- retention/b.y
   area <- (0.5/(beta((m+3)/2,(m+3)/2)*(m+2))+1/beta((m+1)/2,(m+1)/2)-1/beta((m+3)/2,(m-1)/2))/(2^m)*pi*abs(retention*b.x)
 if (method=="harmonic2" & m %% 2==0) area <- 0
