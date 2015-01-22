@@ -20,5 +20,5 @@ if (repeated.in[1]=="all" & !is.null(repeated)) {
   else  {
     subjects2<-list("subjects"=subjects,"repeated"=repeated)
     subset<-((subjects %in% subjects.in) & (repeated %in% repeated.in))}
-  floop(x,y,m,n,subjects=subjects2,subset=subset,...)
+  floop(x=x,y=y,n=n,m=m,subjects=subjects2,subset=subset,...)
         }
