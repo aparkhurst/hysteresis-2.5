@@ -11,8 +11,8 @@ Simulate a hysteresis loop with a variety of possible parameters.
 \usage{
 mloop(cx = 0, cy = 0, retention = 0.2, b.x = 0.6, b.y = 0.8,n = 1, m = 1, 
      sd.x = 0, sd.y = 0, phase.angle = 0, n.points = 24, 
-    period = 24,extended.classical=FALSE)  
-mloop2r(cx=0,cy=0,retention.above=0.2,retention.below=0.15,b.x=0.6,b.y=0.8,n=1,m=1,sd.x=0,sd.y=0,phase.angle=0,n.points=24,period=24,extended.classical=FALSE))
+    period = 24,extended.classical=FALSE,seed=NULL)  
+mloop2r(cx=0,cy=0,retention.above=0.2,retention.below=0.15,b.x=0.6,b.y=0.8,n=1,m=1,sd.x=0,sd.y=0,phase.angle=0,n.points=24,period=24,extended.classical=FALSE,seed=NULL)
 }
 
 \arguments{
@@ -63,6 +63,9 @@ number of equally spaced points required to make a full loop.
 logical. If true, fit a classical hysteresis loop regardless of n. Uses \deqn{y_t=sign(cos(2*pi*t/period))*b.y*abs(cos(2*pi*t/period))^n + retention*sin(2*pi*t/period)^m+cy+e_{y,t}} instead of 
 \deqn{y_t=b.y*cos(2*pi*t/period)^n+retention*sin(2*pi*t/period)^m+cy+e_{y,t}}
 Allows the user to fit classical loops with any n>1 instead of just odd numbered n. Default is false.
+}
+  \item{seed}{
+integer. Starting seed.
 }
 }
 \details{
