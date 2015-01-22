@@ -12,7 +12,7 @@ Simulate (Make) an Ellipse
 Produces an ellipse based on 1 of 4 possible formulations: 1-Eigenvalues, 2-Hysteresis Coefs, 3-Amplitudes and 4-Algebraic Coefs.
 }
 \usage{
-mel(method=1,...)
+mel(method=1,seed=NULL,...)
 mel1(cx=32,cy=39,rote.deg=2,semi.major=7,semi.minor=0.23,
 phase.angle=0,n.points=24,period=24,sd.x=0,sd.y=0)
 mel2(cx=32,cy=39,b.x=6.99,b.y=0.244,retention=0.23,
@@ -26,6 +26,9 @@ phase.angle=0,n.points=24,period=24,sd.x=0,sd.y=0)
 \arguments{
   \item{method}{
 selects which of the functions \code{mel1}, \code{mel2}, \code{mel3}, \code{mel4} to use to describe the ellipse.
+}
+  \item{seed}{
+integer, the starting seed.
 }
   \item{...}{
 arguments to the functions \code{mel1}, \code{mel2}, \code{mel3}, \code{mel4} described below.
