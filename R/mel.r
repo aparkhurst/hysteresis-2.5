@@ -1,4 +1,5 @@
-mel <- function(method=1,...) {
+mel <- function(method=1,seed=NULL,...) {
+if (!is.null(seed)) set.seed(seed)
 if (method==1)
   ans <- mel1(...)
   else if (method==2)
