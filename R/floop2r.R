@@ -149,6 +149,7 @@ inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals[
 ans$call <- floopcall
  ans$Estimates <- ans$values
  ans$Std.Errors <- try(unlist(delta.error.loop2r(ans)))
+  ans$Std.Errors <- ifelse(is.na(ans$Estimates),NA,ans$Std.Errors)
   class(ans) <- "loop2r"
   ans
 }
