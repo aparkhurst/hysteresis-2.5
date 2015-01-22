@@ -120,6 +120,18 @@ inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals[
   if (n==1) beta.split.angle<-atan2(b.y,b.x)*180/pi 
     else if (n >= 2) beta.split.angle <- 0
     else beta.split.angle<-NA
+       if (m==n) {
+  hysteresis.x.above <- 1/sqrt(1+(b.y/retention.above)^(2/m))
+ hysteresis.x.below <- 1/sqrt(1+(b.y/retention.below)^(2/m))
+  coercion.above <- hysteresis.x.above*b.x
+ coercion.below <- hysteresis.x.below*b.x
+  } else {
+  warining("hysteresis.x and coercion only available if m=n")
+  hysteresis.x.above <- NA
+ hysteresis.x.below <- NA
+  coercion.above <- NA
+ coercion.below <- NA
+  }
   hysteresis.x.above <- 1/sqrt(1+(b.y/retention.above)^(2/m))
  hysteresis.x.below <- 1/sqrt(1+(b.y/retention.below)^(2/m))
   coercion.above <- hysteresis.x.above*b.x
