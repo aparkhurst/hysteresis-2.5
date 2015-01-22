@@ -136,6 +136,7 @@ if (method=="harmonic2" & m %% 2==0) area <- 0
 ans$call <- floopcall
  ans$Std.Errors <- try(unlist(delta.error.loop(ans)))
  ans$Estimates <- ans$values
+ ans$Std.Errors <- ifelse(is.na(ans$Estimates),NA,ans$Std.Errors)
   class(ans) <- "fittedloop"
   ans
 }
