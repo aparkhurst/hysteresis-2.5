@@ -102,12 +102,6 @@ boot.ellipse1.fit
 plot(boot.ellipse1.fit,xlab="Input",ylab="Output",
 main="Bootstrapped Ellipse",putNumber=TRUE)
 
-#2r split loop example
-loop2 <- mloop2r(n=3,m=5,sd.x=0.05,sd.y=0.05,retention.above=0.6,retention.below=0.2)
-loop2.fit <- floop2r(x=loop2$x,y=loop2$y,n=3,m=5)
-boot.loop2 <- summary(loop2.fit,cbb=3)
-boot.loop2
-plot(boot.loop2,split.line=TRUE)
 }
 \keyword{ models }
 
