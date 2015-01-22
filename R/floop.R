@@ -2,6 +2,7 @@ floop <- function(x,y=NULL,n=1,m=1,times="equal",period=NULL,subjects=NULL, subs
  if (boot==TRUE) return(summary(floop(x,y,n,m,times,period,subjects,subset,na.action,extended.classical,method=method),...))
   if (m==1 & n==1) return(fel(x,y,times=times,period=period,subjects=subjects,subset=subset,na.action=na.action,method=method))
   floopcall <- match.call()
+  if (method!="geometric" & method!="harmonic2") warning("method should be either geometric or harmonic2")
   if (ncol(matrix(x)) > 2)
     times <- x[,3]
   dat <- xy.coords(x,y)
@@ -87,7 +88,6 @@ for (i in 1:length(dat$x)) {
 ti<-c(ti[1],diff(ti))
 }
 else ti <- c(t[1],diff(t))
-if (method!="geometric" & method!="harmonic2") warning("method should be either geometric or harmonic2")
 inti <- internal.1(start$vals["semi.major"],start$vals["semi.minor"],start$vals["theta"])
    mod=optim(par=c("t"=ti,"cx"=(start$vals["cx"]+mean(dat$x))/2,"cy"=(start$vals["cy"]+mean(dat$y))/2,"b.x"=(inti[1]+diff(range(dat$x))/2)/2,"b.y"=(inti[2]+diff(range(dat$y))/2)/2,"logm"=log(m),
                    "logn"=log(n),"retention"=inti[3]/2),fn=floopCauchyLoss,x=dat$x,y=dat$y,
