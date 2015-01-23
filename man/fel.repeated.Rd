@@ -92,7 +92,7 @@ subjects = EllipseData$subjects,subjects.in=c("A","C"),
 repeated=EllipseData$repeated,boot=TRUE,seed=123)
 boot.rep.ellipse  #Gives boot estimates, boot bias, boot SE and boot quartiles
 par(mfrow=c(2,2))
-plot(boot.rep.ellipse, main="Repeated Ellipses",xlab="X",,ylab="Y"values="ellipse")
+plot(boot.rep.ellipse, main="Repeated Ellipses",xlab="X",ylab="Y"values="ellipse")
 par(mfrow=c(1,1))
 
 ##Can write results to a file. First set your directory from the file tab.
