@@ -65,7 +65,7 @@ draw an ellipse with 100 points. If \code{FALSE} use predicted ellipse from \cod
   \item{show}{
 a character vector of parameters to be shown in the plot. 
 Possible values are "retention", "coercion", "b.x", "b.y", "semi.major","semi.minor","rote.deg","focus.x",and "focus.y". 
-\code{show} is only available for ellipses and loops where n=m=1. 
+\code{show} is not available for bootstrapped results. 
 }
   \item{split.line}{
 logical. Whether to include the split line, which is the input output relationship when hysteresis is removed.
