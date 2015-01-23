@@ -108,8 +108,7 @@ Sellipse.fit$Estimates
 booted.Sellipse <- fel(Sellipse$x,Sellipse$y,boot=TRUE, seed=123)
 booted.Sellipse   #Gives boot estimates, boot bias, boot SE and boot quartiles
 plot(booted.Sellipse,main="Simulated Bootstrap Ellipse Loop",xlab="X Input",
-ylab="Y Output",show=c("rote.deg","semi.major","semi.minor"),
-values="ellipse.all")
+ylab="Y Output",values="ellipse.all")
 
 }
 \keyword{ models }
