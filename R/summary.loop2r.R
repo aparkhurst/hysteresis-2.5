@@ -18,6 +18,7 @@ summary.loop2r <- function(object,boot=TRUE,N=1000,cbb=NULL,joint=FALSE,seed=NUL
     colnames(bootdat) <- names(g$values)
     
     error<-apply(bootdat,2,sd,na.rm=T)
+    error <- ifelse(is.na(g$values),NA,error)
     ranges<-apply(bootdat,2,quantile,probs=c(0.025,0.25,0.5,0.75,0.975),na.rm=T)
     themean<-apply(bootdat,2,mean,na.rm=T)
     full <- data.frame(g$values,t(ranges),error, themean,g$Std.Errors)
