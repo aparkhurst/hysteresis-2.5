@@ -38,7 +38,7 @@ else  if (values=="hysteresis.all") {
     title(line=3, paste(main),cex=1.2)
     mtext(paste(
       "b.x=",format(a$values["b.x","Boot.Estimate"],digits=3)," b.y=",format(a$values["b.y","Boot.Estimate"],digits=3)," cx=",format(a$values["cx","Boot.Estimate"],digits=3)," cy=",format(a$values["cy","Boot.Estimate"],digits=3)),side=3,line=1.85,cex=0.75)
-    mtext(paste("Area=",format(a$values["area","Boot.Estimate"],digits=3)," Lag=",format(a$values["lag","Boot.Estimate"],digits=3)," Retention=",format(a$values["retention","Boot.Estimate"],digits=3)," Split Angle=",format(a$values["split.angle","Boot.Estimate"],digits=3)),side=3,line=0.95,cex=0.75)
+    mtext(paste("Area=",format(a$values["area","Boot.Estimate"],digits=3)," Lag=",format(a$values["lag","Boot.Estimate"],digits=3)," Retention=",format(a$values["retention","Boot.Estimate"],digits=3)," Split Angle=",format(a$values["beta.split.angle","Boot.Estimate"],digits=3)),side=3,line=0.95,cex=0.75)
     mtext(paste("Coercion=",format(a$values["coercion","Boot.Estimate"],digits=3)," Hysteresis x=",format(a$values["hysteresis.x","Boot.Estimate"],digits=3)," Hysteresis y=",format(a$values["hysteresis.y","Boot.Estimate"],digits=3)),side=3,line=0.0,cex=0.75)
   }
   
@@ -47,7 +47,7 @@ else  if (values=="hysteresis.all") {
     title(line=3, paste(main),cex=1.2)
     mtext(paste(
       "Coercion=",format(a$values["coercion","Boot.Estimate"],digits=3)," Area=",format(a$values["area","Boot.Estimate"],digits=3)),side=3,line=1.85,cex=0.75)
-    mtext(paste("Lag=",format(a$values["lag","Boot.Estimate"],digits=3)," Split Angle=",format(a$values["split.angle","Boot.Estimate"],digits=3)),side=3,line=0.95,cex=0.75)
+    mtext(paste("Lag=",format(a$values["lag","Boot.Estimate"],digits=3)," Split Angle=",format(a$values["beta.split.angle","Boot.Estimate"],digits=3)),side=3,line=0.95,cex=0.75)
     mtext(paste("Hysteresis x=",format(a$values["hysteresis.x","Boot.Estimate"],digits=3)," Hysteresis y=",format(a$values["hysteresis.y","Boot.Estimate"],digits=3)),side=3,line=0.0,cex=0.75)
   }
   
