@@ -1,3 +1,8 @@
+CHANGES IN hysteresis VERSION 2.5
+
+CHANGES
+	* removed nlrwr package dependency.
+
 CHANGES IN hysteresis VERSION 2.0
 
 CHANGES
