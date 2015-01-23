@@ -46,7 +46,7 @@ plot.fittedloop <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FAL
       title(line=3, paste(main),cex=1.2)
       mtext(paste(
         "b.x=",format(a$values["b.x"],digits=3)," b.y=",format(a$values["b.y"],digits=3)," cx=",format(a$values["cx"],digits=3)," cy=",format(a$values["cy"],digits=3)),side=3,line=1.85,cex=0.75)
-      mtext(paste("Area=",format(a$values["area"],digits=3)," Lag=",format(a$values["lag"],digits=3)," Retention=",format(a$values["retention"],digits=3)," Split Angle=",format(a$values["split.angle"],digits=3)),side=3,line=0.95,cex=0.75)
+      mtext(paste("Area=",format(a$values["area"],digits=3)," Lag=",format(a$values["lag"],digits=3)," Retention=",format(a$values["retention"],digits=3)," Split Angle=",format(a$values["beta.split.angle"],digits=3)),side=3,line=0.95,cex=0.75)
       mtext(paste("Coercion=",format(a$values["coercion"],digits=3)," Hysteresis x=",format(a$values["hysteresis.x"],digits=3)," Hysteresis y=",format(a$values["hysteresis.y"],digits=3)),side=3,line=0.0,cex=0.75)
     }
   
@@ -55,7 +55,7 @@ plot.fittedloop <- function (x,split.line=TRUE,xlim=NULL,ylim=NULL,putNumber=FAL
     title(line=3, paste(main),cex=1.2)
     mtext(paste(
       "Coercion=",format(a$values["coercion"],digits=3)," Area=",format(a$values["area"],digits=3)),side=3,line=1.85,cex=0.75)
-    mtext(paste("Lag=",format(a$values["lag"],digits=3)," Split Angle=",format(a$values["split.angle"],digits=3)),side=3,line=0.95,cex=0.75)
+    mtext(paste("Lag=",format(a$values["lag"],digits=3)," Split Angle=",format(a$values["beta.split.angle"],digits=3)),side=3,line=0.95,cex=0.75)
     mtext(paste("Hysteresis x=",format(a$values["hysteresis.x"],digits=3)," Hysteresis y=",format(a$values["hysteresis.y"],digits=3)),side=3,line=0.0,cex=0.75)
   }
   else plot(Output~Input,type="l",ylim=ylim,xlim=xlim,main=main,...)
